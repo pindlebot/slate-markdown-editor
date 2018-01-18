@@ -2,19 +2,23 @@ import Prism from "prismjs";
 
 Prism.languages.markdown = Prism.languages.extend('markup', {});
 Prism.languages.insertBefore('markdown', 'prolog', {
-	/*'code': [
-		{
-			// Prefixed by 4 spaces or 1 tab
-			pattern: /^(?: {4}|\t).+/m,
-			alias: 'keyword'
-		},
-		{
-			// `code`
-			// ``code``
-			pattern: /`.+?|`[^`\n]+`/,
-			alias: 'keyword'
-		}
-	],*/
+	//'code': [
+	//	{
+	//		// Prefixed by 4 spaces or 1 tab
+	//		pattern: /^(?: {4}|\t).+/m,
+	//		alias: 'keyword'
+	//	},
+	//	{
+	//		// `code`
+	//		// ``code``
+	//		pattern: /`.+?|`[^`\n]+`/,
+	//		alias: 'keyword'
+	//	}
+	//],
+	code: {
+		pattern: /`[^`\n]+`/,
+		aliast: 'keyword'
+	},
 	'url-reference': {
 		// [id]: http://example.com "Optional title"
 		// [id]: http://example.com 'Optional title'

@@ -1,29 +1,26 @@
 import React from 'react';
 import injectSheet from 'react-jss'
 import defaultStyles from '../styles'
+import Component from './Component'
 
-const Heading = params => {
-  let { attributes, children, node } = params
-  
-  let data = node.data.toJSON()
-  let tag = 'h' + data.depth;
-  let content = '#'.repeat(data.depth) + ' '
+const Heading = editorProps => {
+  let { attributes, node } = editorProps;
+  console.log(editorProps)
+  let depth = node.data.get('depth')
+  let tag = 'h' + depth;
+  let content = '#'.repeat(depth) + ' '
 
   let styles = { 
     root: { 
       ...defaultStyles,
+      display: 'inline-block',
       '&:before': {
         content: `"${content}"`,
         color: '#ddd'
       }
     } 
   }
-
-  let Component = injectSheet(styles)(
-    props => React.createElement(tag, { className: props.classes.root }, children)
-  )
-
-  return <Component />
+  return Component(tag, editorProps, styles)
 }
 
 export default Heading;

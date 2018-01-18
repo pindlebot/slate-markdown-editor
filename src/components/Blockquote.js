@@ -1,10 +1,9 @@
 import React from 'react';
 import injectSheet from 'react-jss'
 import defaultStyles from '../styles'
+import Component from './Component'
 
-const Blockquote = params => {
-  let { attributes, children, node } = params
-  
+const Blockquote = props => {  
   let styles = { 
     root: { 
       ...defaultStyles,
@@ -14,11 +13,7 @@ const Blockquote = params => {
     } 
   }
 
-  let Component = injectSheet(styles)(
-    props => React.createElement('blockquote', { className: props.classes.root }, children)
-  )
-
-  return <Component />
+  return Component('blockquote', props, styles)  
 }
 
 export default Blockquote

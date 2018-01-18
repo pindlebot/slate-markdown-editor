@@ -20,6 +20,8 @@
     "immutable": "^3.8.2",
     "jss": "^9.5.1",
     "jss-nested": "^6.0.1",
+    "lodash.findindex": "^4.6.0",
+    "lodash.flatten": "^4.4.0",
     "marked": "^0.3.12",
     "prismjs": "^1.8.4",
     "react-jss": "^8.2.1",

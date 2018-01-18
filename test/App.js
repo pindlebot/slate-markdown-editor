@@ -9,7 +9,9 @@ import {
   saveValue,
   loadValue,
   contentToJSON,
-  valueToContent
+  valueToContent,
+  toMarkdown,
+  fromMarkdown
 } from '../src/util'
 
 class App extends React.Component {
@@ -19,12 +21,22 @@ class App extends React.Component {
   }
 
   test = () => {
-    saveValue(this.state.value)   
+    //let out = contentToJSON('## heading 2\n')
+    //console.log(out)
+    //localStorage.setItem('value', JSON.stringify(out))
+    //saveValue(this.state.value)  
+    let out = toMarkdown(this.state.value) 
+    console.log('toMarkdown',out)
+    out = fromMarkdown(out)
+    console.log('fromMarkdown',out)
+    this.setState({
+      value: Value.fromJSON(out)
+    })
   }
 
   onChange = ({ value }) => {
     this.setState({ value }, () => {
-      console.log(value.toJSON())  
+      //console.log(value.toJSON())  
     })
   }
 
@@ -36,6 +48,9 @@ class App extends React.Component {
         value={this.state.value}
         onChange={this.onChange}
       />
+      <br />
+      <br />
+      {serializeValue(this.state.value)}
       </div>
     )
   }

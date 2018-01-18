@@ -1,6 +1,7 @@
 import React from 'react';
 import injectSheet from 'react-jss'
 import defaultStyles from '../styles'
+import Component from './Component'
 
 const ListItem = params => {
   let { attributes, children, node } = params
@@ -15,11 +16,7 @@ const ListItem = params => {
     } 
   }
 
-  let Component = injectSheet(styles)(
-    props => React.createElement('li', { className: props.classes.root }, children)
-  )
-
-  return <Component />
+  return Component('li', params, styles)
 }
 
 export default ListItem
