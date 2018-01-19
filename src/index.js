@@ -1,7 +1,7 @@
 
 import Plain from 'slate-plain-serializer'
-import { Editor } from 'slate-react'
-import { Block } from 'slate'
+import { Editor, getEventTransfer } from 'slate-react'
+import { Block, Value } from 'slate'
 import injectSheet, { jss, ThemeProvider } from 'react-jss'
 import React from 'react'
 import Heading from './components/Heading'
@@ -14,6 +14,7 @@ import inline from './inline'
 import marks from './constants/marks'
 import decorateNode from './decorateNode';
 import schema from './constants/schema'
+import fromMarkdown from './parser/fromMarkdown'
 
 const blocks = {
   pre: Pre,
@@ -32,6 +33,19 @@ class SlateMarkdownEditor extends React.Component {
     if(marks[mark.type]) {
       return marks[mark.type](props)
     }
+  }
+
+  onPaste = (event, change) => {
+    const transfer = getEventTransfer(event)
+    console.log(transfer)
+    //if (transfer.type != 'html') return
+    const json = fromMarkdown(transfer.text)
+    //console.log(json)
+
+    const { document } = Value.fromJSON(json)
+    console.log(document.toJSON())
+    change.insertFragment(document)
+    return true
   }
 
   parent = value => value.document.getParent(value.startBlock.key)
@@ -65,11 +79,11 @@ class SlateMarkdownEditor extends React.Component {
     if(!blocks.some(block => block.type == 'code')) return
 
     change
-      .setBlock('p')
-      .unwrapBlock('pre')        
       .splitBlock()
+      .setBlock('p')
+      .unwrapBlock('pre')       
       .removeNodeByKey(startBlock.key)
-
+      
     return true;
   }
 
@@ -196,9 +210,9 @@ class SlateMarkdownEditor extends React.Component {
 
   onKeyDown = (event, change) => {
     
-    console.log('startBlock', change.value.startBlock.toJSON())
-    console.log('parent', this.parent(change.value).toJSON())
-    console.log('depth', this.depth(change.value))
+    //console.log('startBlock', change.value.startBlock.toJSON())
+    //console.log('parent', this.parent(change.value).toJSON())
+    //console.log('depth', this.depth(change.value))
     switch (event.key) {
 
       case ' ': return this.onSpace(event, change)
@@ -237,6 +251,7 @@ class SlateMarkdownEditor extends React.Component {
         style={{
           fontFamily: '"Open Sans'
         }}
+        onPaste={this.onPaste}
         {...rest}
       />
     )

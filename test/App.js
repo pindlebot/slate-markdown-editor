@@ -21,14 +21,12 @@ class App extends React.Component {
   }
 
   test = () => {
-    //let out = contentToJSON('## heading 2\n')
-    //console.log(out)
-    //localStorage.setItem('value', JSON.stringify(out))
-    //saveValue(this.state.value)  
     let out = toMarkdown(this.state.value) 
     console.log('toMarkdown',out)
+
     out = fromMarkdown(out)
     console.log('fromMarkdown',out)
+    
     this.setState({
       value: Value.fromJSON(out)
     })

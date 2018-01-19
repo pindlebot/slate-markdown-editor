@@ -1,130 +1,243 @@
 import { Value, Node, Block, Text, Document } from 'slate'
 import * as marked from 'marked'
 import findIndex from 'lodash.findindex'
+import flatten from 'lodash.flatten'
+import Prism from "prismjs";
+import schema from '../constants/schema'
 
-const text = string => ({
+Prism.languages.markdown = Prism.languages.extend('markup', {});
+Prism.languages.insertBefore('markdown', 'prolog', {
+	'blockquote': {
+		// > ...
+		pattern: /^>(?:[\t ]*>)*/m,
+		alias: 'punctuation'
+	},
+	/*'code': [
+		{
+			// Prefixed by 4 spaces or 1 tab
+			pattern: /^(?: {4}|\t).+/m,
+			alias: 'keyword'
+		},
+		{
+			// `code`
+			// ``code``
+			pattern: /``.+?``|`[^`\n]+`/,
+			alias: 'keyword'
+		}
+	],*/
+	code: [{
+		//pattern: /```[\s\S]+```/,
+		pattern: /```/,
+		alias: 'keyword'	
+	}],
+	'heading': [
+		{
+			// title 1
+			// =======
+
+			// title 2
+			// -------
+			pattern: /\w+.*(?:\r?\n|\r)(?:==+|--+)/,
+			alias: 'important',
+			inside: {
+				punctuation: /==+$|--+$/
+			}
+		},
+		{
+			// # title 1
+			// ###### title 6
+			pattern: /(^\s*)#+.+/m,
+			lookbehind: true,
+			alias: 'important',
+			inside: {
+				punctuation: /^#+|#+$/
+			}
+		}
+	],
+	'hr': {
+		// ***
+		// ---
+		// * * *
+		// -----------
+		pattern: /(^\s*)([*-])(?:[\t ]*\2){2,}(?=\s*$)/m,
+		lookbehind: true,
+		alias: 'punctuation'
+	},
+	'li': {
+		// * item
+		// + item
+		// - item
+		// 1. item
+		pattern: /(^\s*)(?:[*+-]|\d+\.)(?=[\t ].)/m,
+		lookbehind: true,
+		alias: 'punctuation'
+	}
+});
+
+const createText = string => ({
   object: 'text',
-  leaves: string.split('\n').map(txt => ({
-      object: 'leaf',
-      text: txt,
-      marks: []
-    })
-  )
+  leaves: [{
+    object: 'leaf',
+    text: string,
+    marks: []
+  }]
 })
 
-const block = (type, data = {}) => ({
+const createBlock = (type, data = {}) => ({
   ...Node.createProperties(type),
   object: 'block',
   isVoid: false,
   data: data,
 })
 
-const handleToken = (token) => {
-  switch(token.type) {
-    case 'code':
-      let lines = ['```', ...token.text.split('\n'), '```']
-  
-      return {
-        ...block('pre'),
-        nodes: lines.map(txt => ({
-          ...block('code', { wrapper: 'pre' }),
-          nodes: [text(txt)]
-        }))
-      }    
-      break;
-    case 'heading':
-      return {
-        ...block('heading', { depth: token.depth, split: true }),
-        nodes: [text(token.text)]
-      }
-      break
-    case 'blockquote_start':
-      return {
-        ...block('blockquote', { split: true }),
-        nodes: [text(token.text)]
-      }
-      break
-    case 'paragraph':
-
-    default: 
-      return {
-        ...block('p', {}),
-        nodes: [text(token.text)]
-      }
-  }
-}
-
-const node = (tokens) => {
-  let tmp = {};
-
-  const findRecursive = (tmp, type) => {
-    if(!type) return undefined
-    if(tmp.type === type) return tmp.tokens;
-
-    let { tokens } = tmp;
-    if(Array.isArray(tokens)) {
-      let token;
-      let i = 0;
-
-      while(i < tokens.length) {
-        token = findRecursive(tokens[i], type)
-        i++
-      }
-      return token;
-    }
-
-    return undefined
-  }
-  const last = (types) => types[types.length - 1]
- 
-  let types = []
-  let tok = tokens.reduce((acc, val) => {  
-
-    if(val.type.indexOf('start') > -1) {
-      let type = val.type.replace('_start', '')
-      types.push(type)
-
-      let tokens = { type, tokens: [] }
-      
-      if(tmp.tokens) tmp.tokens.push(tokens)
-      else tmp = tokens;
-      
-      return acc;
-    }
-
-    if(val.type.indexOf('end') > -1) {
-      type = undefined;
-    }
-
-    let nested = findRecursive(tmp, type);
-    console.log('nested',nested)
-    if(nested) {
-      nested.push(val)
-      return acc;
-    }
-
-    acc.push(val)
-    return acc;
-  }, [])
-  console.log('tmp', tmp)
-  console.log('tok', tok)
-  return []
-}
- 
-
-const createValue = (tokens) => ({
+const createValue = (nodes) => ({
   object: 'value',
   document: {
     object: 'document',
     data: {},
-    nodes: node(tokens)
+    nodes: nodes
   }
 })
 
-export default function fromMarkdown (content) {
-  const lexer = new marked.Lexer();
-  let tokens = lexer.lex(content)  
-  console.log(tokens)
-  let value = createValue(tokens)
-  return value;
+const blockNodes = {
+	blockquote: props => ({
+		...createBlock('blockquote', props.data),
+		nodes: props.text ? [blockNodes.p({...props})] : []
+	}),
+	li: props => ({
+		...createBlock('ul', {}),
+		nodes: [{
+			...createBlock('li', props.data),
+			nodes: props.text ? [
+				createText(props.text)
+			] : []
+		}]
+	}),
+  heading: props => ({
+		...createBlock('heading', props.data),
+		nodes: [createText(props.text)]
+	}),
+	p: props => ({
+		...createBlock('p', props.data),
+		nodes: [createText(props.text)]
+	}),
+	code: props => ({
+    ...createBlock('pre', {}),
+		nodes: [{
+			...createBlock('code', props.data),
+			nodes: props.text ? [
+				createText(props.text)
+			] : []
+		}]
+	})
+}
+const grammar = Prism.languages.markdown
+const tokenize = text => Prism.tokenize(text, grammar)
+
+function parse (string) {
+	let tokens = tokenize(string)
+	let nodes = []
+	
+	while(tokens.length) {
+		let tok = tokens.shift()
+		if(!tok) continue
+		console.log('tok', tok)
+
+		if(typeof tok === 'string') {
+			nodes.push(
+				blockNodes.p({text: tok})
+			)
+			continue;
+		}
+
+		let nextToken = tokens.shift();
+		let blockFn = blockNodes[tok.type]
+		let text = nextToken;
+		let prefix = tok.content;
+		let data = {}
+
+		if(typeof nextToken !== 'string') {
+			text = tok.content[1]
+			prefix = tok.content[0].content
+		}
+			
+		if(tok.type === 'heading') {
+			data.depth = prefix.length;
+		}
+
+		text = text.replace(' ', '')
+
+		if(text === '' && tok.type === 'p') {
+			continue
+		}
+
+    if(nodes.length) {
+			let node = nodes[nodes.length - 1]
+
+			node.nodes.push(
+				blockFn({text, data}) 
+			)
+			continue;
+		}
+
+		nodes.push(
+			blockFn({text, data})
+		)		
+	}
+
+  console.log('nodes', nodes)
+	return nodes;
+}
+
+export default function fromMarkdown(content) {
+	let lines = content.split('\n')
+	let i = 0;
+	let tmp;
+	let out = []
+
+	while(lines.length) {
+		let line = lines.shift()
+		
+		// add to code block if it has been started
+		if(tmp) tmp.push(line)
+		
+		// start a code block
+		if(line.indexOf('```') > -1 && !tmp) {
+			tmp = [line]
+			continue;
+		}
+
+		// end code block
+		if(line.indexOf('```') > -1) {
+			out.push(
+				parse([...tmp].join('\n'))
+			)
+			tmp = undefined
+			continue;
+		}
+
+		let prevBlock = out.length ? out[out.length - 1] : undefined
+		let currentBlock = parse(line)[0]
+		
+		if(!currentBlock) continue;
+
+		if(
+			prevBlock && 
+		  prevBlock.type === currentBlock.type &&
+			['blockquote', 'ul'].indexOf(prevBlock.type) > -1
+		) {
+      out[out.length - 1] = {
+				...prevBlock,
+				nodes: [
+					...prevBlock.nodes,
+					...currentBlock.nodes
+				]
+			}
+			continue;
+		}
+		
+		out.push(currentBlock)
+	}
+
+	return createValue(flatten(out))
 }

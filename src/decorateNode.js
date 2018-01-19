@@ -1,4 +1,4 @@
-import Prism from './Prism'
+import tokenize from './tokenize'
 import React from 'react'
 
 export default (node) => {
@@ -6,9 +6,7 @@ export default (node) => {
 
   const string = node.text
   const texts = node.getTexts().toArray()
-  const grammar = Prism.languages.markdown
-  let tokens = Prism.tokenize(string, grammar)
-
+  let tokens = tokenize(string)
   tokens = tokens.filter(tok => tok.content)
   if(!tokens.length) return []
 

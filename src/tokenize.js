@@ -1,7 +1,8 @@
 import Prism from "prismjs";
 
-Prism.languages.markdown = Prism.languages.extend('markup', {});
-Prism.languages.insertBefore('markdown', 'prolog', {
+Prism.languages.markdownDecorators = Prism.languages.extend('markup', {})
+
+Prism.languages.insertBefore('markdownDecorators', 'prolog', {
 	//'code': [
 	//	{
 	//		// Prefixed by 4 spaces or 1 tab
@@ -73,9 +74,20 @@ Prism.languages.insertBefore('markdown', 'prolog', {
   },
 });
 
-Prism.languages.markdown['bold'].inside['url'] = Prism.util.clone(Prism.languages.markdown['url']);
-Prism.languages.markdown['italic'].inside['url'] = Prism.util.clone(Prism.languages.markdown['url']);
-Prism.languages.markdown['bold'].inside['italic'] = Prism.util.clone(Prism.languages.markdown['italic']);
-Prism.languages.markdown['italic'].inside['bold'] = Prism.util.clone(Prism.languages.markdown['bold']);
+const clone = Prism.util.clone
+const grammar = Prism.languages.markdownDecorators
 
-export default Prism;
+Prism.languages.markdownDecorators['bold'].inside['url'] = clone(
+	grammar['url']
+);
+Prism.languages.markdownDecorators['italic'].inside['url'] = clone(
+	grammar['url']
+);
+Prism.languages.markdownDecorators['bold'].inside['italic'] = clone(
+	grammar['italic']
+);
+Prism.languages.markdownDecorators['italic'].inside['bold'] = clone(
+	grammar['bold']
+);
+
+export default str => Prism.tokenize(str, grammar)
