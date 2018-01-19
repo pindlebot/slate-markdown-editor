@@ -7,72 +7,39 @@ import schema from '../constants/schema'
 
 Prism.languages.markdown = Prism.languages.extend('markup', {});
 Prism.languages.insertBefore('markdown', 'prolog', {
-	'blockquote': {
-		// > ...
+	blockquote: {
 		pattern: /^>(?:[\t ]*>)*/m,
 		alias: 'punctuation'
 	},
-	/*'code': [
-		{
-			// Prefixed by 4 spaces or 1 tab
-			pattern: /^(?: {4}|\t).+/m,
-			alias: 'keyword'
-		},
-		{
-			// `code`
-			// ``code``
-			pattern: /``.+?``|`[^`\n]+`/,
-			alias: 'keyword'
-		}
-	],*/
 	code: [{
-		//pattern: /```[\s\S]+```/,
 		pattern: /```/,
 		alias: 'keyword'	
 	}],
-	'heading': [
-		{
-			// title 1
-			// =======
-
-			// title 2
-			// -------
-			pattern: /\w+.*(?:\r?\n|\r)(?:==+|--+)/,
-			alias: 'important',
-			inside: {
-				punctuation: /==+$|--+$/
-			}
-		},
-		{
-			// # title 1
-			// ###### title 6
-			pattern: /(^\s*)#+.+/m,
-			lookbehind: true,
-			alias: 'important',
-			inside: {
-				punctuation: /^#+|#+$/
-			}
+	heading: [{
+		pattern: /\w+.*(?:\r?\n|\r)(?:==+|--+)/,
+		alias: 'important',
+		inside: {
+			punctuation: /==+$|--+$/
 		}
-	],
-	'hr': {
-		// ***
-		// ---
-		// * * *
-		// -----------
+	}, {
+		pattern: /(^\s*)#+.+/m,
+		lookbehind: true,
+		alias: 'important',
+		inside: {
+			punctuation: /^#+|#+$/
+		}
+	}],
+	hr: {
 		pattern: /(^\s*)([*-])(?:[\t ]*\2){2,}(?=\s*$)/m,
 		lookbehind: true,
 		alias: 'punctuation'
 	},
-	'li': {
-		// * item
-		// + item
-		// - item
-		// 1. item
+	li: {
 		pattern: /(^\s*)(?:[*+-]|\d+\.)(?=[\t ].)/m,
 		lookbehind: true,
 		alias: 'punctuation'
 	}
-});
+})
 
 const createText = string => ({
   object: 'text',
@@ -131,6 +98,7 @@ const blockNodes = {
 		}]
 	})
 }
+
 const grammar = Prism.languages.markdown
 const tokenize = text => Prism.tokenize(text, grammar)
 
