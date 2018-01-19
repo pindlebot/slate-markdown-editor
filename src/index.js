@@ -148,7 +148,7 @@ class SlateMarkdownEditor extends React.Component {
       case chars === '+': return 'li'
       case chars === '>': return 'blockquote'
       case chars.indexOf('#') > -1: return 'h' + chars.length
-      case /```.+?/.test(chars): return 'code'
+      case /```.+/.test(chars): return 'code';
       default: return null
     }
   }
