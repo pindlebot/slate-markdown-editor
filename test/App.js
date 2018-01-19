@@ -14,6 +14,28 @@ import {
   fromMarkdown
 } from '../src/util'
 
+const btnStyles = {
+  whiteSpace: 'nowrap',
+  display: 'inline-block',
+  height: '40px',
+  lineHeight: '32px',
+  margin: '0',
+  padding: '0 14px',
+  boxShadow: 'rgba(50, 50, 93, 0.109804) 0px 4px 6px 0px, rgba(0, 0, 0, 0.0784314) 0px 1px 3px 0px',
+  borderRadius: '4px',
+  fontSize: '15px',
+  fontWeight: '600',
+  textTransform: 'uppercase',
+  letterSpacing: '.025em',
+  color: 'white',
+  textDecoration: 'none',
+  transition: 'all .15s ease',
+  background: '#3ecf8e',
+  border: 'none',
+  cursor: 'pointer',
+  maxWidth: '260px',
+  marginRight: '1em',
+}
 class App extends React.Component {
   
   state = {
@@ -22,10 +44,10 @@ class App extends React.Component {
 
   test = () => {
     let out = toMarkdown(this.state.value) 
-    console.log('toMarkdown',out)
+    console.log('toMarkdown', out)
 
     out = fromMarkdown(out)
-    console.log('fromMarkdown',out)
+    console.log('fromMarkdown', out)
     
     this.setState({
       value: Value.fromJSON(out)
@@ -34,21 +56,33 @@ class App extends React.Component {
 
   onChange = ({ value }) => {
     this.setState({ value }, () => {
-      //console.log(value.toJSON())  
+
     })
   }
 
   render() {
     return(
-      <div>
-        <button onClick={() => this.test()}>Load</button>
-      <Editor
-        value={this.state.value}
-        onChange={this.onChange}
-      />
-      <br />
-      <br />
-      {serializeValue(this.state.value)}
+      <div style={{
+        height: '100%',
+        maxWidth: '720px', 
+        margin: '20px auto', 
+      }}>
+        <div style={{
+          backgroundColor: '#fafafa',
+          padding: '20px',
+          margin: '20px 0',
+          minHeight: '70%',
+          boxShadow: '0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2)'
+        }}>
+          <Editor
+            value={this.state.value}
+            onChange={this.onChange}
+          />
+        </div>
+        <div>
+          <button onClick={() => this.test()} style={btnStyles}>Load</button>  
+        </div>        
+        
       </div>
     )
   }

@@ -2,44 +2,8 @@ import { Value, Node, Block, Text, Document } from 'slate'
 import * as marked from 'marked'
 import findIndex from 'lodash.findindex'
 import flatten from 'lodash.flatten'
-import Prism from "prismjs";
+import tokenize from './tokenize'
 import schema from '../constants/schema'
-
-Prism.languages.markdown = Prism.languages.extend('markup', {});
-Prism.languages.insertBefore('markdown', 'prolog', {
-	blockquote: {
-		pattern: /^>(?:[\t ]*>)*/m,
-		alias: 'punctuation'
-	},
-	code: [{
-		pattern: /```/,
-		alias: 'keyword'	
-	}],
-	heading: [{
-		pattern: /\w+.*(?:\r?\n|\r)(?:==+|--+)/,
-		alias: 'important',
-		inside: {
-			punctuation: /==+$|--+$/
-		}
-	}, {
-		pattern: /(^\s*)#+.+/m,
-		lookbehind: true,
-		alias: 'important',
-		inside: {
-			punctuation: /^#+|#+$/
-		}
-	}],
-	hr: {
-		pattern: /(^\s*)([*-])(?:[\t ]*\2){2,}(?=\s*$)/m,
-		lookbehind: true,
-		alias: 'punctuation'
-	},
-	li: {
-		pattern: /(^\s*)(?:[*+-]|\d+\.)(?=[\t ].)/m,
-		lookbehind: true,
-		alias: 'punctuation'
-	}
-})
 
 const createText = string => ({
   object: 'text',
@@ -99,9 +63,6 @@ const blockNodes = {
 	})
 }
 
-const grammar = Prism.languages.markdown
-const tokenize = text => Prism.tokenize(text, grammar)
-
 function parse (string) {
 	let tokens = tokenize(string)
 	let nodes = []
@@ -133,7 +94,7 @@ function parse (string) {
 			data.depth = prefix.length;
 		}
 
-		text = text.replace(' ', '')
+		if(text) text = text.replace(' ', '')
 
 		if(text === '' && tok.type === 'p') {
 			continue

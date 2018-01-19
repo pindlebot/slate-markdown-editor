@@ -9,7 +9,7 @@ const Blockquote = props => {
       ...defaultStyles,
       margin: '0 0 0 6px',
       padding: '0 0 0 6px',
-      borderLeft: '1px solid #ddd'
+      borderLeft: '2px solid #999'
     } 
   }
 

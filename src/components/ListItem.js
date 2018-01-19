@@ -10,8 +10,8 @@ const ListItem = params => {
     root: { 
       ...defaultStyles,
       '&:before': {
-        content: '"- "',
-        color: '#ddd'
+        content: '"— "',
+        color: '#999'
       }
     } 
   }

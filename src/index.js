@@ -39,9 +39,15 @@ class SlateMarkdownEditor extends React.Component {
     const transfer = getEventTransfer(event)
     const json = fromMarkdown(transfer.text)
     const { document } = Value.fromJSON(json)
-    console.log(document.toJSON())
+    console.log('pasted', document.toJSON())
     
-    change.insertFragment(document)
+    change.insertFragmentByKey(
+      change.value.document.key,
+      0,
+      document
+    )
+
+    console.log('pasted - result', change.value.toJSON())
     return true
   }
 

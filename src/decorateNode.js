@@ -7,8 +7,8 @@ export default (node) => {
   const string = node.text
   const texts = node.getTexts().toArray()
   let tokens = tokenize(string)
-  tokens = tokens.filter(tok => tok.content)
-  if(!tokens.length) return []
+  //tokens = tokens.filter(tok => tok.content)
+  //if(!tokens.length) return []
 
   const decorations = []
   let startText = texts.shift()
@@ -39,7 +39,7 @@ export default (node) => {
 
     endOffset = startOffset + remaining
 
-    while (available < remaining) {
+    while (endText && available < remaining) {
       endText = texts.shift()
       remaining = length - available
       available = endText.text.length
