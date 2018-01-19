@@ -37,13 +37,10 @@ class SlateMarkdownEditor extends React.Component {
 
   onPaste = (event, change) => {
     const transfer = getEventTransfer(event)
-    console.log(transfer)
-    //if (transfer.type != 'html') return
     const json = fromMarkdown(transfer.text)
-    //console.log(json)
-
     const { document } = Value.fromJSON(json)
     console.log(document.toJSON())
+    
     change.insertFragment(document)
     return true
   }
@@ -150,16 +147,13 @@ class SlateMarkdownEditor extends React.Component {
       case chars === '-':
       case chars === '+': return 'li'
       case chars === '>': return 'blockquote'
-      case chars.indexOf('#') > -1: {
-        return 'h' + chars.length
-      }
+      case chars.indexOf('#') > -1: return 'h' + chars.length
       case /```.+?/.test(chars): return 'code'
       default: return null
     }
   }
 
   onBackspace = (event, change) => {
-    console.log('onBackspace()')
     const { value } = change
     if (value.isExpanded) return
     if (value.startOffset != 0) return
@@ -178,7 +172,6 @@ class SlateMarkdownEditor extends React.Component {
     event.preventDefault()
     change.setBlock('p')
     if(depth > 1) change.unwrapBlock(parent)
-    //if(data.wrapper) change.unwrapBlock(data.wrapper)
 
     return true
   }
@@ -209,7 +202,6 @@ class SlateMarkdownEditor extends React.Component {
   }
 
   onKeyDown = (event, change) => {
-    
     //console.log('startBlock', change.value.startBlock.toJSON())
     //console.log('parent', this.parent(change.value).toJSON())
     //console.log('depth', this.depth(change.value))
