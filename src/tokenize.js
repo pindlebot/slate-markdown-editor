@@ -16,10 +16,10 @@ Prism.languages.insertBefore('markdownDecorators', 'prolog', {
 	//		alias: 'keyword'
 	//	}
 	//],
-	code: {
-		pattern: /`[^`\n]+`/,
-		aliast: 'keyword'
-	},
+	//code: {
+	//	pattern: /`[^`\n]+`/,
+	//	aliast: 'keyword'
+	//},
 	'url-reference': {
 		// [id]: http://example.com "Optional title"
 		// [id]: http://example.com 'Optional title'

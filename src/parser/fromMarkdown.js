@@ -30,10 +30,11 @@ const createValue = (nodes) => ({
   }
 })
 
-const blockNodes = {
+const toJSON = {
 	blockquote: props => ({
 		...createBlock('blockquote', props.data),
-		nodes: props.text ? [blockNodes.p({...props})] : []
+		//nodes: props.text ? [toJSON.p({...props})] : []
+		nodes: props.nodes ? props.nodes : [toJSON.p({...props})]
 	}),
 	li: props => ({
 		...createBlock('ul', {}),
@@ -53,9 +54,9 @@ const blockNodes = {
 		nodes: [createText(props.text)]
 	}),
 	code: props => ({
-    ...createBlock('pre', {}),
+    ...createBlock('pre', props.data),
 		nodes: [{
-			...createBlock('code', props.data),
+			...createBlock('code', {}),
 			nodes: props.text ? [
 				createText(props.text)
 			] : []
@@ -63,110 +64,91 @@ const blockNodes = {
 	})
 }
 
-function parse (string) {
-	let tokens = tokenize(string)
-	let nodes = []
-	
-	while(tokens.length) {
-		let tok = tokens.shift()
-		if(!tok) continue
-		console.log('tok', tok)
-
-		if(typeof tok === 'string') {
-			nodes.push(
-				blockNodes.p({text: tok})
-			)
-			continue;
-		}
-
-		let nextToken = tokens.shift();
-		let blockFn = blockNodes[tok.type]
-		let text = nextToken;
-		let prefix = tok.content;
-		let data = {}
-
-		if(typeof nextToken !== 'string') {
-			text = tok.content[1]
-			prefix = tok.content[0].content
-		}
-			
-		if(tok.type === 'heading') {
-			data.depth = prefix.length;
-		}
-
-		if(text) text = text.replace(' ', '')
-
-		if(text === '' && tok.type === 'p') {
-			continue
-		}
-
-    if(nodes.length) {
-			let node = nodes[nodes.length - 1]
-
-			node.nodes.push(
-				blockFn({text, data}) 
-			)
-			continue;
-		}
-
-		nodes.push(
-			blockFn({text, data})
-		)		
+function getText (tok) {
+	let text = tok.content.find(content => content.type === 'text')
+	if(text) {
+		return text.content;
 	}
 
-  console.log('nodes', nodes)
-	return nodes;
+	return ''
+}
+
+function parse(content) {
+	let tokens = tokenize(content)
+	console.log(tokens)
+  tokens = tokens.filter(tok => typeof tok === 'object')
+
+	let out = [];
+	
+  while(tokens.length) {
+    let tok = tokens.shift()
+    let fn = toJSON[tok.type]
+    let data = {}
+		let nodes;
+
+    let node = typeof tok.content === 'string' ? 
+      tok : tok.content.find(content => content.type === 'text')
+
+    if(tok.type === 'heading') {
+      let mark = tok.content.find(content => content.type === 'mark')
+      data.depth = mark.content.length
+		}
+		
+		if(tok.type === 'code') {
+			let lang = tok.content.find(content => content.type === 'lang')
+			data.lang = lang.content.trim()
+		}
+
+		if(tok.type === 'blockquote') {
+			let arr = tok.content.filter(
+				c => typeof c === 'object' && c.type !== 'text'
+			)
+			
+			if(arr) {
+				nodes = arr.map(item => (
+					toJSON[item.type]({text: getText(item)})
+				))
+				console.log(nodes)
+			}
+		}
+    
+    out.push(
+      fn({
+       text: node && node.content ? node.content : undefined,
+			 data,
+			 nodes
+      })
+    )
+  }
+
+	return out;
 }
 
 export default function fromMarkdown(content) {
-	let lines = content.split('\n')
-	let i = 0;
-	let tmp;
-	let out = []
+  let blocks = parse(content)
+	let nodes = []
 
-	while(lines.length) {
-		let line = lines.shift()
-		
-		// add to code block if it has been started
-		if(tmp) tmp.push(line)
-		
-		// start a code block
-		if(line.indexOf('```') > -1 && !tmp) {
-			tmp = [line]
-			continue;
-		}
-
-		// end code block
-		if(line.indexOf('```') > -1) {
-			out.push(
-				parse([...tmp].join('\n'))
-			)
-			tmp = undefined
-			continue;
-		}
-
-		let prevBlock = out.length ? out[out.length - 1] : undefined
-		let currentBlock = parse(line)[0]
-		
-		if(!currentBlock) continue;
-
-		if(
-			prevBlock && 
-		  prevBlock.type === currentBlock.type &&
-			['blockquote', 'ul'].indexOf(prevBlock.type) > -1
-		) {
-      out[out.length - 1] = {
-				...prevBlock,
+	while(blocks.length) {
+		 let currentNode = blocks.shift()
+		 let prevNode = nodes.length ? nodes[nodes.length - 1] : undefined
+		 
+		 if(
+			 prevNode &&
+			 prevNode.type == currentNode.type &&
+			 ['blockquote', 'ul'].indexOf(prevNode.type) > -1
+		 ) {
+			nodes[nodes.length - 1] = {
+				...prevNode,
 				nodes: [
-					...prevBlock.nodes,
-					...currentBlock.nodes
+					...prevNode.nodes,
+					...currentNode.nodes
 				]
 			}
 			continue;
-		}
-		
-		out.push(currentBlock)
+		 }
+
+		 nodes.push(currentNode)
 	}
 
-	return createValue(flatten(out))
+	return createValue(nodes)
 }
