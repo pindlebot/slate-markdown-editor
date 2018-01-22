@@ -176,7 +176,9 @@ class SlateMarkdownEditor extends React.Component {
     let data = startBlock.data.toJSON()
 
     event.preventDefault()
-    change.setBlock('p')
+    change
+      .setBlock('p')
+
     if(depth > 1) change.unwrapBlock(parent)
 
     return true
@@ -202,7 +204,8 @@ class SlateMarkdownEditor extends React.Component {
     if(!data.split) return
 
     event.preventDefault()
-    change.splitBlock().setBlock('p')
+    change.splitBlock()
+      .setBlock('p')
   
     return true
   }
@@ -221,7 +224,11 @@ class SlateMarkdownEditor extends React.Component {
 
   renderNode = (props) => {
     const { attributes, children, node } = props
-    
+    console.log('node', node.toJSON())
+    if(node.type === 'text') {
+      console.log('props',props)
+      return <span {...props.attributes}>{props.children}</span>
+    }
     if(blocks[node.type]) {
       return blocks[node.type](props)
     } else {

@@ -3,11 +3,9 @@ import Prism from "prismjs";
 Prism.languages.markdown = Prism.languages.extend('markup', {});
 Prism.languages.insertBefore('markdown', 'prolog', {
 	blockquote: {
-		pattern: /^>.*/m,
-		alias: 'mark',
-		inside: {
-			//text: /[^-> ]{1,2}.*/
-		}
+    pattern: /^(>\s).*/m,
+    alias: 'mark',
+    inside: {}
   },
 	code: [{
     pattern: /`{3}([\s\S]+)`{3}\n?/,
@@ -64,5 +62,10 @@ const grammar = Prism.languages.markdown
 Prism.languages.markdown.blockquote.inside.li = Prism.util.clone(
 	Prism.languages.markdown.li
 )
+Prism.languages.markdown.blockquote.inside.text = /[^-> ].*/
+
+//Prism.hooks.add('', function(env) {
+//	console.log('env', env)
+//})
 
 export default text => Prism.tokenize(text, grammar)

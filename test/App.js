@@ -57,7 +57,7 @@ class App extends React.Component {
 
   onChange = ({ value }) => {
     this.setState({ value }, () => {
-
+      console.log(value.toJSON())
     })
   }
 

@@ -34,7 +34,8 @@ const toJSON = {
 	blockquote: props => ({
 		...createBlock('blockquote', props.data),
 		//nodes: props.text ? [toJSON.p({...props})] : []
-		nodes: props.nodes ? props.nodes : [toJSON.p({...props})]
+		nodes: props.nodes && props.nodes.length ? 
+		  props.nodes : [toJSON.p({...props})]
 	}),
 	li: props => ({
 		...createBlock('ul', {}),
@@ -85,6 +86,13 @@ function parse(content) {
     let fn = toJSON[tok.type]
     let data = {}
 		let nodes;
+    
+    let contents = typeof tok.content === 'string' ? 
+      [tok] : tok.content.filter(c => typeof c !== 'string')
+    console.log('contents', contents)
+    //contents = contents.reduce((acc, val) => {
+    //  [acc]
+    //}, {})
 
     let node = typeof tok.content === 'string' ? 
       tok : tok.content.find(content => content.type === 'text')
@@ -103,12 +111,12 @@ function parse(content) {
 			let arr = tok.content.filter(
 				c => typeof c === 'object' && c.type !== 'text'
 			)
-			
+			console.log('blockquote - arr', arr)
 			if(arr) {
 				nodes = arr.map(item => (
 					toJSON[item.type]({text: getText(item)})
 				))
-				console.log(nodes)
+				console.log('blockquote - nodes', nodes)
 			}
 		}
     

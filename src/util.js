@@ -3,8 +3,10 @@ import { Value, Node, Block, Text, Document } from 'slate'
 import toMarkdown from './parser/toMarkdown'
 import fromMarkdown from './parser/fromMarkdown'
 
+const value = require('./value.json')
+
 export const deserializeJSON = json => json && typeof json === 'string' ? 
-  Value.fromJSON(JSON.parse(json)) : Plain.deserialize('', { defaultBlock: 'p' })
+  Value.fromJSON(JSON.parse(json)) : Value.fromJSON(value)
 
 export const serializeValue = value => JSON.stringify(value.toJSON(), null, '\n')
 
