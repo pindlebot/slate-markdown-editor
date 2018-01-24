@@ -1,18 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom'
 import Editor from '../src'
+import INITIAL_VALUE from '../src/value'
 import Plain from 'slate-plain-serializer'
 import { Value } from 'slate'
-import { 
-  serializeValue, 
-  deserializeJSON,
-  saveValue,
-  loadValue,
-  contentToJSON,
-  valueToContent,
-  toMarkdown,
-  fromMarkdown
-} from '../src/util'
+//import { 
+//  serializeValue, 
+//  deserializeJSON,
+//  saveValue,
+//  loadValue,
+//  contentToJSON,
+//  valueToContent,
+//  toMarkdown,
+//  fromMarkdown
+//} from '../src/util'
 
 const btnStyles = {
   whiteSpace: 'nowrap',
@@ -40,25 +41,23 @@ const btnStyles = {
 class App extends React.Component {
   
   state = {
-    value: loadValue()
+    value: INITIAL_VALUE
   }
 
   test = () => {
-    let out = toMarkdown(this.state.value) 
-    console.log('toMarkdown', out)
+    //let out = toMarkdown(this.state.value) 
+    //console.log('toMarkdown', out)
 
-    out = fromMarkdown(out)
-    console.log('fromMarkdown', out)
+    //out = fromMarkdown(out)
+    //console.log('fromMarkdown', out)
     
-    this.setState({
-      value: Value.fromJSON(out)
-    })
+    //this.setState({
+    //  value: Value.fromJSON(out)
+    //})
   }
 
   onChange = ({ value }) => {
-    this.setState({ value }, () => {
-      console.log(value.toJSON())
-    })
+    this.setState({ value })
   }
 
   render() {

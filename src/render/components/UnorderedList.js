@@ -12,7 +12,7 @@ const UnorderedList = params => {
   }
 
   let Component = injectSheet(styles)(
-    props => React.createElement('ul', { className: props.classes.root }, children)
+    props => React.createElement('ul', { className: props.classes.root, ...attributes }, children)
   )
 
   return <Component />

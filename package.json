@@ -27,7 +27,12 @@
     "prismjs": "^1.8.4",
     "react-jss": "^8.2.1",
     "slate": "^0.32.1",
+    "slate-edit-blockquote": "^0.5.0",
+    "slate-edit-code": "^0.13.2",
+    "slate-edit-list": "^0.10.2",
+    "slate-hyperscript": "^0.5.1",
     "slate-plain-serializer": "^0.5.1",
+    "slate-prism": "^0.4.0",
     "slate-react": "^0.11.1"
   },
   "devDependencies": {

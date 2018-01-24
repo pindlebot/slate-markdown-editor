@@ -6,7 +6,7 @@ import fromMarkdown from './parser/fromMarkdown'
 const value = require('./value.json')
 
 export const deserializeJSON = json => json && typeof json === 'string' ? 
-  Value.fromJSON(JSON.parse(json)) : Value.fromJSON(value)
+  Value.fromJSON(JSON.parse(json)) : Plain.deserialize('', { defaultBlock: 'paragraph' })
 
 export const serializeValue = value => JSON.stringify(value.toJSON(), null, '\n')
 
