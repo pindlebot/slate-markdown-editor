@@ -1,11 +1,11 @@
 import React from 'react';
 import injectSheet from 'react-jss'
 
-const Code = props => {
+const CodeBlock = props => {
   let { parent: { nodes } } = props;
   
   let styles = {
-    display: 'block',
+    //display: 'block',
     //opacity: 0.50,
   }
 
@@ -16,12 +16,15 @@ const Code = props => {
   // ) {
   //  styles.opacity = 1.0;
   //}
-
+  let attributes = {
+    ...props.attributes,
+    'data-syntax': props.node.data.get('syntax')
+  }
   return (
-    <code {...props.attributes} style={styles}>
+    <pre {...attributes} className={props.node.data.get('syntax')}>
       {props.children}
-    </code>
+    </pre>
   )
 }
 
-export default Code;
+export default CodeBlock;

@@ -1,19 +1,25 @@
 import React from 'react'
 
 function renderMark(props) {
-  switch(props.mark.type) {
-    case 'strong': 
-      return <strong>{props.children}</strong>
-    case 'em': 
-      return <em>{props.children}</em>
-    case 'link':
-      let link = props.mark.data.get('link')
-      return <a href={link} style={{color: 'blue'}}>{props.children}</a>
-    case 'text':
-      return <span>{props.children}</span>
-    default:
-      return null
+  let marks = {
+    strong: props => <strong>{props.children}</strong>,
+    em: props => <em>{props.children}</em>,
+    text: props => <span>{props.children}</span>,
+    code: props => <code>{props.children}</code>,
+    link: props => (
+      <a 
+      style={{color: 'blue'}}
+      href={props.mark.data.get('link')}
+      >
+        {props.children}
+      </a>
+    )
   }
+
+  let mark = marks[props.mark.type] 
+  if(mark) return mark(props)
+
+  return null
 }
 
-export default renderMark;
+export default renderMark

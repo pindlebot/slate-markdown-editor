@@ -94,7 +94,7 @@ class MarkdownEditor extends React.Component {
 
     if(
       key === 'Enter' && 
-      /.*`{3}.*/.test(change.value.startBlock.text)
+      /\s*`{3}.*/.test(change.value.startBlock.text)
     ) {
       event.preventDefault()   
       change.call(this.clear)  

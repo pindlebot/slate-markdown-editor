@@ -25,8 +25,7 @@ const ListItem = props => {
       }
     } 
   }
-
-  return Component('li', props, styles, className)
+  return Component({tagName: 'li', styles, className, ...props})
 }
 
 export default ListItem

@@ -1,7 +1,6 @@
 import * as plugins from '../plugins'
 import React from 'react'
-import UnorderedList from './components/UnorderedList'
-import ListItem from './components/ListItem'
+import * as components from './components';
 
 export default props => {
   const { 
@@ -11,21 +10,24 @@ export default props => {
     editor 
   } = props;
 
-  console.log(props.node.type)
+  console.log(props.node.toJSON())
+  console.log(attributes)
+  console.log(editor)
 
   const blocks = {
-    list_item: ListItem,
-    ul_list: UnorderedList,
+    ...components,
     ol_list: props => <ol {...attributes}>{children}</ol>,
-    code_block: props => (
-      <div className="code" {...attributes} style={{backgroundColor: '#fafafa'}}>
-        {children}
-      </div>
-    ),
-    code_line: props => <pre {...attributes}>{children}</pre>,
-    blockquote: props => <blockquote {...attributes}>{children}</blockquote>,
+    code_line: props => <code {...attributes} style={{display: 'block'}}>{children}</code>,
     paragraph: props => <p {...attributes}>{children}</p>,
     heading: props => <h1 {...attributes}>{children}</h1>,
+    link: props => (
+      <a href={props.node.data.get('href')} 
+        className="link" 
+        style={{color: 'blue'}} {...attributes}
+      >
+        {children}
+      </a>
+    )
   }
 
   return blocks[node.type](props)

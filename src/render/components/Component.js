@@ -1,24 +1,22 @@
 import React from 'react';
 import injectSheet from 'react-jss'
 
-export default (tagName, editorProps, styles, className) => {
+const Component = props => {
+  let classes = [props.classes.root]
   
-  let Component = injectSheet(styles) (
-    props => {
-      let classes = [props.classes.root]
-      
-      if(className) classes.push(className)      
-      
-      return React.createElement(
-        tagName, { 
-          className: classes.join(' '), 
-          'data-json': JSON.stringify(props.attributes),
-          ...props.attributes,
-        },
-        props.children
-      )
-    }
-  )
+  if(props.className) classes.push(props.className)  
 
-  return <Component {...editorProps} />
+  return React.createElement(
+    props.tagName, { 
+      className: classes.join(' '), 
+      ...props.attributes,
+    },
+    props.children
+  )
+}
+
+export default props => {
+  let WrappedComponent = injectSheet(props.styles)(Component) 
+
+  return <WrappedComponent {...props} />
 }

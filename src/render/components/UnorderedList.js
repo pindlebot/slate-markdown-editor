@@ -1,9 +1,8 @@
 import React from 'react';
 import injectSheet from 'react-jss'
+import Component from './Component'
 
-const UnorderedList = params => {
-  let { attributes, children, node } = params
-  
+const UnorderedList = props => {  
   let styles = { 
     root: { 
       'list-style-type': 'none',      
@@ -11,11 +10,7 @@ const UnorderedList = params => {
     } 
   }
 
-  let Component = injectSheet(styles)(
-    props => React.createElement('ul', { className: props.classes.root, ...attributes }, children)
-  )
-
-  return <Component />
+  return Component({tagName: 'ul', styles, ...props}) 
 }
 
 export default UnorderedList

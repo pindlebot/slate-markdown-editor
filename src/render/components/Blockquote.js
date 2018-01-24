@@ -7,13 +7,14 @@ const Blockquote = props => {
   let styles = { 
     root: { 
       ...defaultStyles,
-      margin: '0 0 0 6px',
-      padding: '0 0 0 6px',
-      borderLeft: '2px solid #999'
+      margin: '0 0 0 10px',
+      padding: '0 0 0 10px',
+      borderLeft: '2px solid #999',
+      backgroundColor: '#fafafa'
     } 
   }
 
-  return Component('blockquote', props, styles)  
+  return Component({tagName: 'blockquote', styles, ...props})  
 }
 
 export default Blockquote
