@@ -1,27 +1,40 @@
 import React from 'react';
 import injectSheet from 'react-jss'
-import defaultStyles from '../styles'
+import defaultStyles from '../../styles/defaultStyles'
+import * as colors from '../../styles/dark'
 import Component from './Component'
 import * as plugins from '../../plugins'
 
 const ListItem = props => {
-  let { attributes, children, node, editor } = props
+  let { 
+    attributes, 
+    children, 
+    node, 
+    editor, 
+    parent 
+  } = props
   
   const isCurrentItem = plugins.editList.utils
     .getItemsAtRange(editor.value)
     .contains(node)
  
+  let key = node.get('key')
+  let index = parent.nodes.map(node => node.get('key')).indexOf(key)
+  
   let className = isCurrentItem ? 'current-item' : undefined
-
+  let prefix = props.parent.type === 'unordered_list' ? 
+    '-' : index + 1 + '.'
+  
   let styles = { 
     root: { 
       ...defaultStyles,
       '&:before': {
-        content: '"— "',
-        color: '#999'
+        content: `"${prefix} "`,
+        color: colors.magenta
       },
       '& p': {
-        display: 'inline-block'
+        display: 'inline-block',
+        marginBottom: 0
       }
     } 
   }

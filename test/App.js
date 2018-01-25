@@ -5,9 +5,10 @@ import INITIAL_VALUE from '../src/value'
 import Plain from 'slate-plain-serializer'
 import { Value } from 'slate'
 import { 
-  serialize,
-  deserialize
+  exportMarkdown,
+  importMarkdown
 } from '../src/util'
+import * as colors from './theme'
 
 const btnStyles = {
   whiteSpace: 'nowrap',
@@ -17,7 +18,6 @@ const btnStyles = {
   margin: '0',
   padding: '0 14px',
   boxShadow: 'rgba(50, 50, 93, 0.109804) 0px 4px 6px 0px, rgba(0, 0, 0, 0.0784314) 0px 1px 3px 0px',
-  //borderRadius: '4px',
   fontSize: '15px',
   fontWeight: '600',
   textTransform: 'uppercase',
@@ -25,7 +25,6 @@ const btnStyles = {
   color: '#777',
   textDecoration: 'none',
   transition: 'all .15s ease',
-  //background: '#3ecf8e',
   background: '#fafafa',
   border: 'none',
   cursor: 'pointer',
@@ -39,10 +38,10 @@ class App extends React.Component {
   }
 
   save = () => {   
-    let text = serialize(this.state.value.document)
-    let document = deserialize(text)
-    console.log(document.toJSON())
-    this.setState({ value: Value.fromJSON({document})  })
+    let md = exportMarkdown(this.state.value)
+    let value = importMarkdown(md)
+    console.log(value.document.toJSON())
+    //this.setState({ value: Value.fromJSON({document})  })
   }
 
   onChange = ({ value }) => {
@@ -57,11 +56,12 @@ class App extends React.Component {
         margin: '20px auto', 
       }}>
         <div style={{
-          backgroundColor: '#fff',
+          backgroundColor: colors.backgroundColor,
           padding: '20px',
           margin: '20px 0',
           minHeight: '70%',
-          boxShadow: '0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2)'
+          boxShadow: '0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2)',
+          color: '#f1f1f0'
         }}>
           <Editor
             value={this.state.value}

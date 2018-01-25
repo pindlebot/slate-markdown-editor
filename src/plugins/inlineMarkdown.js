@@ -1,10 +1,13 @@
-const wrap = require('lodash.wrap')
 const curry = require('lodash.curry')
-const { State } = require('markup-it');
 const inlineRegEx = require('markup-it/lib/markdown/re/inline')
 const { Range, Mark } = require('slate')
 
-let rules = Object.keys(inlineRegEx).map(key => ({key, re: inlineRegEx[key]}))
+let rules = Object.keys(inlineRegEx)
+  .map(key => ({
+    key, 
+    re: inlineRegEx[key]
+  })
+)
 
 let defaultSchema = (type, match) => ({
   object: 'mark',
@@ -54,6 +57,22 @@ function applyRules(text) {
 
 const insertSpace = change => change.collapseToEnd().insertText(' ')
 
+let insertMark = token => {
+  let mark = Mark.create({ 
+    type: token.type, 
+    data: token.data 
+  })
+  
+  change
+    .addMark(mark)
+    .call(insertSpace)
+    .extend(-1)
+    .removeMark(mark)
+    .collapseToEnd() 
+}
+
+insertMark = curry(insertMark)
+
 function onSpace(opts, event, change, editor) {  
   let { startBlock } = change.value;
   if(
@@ -65,11 +84,15 @@ function onSpace(opts, event, change, editor) {
   if(!leaf || !leaf.text) return;
 
   let tokens = applyRules(leaf.text + event.key)
-  if(!tokens) return
+
+  if(
+    !tokens || 
+    !tokens.length || 
+    !tokens[0].text
+  ) return
 
   let token = tokens[0]
 
-  if(!token.text) return
   event.preventDefault()
   
   change

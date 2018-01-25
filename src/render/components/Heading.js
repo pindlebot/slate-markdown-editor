@@ -1,7 +1,9 @@
 import React from 'react';
 import injectSheet from 'react-jss'
-import defaultStyles from '../styles'
+import defaultStyles from '../../styles/defaultStyles'
+import * as colors from '../../styles/dark'
 import Component from './Component'
+
 const Heading = depth => {
   return props => {
     let { attributes, node, parent } = props;
@@ -11,17 +13,15 @@ const Heading = depth => {
     let styles = { 
       root: { 
         ...defaultStyles,
-        //display: parent.get('type') === 'li' ? 'inline-block' : 'block',
+        display: parent.get('type') === 'list_item' ? 'inline-block' : 'block',
         '&:before': {
           content: `"${content}"`,
-          color: '#ddd'
+          color: colors.yellow
         }
       } 
     }
-
-    console.log(node.toJSON())
     
-    if(parent.get('type') === 'li') {
+    if(parent.get('type') === 'list_item') {
       styles.root.marginTop = 0;
     }
 

@@ -19,7 +19,7 @@ const slatePlugins = [
 
 class MarkdownEditor extends React.Component {
 
-  onWrapInBlockquote = (event, change) => {
+  WrapInBlockquote = (event, change) => {
     event.preventDefault()     
     change.call(this.clear)      
 
@@ -30,44 +30,19 @@ class MarkdownEditor extends React.Component {
     return true
   }
 
-  onUnwrapBlockquote = (event, change) => {
-    event.preventDefault()     
-    change.call(this.clear)      
-    
-    this.props.onChange(
-      plugins.editBlockquote.changes.unwrapBlockquote(
-        change   
+  wrapInList = (type) => {
+    return (event, change) => {
+      event.preventDefault()     
+      change.call(this.clear)      
+
+      this.props.onChange(
+        plugins.editList.changes.wrapInList(
+          change,
+          type
+        )
       )
-    )
 
-    return true
-  }
-
-  wrapInList = (event, change) => {
-    event.preventDefault()     
-    change.call(this.clear)      
-
-    this.props.onChange(
-      plugins.editList.changes.wrapInList(
-        change,
-        //chars === '-'
-      )
-    )
-
-    return true;
-  }
-
-  handleType = (chars, event, change) => {   
-    switch (true) {
-      case chars === '*':
-      case chars === '-':
-      case chars === '+': 
-        return this.wrapInList(event, change)
-      case chars === '>': 
-        return this.onWrapInBlockquote(event, change)
-      default: 
-        return 
-        //return handleMarks(event, change)
+      return true;
     }
   }
 
@@ -87,22 +62,44 @@ class MarkdownEditor extends React.Component {
       .slice(0, startOffset)
       .replace(/\s*/g, '')
 
-    return this.handleType(chars, event, change)    
+    switch (true) {
+      case /[*+-]/.test(chars):
+        return this.wrapInList('unordered_list')(event, change)
+      case /\d\./.test(chars):
+        return this.wrapInList('ordered_list')(event, change)
+      case />/.test(chars): 
+        return this.WrapInBlockquote(event, change)
+      default: 
+        return 
+    } 
+  }
+
+  onEnter = (event, change) => {
+    if(/\s*`{3}.*/.test(change.value.startBlock.text)) {
+      return toggleCode(event, change, this.props.onChange)
+    }    
+
+    let parent = change.value.document.getParent(change.value.startBlock.key)
+    let sibling = parent.getPreviousSibling(change.value.startBlock.key)
+
+    if(sibling) {
+      let { text } = sibling
+      if(!text && !change.value.startBlock.text) {
+        event.preventDefault()   
+        change.call(this.clear)  
+        return toggleCode(event, change, this.props.onChange)
+      } 
+    }
+    
+    return
   }
 
 
   onKeyDown = (event, change) => {
     let { key } = event;
     if(key === ' ') return this.onSpace(event, change)
-
-    if(
-      key === 'Enter' && 
-      /\s*`{3}.*/.test(change.value.startBlock.text)
-    ) {
-      event.preventDefault()   
-      change.call(this.clear)  
-      return toggleCode(event, change, this.props.onChange)
-    }
+    if(key === 'Enter') return this.onEnter(event, change)
+   
     return
   }
 
@@ -111,30 +108,15 @@ class MarkdownEditor extends React.Component {
     const inBlockquote = plugins.editBlockquote.utils.isSelectionInBlockquote(value);
 
     return (
-      <div>
-        <div>
-          <button onClick={this.onWrapInBlockquote}>Blockquote</button>
-          <button onClick={this.onUnwrapBlockquote} disabled={!inBlockquote}>
-            Unwrap
-          </button>
-          <button onClick={this.onToggleCode}>
-          {plugins.editCode.utils.isInCodeBlock(value)
-              ? 'Paragraph'
-              : 'Code Block'}
-          </button>
-          <button onClick={this.wrapInList}>Wrap in List</button>
-        </div>
-        <Editor
-          placeholder={"Enter some text..."}
-          plugins={slatePlugins}
-          value={this.props.value}
-          onChange={this.props.onChange}
-          renderNode={renderNode}
-          renderMark={renderMark}
-          
-          onKeyDown={this.onKeyDown}
-        />
-      </div>
+      <Editor
+        placeholder={"Enter some text..."}
+        plugins={slatePlugins}
+        value={this.props.value}
+        onChange={this.props.onChange}
+        renderNode={renderNode}
+        renderMark={renderMark}  
+        onKeyDown={this.onKeyDown}
+      />
     );
   }
 }
