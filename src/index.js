@@ -49,7 +49,8 @@ class MarkdownEditor extends React.Component {
 
     this.props.onChange(
       plugins.editList.changes.wrapInList(
-        change
+        change,
+        //chars === '-'
       )
     )
 

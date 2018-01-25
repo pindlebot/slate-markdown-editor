@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import Editor from '../src'
 import INITIAL_VALUE from '../src/value'
 import Plain from 'slate-plain-serializer'
-import { Value } from '../src/slate'
+import { Value } from 'slate'
 import { 
   serialize,
   deserialize
@@ -38,13 +38,11 @@ class App extends React.Component {
     value: INITIAL_VALUE
   }
 
-  test = () => {
-    let doc = this.state.value.document//.toJSON()
-    console.log(doc)
-    //doc.nodes[0].kind = 'block'
-    let out = serialize(doc)
-    //console.log(typeof out)
-    console.log('serialize', out)
+  save = () => {   
+    let text = serialize(this.state.value.document)
+    let document = deserialize(text)
+    console.log(document.toJSON())
+    this.setState({ value: Value.fromJSON({document})  })
   }
 
   onChange = ({ value }) => {
@@ -71,7 +69,7 @@ class App extends React.Component {
           />
         </div>
         <div>
-          <button onClick={() => this.test()} style={btnStyles}>Load</button>  
+          <button onClick={() => this.save()} style={btnStyles}>Load</button>  
         </div>        
         
       </div>

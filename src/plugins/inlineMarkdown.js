@@ -2,7 +2,7 @@ const wrap = require('lodash.wrap')
 const curry = require('lodash.curry')
 const { State } = require('markup-it');
 const inlineRegEx = require('markup-it/lib/markdown/re/inline')
-const { Range, Mark } = require('../slate')
+const { Range, Mark } = require('slate')
 
 let rules = Object.keys(inlineRegEx).map(key => ({key, re: inlineRegEx[key]}))
 
