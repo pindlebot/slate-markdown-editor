@@ -6,7 +6,6 @@ const remove = change => change
 
 const getParent = change => change.value.document.getParent(change.value.startBlock.key)
 
-  
 function toggleCode (event, change, onChange, syntax = 'language-js') {
   let isInCodeBlock = change.value.document.getClosest(
     change.value.startKey,

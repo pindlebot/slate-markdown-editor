@@ -1106,15 +1106,15 @@ jss-compose@^5.0.0:
   dependencies:
     warning "^3.0.0"
 
-jss-default-unit@^8.0.0:
+jss-default-unit@^8.0.2:
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/jss-default-unit/-/jss-default-unit-8.0.2.tgz#cc1e889bae4c0b9419327b314ab1c8e2826890e6"
 
-jss-expand@^5.0.0:
+jss-expand@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/jss-expand/-/jss-expand-5.1.0.tgz#b1ad74ec18631f34f65a2124fcfceb6400610e3d"
 
-jss-extend@^6.0.1:
+jss-extend@^6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/jss-extend/-/jss-extend-6.1.0.tgz#85f3d39944018e8f44b322c14fa316068aa7bb0b"
   dependencies:
@@ -1131,27 +1131,27 @@ jss-nested@^6.0.1:
     warning "^3.0.0"
 
 jss-preset-default@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/jss-preset-default/-/jss-preset-default-4.0.1.tgz#822cecb87c27ff91633774422f4c221d61486b65"
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/jss-preset-default/-/jss-preset-default-4.1.0.tgz#8a07d8de92cb0c55b70dc1919b802aed9cc4ebe9"
   dependencies:
     jss-camel-case "^6.0.0"
     jss-compose "^5.0.0"
-    jss-default-unit "^8.0.0"
-    jss-expand "^5.0.0"
-    jss-extend "^6.0.1"
+    jss-default-unit "^8.0.2"
+    jss-expand "^5.1.0"
+    jss-extend "^6.1.0"
     jss-global "^3.0.0"
     jss-nested "^6.0.1"
     jss-props-sort "^6.0.0"
-    jss-template "^1.0.0"
+    jss-template "^1.0.1"
     jss-vendor-prefixer "^7.0.0"
 
 jss-props-sort@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/jss-props-sort/-/jss-props-sort-6.0.0.tgz#9105101a3b5071fab61e2d85ea74cc22e9b16323"
 
-jss-template@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/jss-template/-/jss-template-1.0.0.tgz#4b874608706ddceecacdb5567e254aecb6ea69b3"
+jss-template@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/jss-template/-/jss-template-1.0.1.tgz#09aed9d86cc547b07f53ef355d7e1777f7da430a"
   dependencies:
     warning "^3.0.0"
 
@@ -1227,13 +1227,9 @@ ltrim@0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/ltrim/-/ltrim-0.0.3.tgz#fb45cd0789bde93f1523d12ce5adbeb4af7e59d4"
 
-marked@^0.3.12:
-  version "0.3.12"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.12.tgz#7cf25ff2252632f3fe2406bde258e94eee927519"
-
 markup-it@^5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/markup-it/-/markup-it-5.1.1.tgz#87d4f054f0c3f42674b95e41de5f0d40f1417a30"
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/markup-it/-/markup-it-5.1.2.tgz#882e9ca3c7024ac10fa38e750809c503d8528be9"
   dependencies:
     uid "0.0.2"
     asciidoctor.js "^1.5.5-4"
@@ -1351,15 +1347,9 @@ pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
 
-prismjs@^1.6.0:
+prismjs@^1.6.0, prismjs@^1.8.4:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.10.0.tgz#77e5187c2ae6b3253fcc313029cf25fe53778721"
-  optionalDependencies:
-    clipboard "^1.7.1"
-
-prismjs@^1.8.4:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.9.0.tgz#fa3e2d9edc3c3887c1f1f3095d41f1f9b4200f0f"
   optionalDependencies:
     clipboard "^1.7.1"
 

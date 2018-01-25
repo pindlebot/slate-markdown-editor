@@ -1,5 +1,6 @@
 .cache
 test/dist
+packages/markup-it/node_modules
 
 # Logs
 logs

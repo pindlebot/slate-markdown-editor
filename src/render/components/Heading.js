@@ -3,11 +3,10 @@ import injectSheet from 'react-jss'
 import defaultStyles from '../styles'
 import Component from './Component'
 
-const Heading = editorProps => {
-  let { attributes, node, parent } = editorProps;
-  console.log(editorProps)
+const Heading = props => {
+  let { attributes, node, parent } = props;
   let depth = node.data.get('depth')
-  let tag = 'h' + depth;
+  let tagName = 'h' + depth;
   let content = '#'.repeat(depth) + ' '
 
   let styles = { 
@@ -20,11 +19,14 @@ const Heading = editorProps => {
       }
     } 
   }
+
+  console.log(node.toJSON())
+  
   if(parent.get('type') === 'li') {
     styles.root.marginTop = 0;
   }
 
-  return Component(tag, editorProps, styles)
+  return Component({tagName, styles, ...props})
 }
 
 export default Heading;

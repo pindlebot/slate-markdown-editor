@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Editor } from "slate-react";
 import INITIAL_VALUE from './value';
-import handleMarks from './handleMarks'
 import * as plugins from './plugins'
 import toggleCode from './plugins/toggleCode'
 import renderNode from './render/renderNode'
@@ -13,7 +12,9 @@ const slatePlugins = [
   plugins.editCode,
   plugins.editBlockquote,
   plugins.editList,
-  plugins.prism
+  plugins.prism,
+  plugins.heading,
+  plugins.inlineMarkdown
 ]
 
 class MarkdownEditor extends React.Component {
@@ -64,7 +65,8 @@ class MarkdownEditor extends React.Component {
       case chars === '>': 
         return this.onWrapInBlockquote(event, change)
       default: 
-        return handleMarks(event, change)
+        return 
+        //return handleMarks(event, change)
     }
   }
 

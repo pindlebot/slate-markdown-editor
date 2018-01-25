@@ -1,7 +1,7 @@
 import Plain from 'slate-plain-serializer'
-import { Value, Node, Block, Text, Document } from 'slate'
-import toMarkdown from './parser/toMarkdown'
-import fromMarkdown from './parser/fromMarkdown'
+import { Value, Node, Block, Text, Document } from './slate'
+import serialize from './parser/serialize'
+import deserialize from './parser/deserialize'
 
 const value = require('./value.json')
 
@@ -16,6 +16,5 @@ export const loadValue = () => deserializeJSON(window.localStorage.getItem('valu
 
 export const valueToContent = value => Plain.serialize(value)
 
-
-exports.toMarkdown = toMarkdown;
-exports.fromMarkdown = fromMarkdown;
+exports.serialize = serialize;
+exports.deserialize = deserialize;

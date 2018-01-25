@@ -3,17 +3,11 @@ import { render } from 'react-dom'
 import Editor from '../src'
 import INITIAL_VALUE from '../src/value'
 import Plain from 'slate-plain-serializer'
-import { Value } from 'slate'
-//import { 
-//  serializeValue, 
-//  deserializeJSON,
-//  saveValue,
-//  loadValue,
-//  contentToJSON,
-//  valueToContent,
-//  toMarkdown,
-//  fromMarkdown
-//} from '../src/util'
+import { Value } from '../src/slate'
+import { 
+  serialize,
+  deserialize
+} from '../src/util'
 
 const btnStyles = {
   whiteSpace: 'nowrap',
@@ -45,15 +39,12 @@ class App extends React.Component {
   }
 
   test = () => {
-    //let out = toMarkdown(this.state.value) 
-    //console.log('toMarkdown', out)
-
-    //out = fromMarkdown(out)
-    //console.log('fromMarkdown', out)
-    
-    //this.setState({
-    //  value: Value.fromJSON(out)
-    //})
+    let doc = this.state.value.document//.toJSON()
+    console.log(doc)
+    //doc.nodes[0].kind = 'block'
+    let out = serialize(doc)
+    //console.log(typeof out)
+    console.log('serialize', out)
   }
 
   onChange = ({ value }) => {

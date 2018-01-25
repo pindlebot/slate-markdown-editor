@@ -1,11 +1,10 @@
-
 const wrap = require('lodash.wrap')
 const curry = require('lodash.curry')
 const { State } = require('markup-it');
-const inlineRe = require('markup-it/lib/markdown/re/inline')
-const { Range, Mark } = require('slate')
+const inlineRegEx = require('markup-it/lib/markdown/re/inline')
+const { Range, Mark } = require('../slate')
 
-let rules = Object.keys(inlineRe).map(key => ({key, re: inlineRe[key]}))
+let rules = Object.keys(inlineRegEx).map(key => ({key, re: inlineRegEx[key]}))
 
 let defaultSchema = (type, match) => ({
   object: 'mark',
@@ -44,8 +43,7 @@ function applyRules(text) {
     let match = rule.re.exec(text.trim())
     if(match) {
       let tok = schema[rule.key](match)
-      console.log('match', match)
-      console.log(tok)      
+          
       if(tok) tokens.push(tok)
       break;
     }
@@ -56,7 +54,7 @@ function applyRules(text) {
 
 const insertSpace = change => change.collapseToEnd().insertText(' ')
 
-function handleMarks(event, change) {  
+function onSpace(opts, event, change, editor) {  
   let { startBlock } = change.value;
   if(
     startBlock.type == 'code_block' || 
@@ -103,4 +101,21 @@ function handleMarks(event, change) {
   }
 }
 
-export default handleMarks;
+function onKeyDown(
+  opts,
+  event,
+  change,
+  editor,
+) {
+  const args = [opts, event, change, editor];
+  if (event.key == ' ') return onSpace(...args)
+  return undefined;
+} 
+
+function core(opts = {}) {
+  return {
+    onKeyDown: onKeyDown.bind(null, opts)
+  }
+}
+
+export default core;
