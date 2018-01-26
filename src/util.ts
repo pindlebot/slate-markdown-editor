@@ -1,8 +1,8 @@
 import Plain from 'slate-plain-serializer'
 import { Value, Node, Block, Text, Document } from 'slate'
 
-const { State } = require('../packages/markup-it')
-const markdown = require('../packages/markup-it/lib/markdown')
+const { State } = require('@menubar/markup-it')
+const markdown = require('@menubar/markup-it/lib/markdown')
 const state = State.create(markdown)
 
 declare var window: any;

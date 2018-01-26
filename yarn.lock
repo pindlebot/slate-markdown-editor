@@ -1380,7 +1380,7 @@ ltrim@0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/ltrim/-/ltrim-0.0.3.tgz#fb45cd0789bde93f1523d12ce5adbeb4af7e59d4"
 
-markup-it@^5.1.1, markup-it@^5.1.2:
+markup-it@^5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/markup-it/-/markup-it-5.1.2.tgz#882e9ca3c7024ac10fa38e750809c503d8528be9"
   dependencies:
