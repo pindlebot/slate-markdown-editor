@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "prepublish": "tsc -d --jsx react"
+    "prepare": "tsc -d --jsx react"
   },
   "author": "Ben Gardner <ben@focuswish.com> (http://www.automationfuel.com)",
   "license": "ISC",
