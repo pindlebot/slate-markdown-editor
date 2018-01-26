@@ -23,7 +23,7 @@ function toggleCode (props, event, change) {
 
     props.onChange(
       plugins.editCode
-        .changes.toggleCodeBlock(change, "paragraph", 'language-js')//.focus()
+        .changes.toggleCodeBlock(change, "paragraph").focus()
     )
       
     //let parentNode = getParent(change)
@@ -36,4 +36,4 @@ function toggleCode (props, event, change) {
   return true;  
 };
 
-export default curry(toggleCode)
+export default toggleCode

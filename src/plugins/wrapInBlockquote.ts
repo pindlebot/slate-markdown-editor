@@ -13,4 +13,4 @@ function WrapInBlockquote (props, event, change) {
   return true
 }
 
-export default curry(WrapInBlockquote)
+export default WrapInBlockquote

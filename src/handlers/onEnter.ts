@@ -23,4 +23,4 @@ function onEnter (props, event, change) {
   return
 }
 
-export default curry(onEnter)
+export default onEnter

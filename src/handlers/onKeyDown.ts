@@ -12,17 +12,17 @@ const isBackspace : any = isKeyHotkey('backspace');
 function onKeyDown (props, event, change) {
   const args = [props, event, change]
 
-  if(event.key == ' ') return onSpace(...args)
-  if(isEnter(event)) return onEnter(...args)
+  if(event.key == ' ') return onSpace(props, event, change)
+  if(isEnter(event)) return onEnter(props, event, change)
   if(isTab(event)) {
     event.preventDefault();
     event.stopPropagation();
     
     if(getDepth(change) <= 1) {
-      return toggleCode(...args)
+      return toggleCode(props, event, change)
     }
   }
   return
 }
 
-export default curry(onKeyDown)
+export default onKeyDown

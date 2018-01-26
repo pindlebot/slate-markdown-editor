@@ -18,5 +18,5 @@ function wrapInList (type) {
   }
 }
 
-export const wrapInOrderedList = curry(wrapInList('ordered_list'))
-export const wrapInUnorderedList = curry(wrapInList('unordered_list'))
+export const wrapInOrderedList = wrapInList('ordered_list')
+export const wrapInUnorderedList = wrapInList('unordered_list')

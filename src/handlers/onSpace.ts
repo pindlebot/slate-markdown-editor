@@ -12,14 +12,14 @@ function onSpace(props, event, change) {
    
   switch (true) {
     case /^\s*[*+-]\s*$/.test(text):
-      return wrapInUnorderedList(props)(event, change)
+      return wrapInUnorderedList(props, event, change)
     case /^\s*\d\.\s*$/.test(text):
-      return wrapInOrderedList(props)(event, change)
+      return wrapInOrderedList(props, event, change)
     case /^\s*>\s*$/.test(text): 
-      return WrapInBlockquote(props)(event, change)
+      return WrapInBlockquote(props, event, change)
     default: 
       return 
   } 
 }
 
-export default curry(onSpace)
+export default onSpace

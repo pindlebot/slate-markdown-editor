@@ -1,6 +1,6 @@
 import pluginEditBlockquote from '@menubar/slate-edit-blockquote'
 import pluginEditList from "@menubar/slate-edit-list";
-import pluginEditCode from "@menubar/slate-edit-code";
+import pluginEditCode from '@menubar/slate-edit-code'
 import pluginPrism from 'slate-prism';
 import pluginNoEmpty from 'slate-no-empty'
 import pluginInlineMarkdown from 'slate-inline-markdown'

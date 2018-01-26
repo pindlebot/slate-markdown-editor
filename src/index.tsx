@@ -27,7 +27,9 @@ class MarkdownEditor extends React.Component<MarkdownEditorProps> {
     return true
   }
 
-  onKeyDown = (event, change) => onKeyDown(this.props)(event, change)
+  onKeyDown = (event, change) => onKeyDown({ 
+    onChange: this.props.onChange
+  }, event, change)
 
   render() {
     const { value } = this.props;
