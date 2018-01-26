@@ -20,7 +20,8 @@ const getIndent = (
 export const editCodeOptions = new pluginEditCodeOptions()
 export const editBlockquote = pluginEditBlockquote()
 export const editList = pluginEditList({
-  types: ['unordered_list', 'ordered_list']
+  types: ['unordered_list', 'ordered_list'],
+  typeDefault: 'unstyled'
 })
 export const editCode = pluginEditCode(editCodeOptions)
 export const prism = pluginPrism()

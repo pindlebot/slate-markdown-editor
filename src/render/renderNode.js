@@ -3,6 +3,23 @@ import React from 'react'
 import * as components from './components';
 import * as colors from '../styles/dark'
 
+const blocks = {
+  ...components,
+  unstyled: props => <span {...props.attributes}>{props.children}</span>,
+  code_line: props => (<code {...props.attributes} style={{display: 'block'}}>
+    {props.children}
+  </code>),
+  paragraph: props => <p {...props.attributes}>{props.children}</p>,
+  link: props => (
+    <a href={props.node.data.get('href')} 
+      className="link" 
+      style={{color: colors.blue}} {...props.attributes}
+    >
+      {props.children}
+    </a>
+  )
+}
+
 export default props => {
   const { 
     node, 
@@ -10,21 +27,12 @@ export default props => {
     attributes, 
     editor 
   } = props;
-
-  const blocks = {
-    ...components,
-    unstyled: props => <span {...attributes}>{children}</span>,
-    code_line: props => <code {...attributes} style={{display: 'block'}}>{children}</code>,
-    paragraph: props => <p {...attributes}>{children}</p>,
-    link: props => (
-      <a href={props.node.data.get('href')} 
-        className="link" 
-        style={{color: colors.blue}} {...attributes}
-      >
-        {children}
-      </a>
-    )
+  
+  if(blocks[node.type]) {
+    return blocks[node.type](props)
+  } else {
+    console.log(`"${node.type}" block type not found.`)
   }
 
-  return blocks[node.type](props)
+  return null
 }

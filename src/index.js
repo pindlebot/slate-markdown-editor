@@ -93,11 +93,11 @@ class MarkdownEditor extends React.Component {
     const chars = startBlock.text
       //.slice(0, startOffset)
       ///.replace(/\s*/g, '')
-
+    console.log('chars', chars)
     switch (true) {
-      case /^\s*[*+-]\s*$/.test(chars):
+      case /^\s*[*+-].*$/.test(chars):
         return this.wrapInList('unordered_list')(event, change)
-      case /^\s*\d\.\s*$/.test(chars):
+      case /^\s*\d\..*$/.test(chars):
         return this.wrapInList('ordered_list')(event, change)
       case /^\s*>\s*$/.test(chars): 
         return this.WrapInBlockquote(event, change)

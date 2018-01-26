@@ -1,7 +1,7 @@
 import { isKeyHotkey } from 'is-hotkey';
 
 const HEADING_RE = require('markup-it/lib/markdown/re/heading')
-
+console.log(HEADING_RE)
 const isTab = isKeyHotkey('tab');
 const isEnter = isKeyHotkey('enter');
 const isBackspace = isKeyHotkey('backspace');
@@ -11,10 +11,13 @@ const isHeading = (opts, change) => opts.blocks.indexOf(change.value.startBlock.
 function onSpace(opts, event, change, editor) {
   let { startBlock } = change.value
   let { text } = startBlock;
+  console.log('text', text)
+
   if(!opts.re.test(text)) return undefined;
 
   let matches = opts.re.exec(text)
-  let depth = matches[0].length
+  console.log('matches', matches)
+  let depth = (matches[1] || matches[0]).length
   let data = { depth }
   
   if(opts.clear) {
@@ -22,8 +25,9 @@ function onSpace(opts, event, change, editor) {
       .extendToStartOf(startBlock)  
       .delete() 
   }
-  
-  change.setBlock({type: opts.blocks[depth - 1], data })
+  let type = opts.blocks[depth - 1]
+  if(!type) return;
+  change.setBlock({type, data })
     
   return true;
 }
