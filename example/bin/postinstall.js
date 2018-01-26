@@ -3,19 +3,37 @@
 const path = require('path')
 const fs = require('fs')
 
+const NM = path.join(__dirname, '../node_modules')
+
+function rm(module) {
+  let babelRc = path.join(NM, module, '.babelrc')
+
+  if(fs.existsSync(babelRc)) {
+    console.log('unlinking ' + babelRc)
+    fs.unlinkSync(babelRc)
+  }  
+}
+
 function rmBabelRc() {
-  let nodeModules = path.join(__dirname, '../node_modules')
-  let deps = fs.readdirSync(
-    nodeModules
-  )
+  let modules = fs.readdirSync(NM)
   
-  deps.forEach(dep => {
-    let babelRc = path.join(nodeModules, dep, '.babelrc')
-    if(fs.existsSync(babelRc)) {
-      console.log('unlinking ' + babelRc)
-      fs.unlinkSync(babelRc)
-    }  
-  })  
+  while(modules.length) {
+    let module = modules.shift()
+
+    if(module.indexOf('@') > -1) {
+      let dirs = fs.readdirSync(path.join(NM, module))
+
+      for(let dir in dirs) {
+        rm(
+          path.join(module, dir)
+        )
+      }
+
+      continue
+    }
+
+    rm(module)
+  }  
 }
 
 rmBabelRc()

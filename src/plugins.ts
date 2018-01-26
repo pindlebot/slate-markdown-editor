@@ -1,4 +1,4 @@
-import pluginEditBlockquote from "slate-edit-blockquote";
+import pluginEditBlockquote from '@menubar/slate-edit-blockquote'
 import pluginEditList from "slate-edit-list";
 import pluginEditCode from "slate-edit-code";
 import pluginPrism from 'slate-prism';

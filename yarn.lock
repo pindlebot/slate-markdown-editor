@@ -28,6 +28,10 @@
     type-of "^2.0.1"
     yargs "^4.7.1"
 
+"@menubar/slate-edit-blockquote@0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@menubar/slate-edit-blockquote/-/slate-edit-blockquote-0.5.1.tgz#bbc44be22cafe8616a7a71cb80e128723fae3b6c"
+
 "@types/cuid@^1.3.0":
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@types/cuid/-/cuid-1.3.0.tgz#20b0e00ca555df564866bc52d2e251bf90c88db7"
@@ -1424,10 +1428,6 @@ slate-base64-serializer@^0.2.20:
 slate-dev-logger@^0.1.36:
   version "0.1.36"
   resolved "https://registry.yarnpkg.com/slate-dev-logger/-/slate-dev-logger-0.1.36.tgz#ecdb37dbf944dfc742bab23b6a20d5a0472db95e"
-
-slate-edit-blockquote@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/slate-edit-blockquote/-/slate-edit-blockquote-0.5.0.tgz#637c3f46dd0c483810be22d782940c4f9ef1f79b"
 
 slate-edit-code@^0.13.2:
   version "0.13.2"

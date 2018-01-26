@@ -31,7 +31,7 @@ export default props => {
   if(blocks[node.type]) {
     return blocks[node.type](props)
   } else {
-    console.log(`"${node.type}" block type not found.`)
+    console.warn(`"${node.type}" block type not found.`)
   }
 
   return null

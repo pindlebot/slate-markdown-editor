@@ -21,9 +21,6 @@ const ListItem = props => {
  
   let key = node.get('key')
   let index = parent.nodes.map(node => node.get('key')).indexOf(key)
-  
-  //let depth = editor.props.value.document.getDepth(node.key)
-  //console.log(depth)
 
   let className = isCurrentItem ? 'current-item' : undefined
   

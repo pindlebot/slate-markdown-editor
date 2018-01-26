@@ -1,13 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom'
 import { Value } from 'slate'
-import Editor from '../lib'
+import Editor from 'slate-markdown-editor'
 import INITIAL_VALUE from './value'
 import { 
   exportMarkdown,
   importMarkdown
-} from '../lib/util'
-import * as colors from '../lib/styles/dark'
+} from 'slate-markdown-editor/lib/util'
+import * as colors from 'slate-markdown-editor/lib/styles/dark'
 import Btn from './Btn'
 
 class App extends React.Component {

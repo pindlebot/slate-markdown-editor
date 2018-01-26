@@ -46,15 +46,9 @@ interface MarkdownEditorProps {
 class MarkdownEditor extends React.Component<MarkdownEditorProps> {
   onPaste = (event, change) => {
     const transfer = getEventTransfer(event)
-    
-    console.log(transfer)
-
     const value = importMarkdown(transfer.text)
     const { document } = value;
-    console.log('pasted', document.toJSON())
     change.insertFragment(document)
-
-    console.log('pasted - result', change.value.toJSON())
     return true
   }
 
@@ -92,9 +86,7 @@ class MarkdownEditor extends React.Component<MarkdownEditorProps> {
     const { startBlock, startOffset } = value
 
     const chars = startBlock.text
-      //.slice(0, startOffset)
-      ///.replace(/\s*/g, '')
-    console.log('chars', chars)
+     
     switch (true) {
       case /^\s*[*+-]\s*$/.test(chars):
         return this.wrapInList('unordered_list')(event, change)

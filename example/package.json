@@ -1,19 +1,24 @@
 {
-  "name": "example",
+  "name": "markdown-editor",
   "version": "1.0.0",
+  "engines": {
+    "node": "8.x.x"
+  },
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "parcel build . --public-url /",
-    "start": "parcel index.html"
+    "build": "NODE_ENV=production parcel build src/index.js --public-url ./ --no-minify --no-cache",
+    "dev": "parcel src/index.html",
+    "start": "pushstate-server dist"
   },
   "dependencies": {
     "immutable": "^3.8.2",
+    "pushstate-server": "^3.0.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "slate": "^0.32.1",
     "slate-hyperscript": "^0.5.1",
-    "slate-markdown-editor": "0.0.12"
+    "slate-markdown-editor": "0.0.13"
   },
   "devDependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",
