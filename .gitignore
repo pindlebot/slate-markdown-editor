@@ -1,7 +1,6 @@
 .cache/
 lib/
-packages/markup-it
-packages/slate-edit-blockquote
+packages/
 example/
 
 # Logs
