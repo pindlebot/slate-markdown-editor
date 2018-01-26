@@ -1,0 +1,19 @@
+{
+  "name": "slate-local-storage",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src -d lib"
+  },
+  "peerDependencies": {
+    "slate": "^0.32.1"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  },
+  "dependencies": {
+    "lodash.debounce": "^4.0.8"
+  }
+}
