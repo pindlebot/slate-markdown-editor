@@ -12,29 +12,19 @@ const CodeBlock = props => {
       borderRadius: 0,
       '&:before': {
         content: '"```"',
-        color: colors.green,
+        color: colors.foregroundColor,
         verticalAlign: 'top',
-        //lineHeight: 0,  
       },
       '&:after': {
         content: '"```"',
         verticalAlign: 'bottom',
-        color: colors.green,
+        color: colors.foregroundColor,
         lineHeight: 0,   
       },
     }
   }
 
-  //if(
-  //  (nodes.last() !== props.node &&
-  //  nodes.first() !== props.node) ||
-  //  props.node.isSelected
-  // ) {
-  //  styles.opacity = 1.0;
-  //}
-  console.log(props.node.toJSON())
-  console.log(props)
-  let syntax = props.node.data.get('syntax').trim()
+  let syntax = props.node.data.get('syntax')
   
   let attributes = {
     ...props.attributes,
@@ -48,12 +38,6 @@ const CodeBlock = props => {
     attributes,
     ...props
   })
-
-  //return (
-  //  <pre {...attributes} className={props.node.data.get('syntax')}>
-  //    {props.children}
-  //  </pre>
-  //)
 }
 
 export default CodeBlock;

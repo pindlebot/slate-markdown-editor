@@ -20,3 +20,19 @@ export const serializeValue = value => JSON.stringify(value.toJSON(), null, '\n'
 export const saveValue = value => window.localStorage.setItem('value', serializeValue(value))
 
 export const loadValue = () => deserializeJSON(window.localStorage.getItem('value'))
+
+export const getDepth = change => change.value.document.getDepth(change.value.startBlock.key)
+
+export const getClosest = change => change.value.document
+  .getClosestBlock(change.value.startBlock.key)
+
+export const getParent = change => change.value.document.getParent(change.value.startBlock.key)
+
+export const getPrevious = change => getParent(change)
+  .getPreviousSibling(change.value.startBlock.key)
+
+export const clear = change => {
+  change
+  .extendToStartOf(change.value.startBlock)  
+  .delete() 
+}

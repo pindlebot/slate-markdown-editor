@@ -25,7 +25,8 @@ const btnStyles = {
   color: '#777',
   textDecoration: 'none',
   transition: 'all .15s ease',
-  background: '#fafafa',
+  //background: '#fafafa',
+  background: 'transparent',
   border: 'none',
   cursor: 'pointer',
   maxWidth: '260px',
@@ -37,11 +38,15 @@ class App extends React.Component {
     value: INITIAL_VALUE
   }
 
-  save = () => {   
-    let md = exportMarkdown(this.state.value)
-    let value = importMarkdown(md)
-    console.log(value.document.toJSON())
+  load = () => {   
+    //let md = exportMarkdown(this.state.value)
+    //let value = importMarkdown(md)
+    //console.log(value.document.toJSON())
     //this.setState({ value: Value.fromJSON({document})  })
+    let value = JSON.parse(window.localStorage.getItem('_slate_'))
+    this.setState({
+      value: Value.fromJSON(value)
+    })
   }
 
   onChange = ({ value }) => {
@@ -52,24 +57,26 @@ class App extends React.Component {
     return(
       <div style={{
         height: '100%',
-        maxWidth: '720px', 
-        margin: '20px auto', 
+        width: '100%',
+        backgroundColor: colors.backgroundColor,   
+        overflow: 'auto'        
       }}>
         <div style={{
-          backgroundColor: colors.backgroundColor,
-          padding: '20px',
-          margin: '20px 0',
-          minHeight: '70%',
+          height: '100%',
+          padding: '10px',
           boxShadow: '0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2)',
-          color: '#f1f1f0'
+          color: '#f1f1f0',
+          fontFamily: '"Open Sans"',
         }}>
           <Editor
             value={this.state.value}
             onChange={this.onChange}
+            toolbar={
+              <button onClick={() => this.load()} style={btnStyles}>Load</button>              
+            }
           />
         </div>
         <div>
-          <button onClick={() => this.save()} style={btnStyles}>Load</button>  
         </div>        
         
       </div>

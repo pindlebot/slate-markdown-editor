@@ -1,12 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Editor } from "slate-react";
+import { Editor, getEventTransfer } from "slate-react";
 import INITIAL_VALUE from './value';
 import * as plugins from './plugins'
 import toggleCode from './plugins/toggleCode'
 import renderNode from './render/renderNode'
 import renderMark from './render/renderMark'
 import injectSheet, { jss, ThemeProvider } from 'react-jss'
+import { 
+  getDepth,
+  getClosest,
+  getPrevious,
+  clear,
+  importMarkdown,
+  exportMarkdown
+} from './util'
+import Toolbar from './Toolbar'
 
 const slatePlugins = [
   plugins.editCode,
@@ -14,14 +23,43 @@ const slatePlugins = [
   plugins.editList,
   plugins.prism,
   plugins.heading,
-  plugins.inlineMarkdown
+  plugins.inlineMarkdown,
+  plugins.saveState,
+  plugins.noEmpty
 ]
+
+import { isKeyHotkey } from 'is-hotkey';
+
+const isTab = isKeyHotkey('tab');
+const isEnter = isKeyHotkey('enter');
+const isBackspace = isKeyHotkey('backspace');
 
 class MarkdownEditor extends React.Component {
 
+  onPaste = (event, change) => {
+    const transfer = getEventTransfer(event)
+    
+    console.log(transfer)
+
+    const value = importMarkdown(transfer.text)
+    const { document } = value;
+    console.log('pasted', document.toJSON())
+    
+    //change.insertFragmentByKey(
+    //  change.value.document.key,
+    //  change.value.document.nodes.size,
+    //  document
+    //)
+
+    change.insertFragment(document)
+
+    console.log('pasted - result', change.value.toJSON())
+    return true
+  }
+
   WrapInBlockquote = (event, change) => {
     event.preventDefault()     
-    change.call(this.clear)      
+    change.call(clear)      
 
     this.props.onChange(
       plugins.editBlockquote.changes.wrapInBlockquote(change)
@@ -33,23 +71,17 @@ class MarkdownEditor extends React.Component {
   wrapInList = (type) => {
     return (event, change) => {
       event.preventDefault()     
-      change.call(this.clear)      
+      change.call(clear)      
 
       this.props.onChange(
         plugins.editList.changes.wrapInList(
           change,
           type
-        )
+        ).focus()
       )
 
       return true;
     }
-  }
-
-  clear = change => {
-    change
-    .extendToStartOf(change.value.startBlock)  
-    .delete() 
   }
 
   onSpace = (event, change) => {
@@ -59,15 +91,15 @@ class MarkdownEditor extends React.Component {
     const { startBlock, startOffset } = value
 
     const chars = startBlock.text
-      .slice(0, startOffset)
-      .replace(/\s*/g, '')
+      //.slice(0, startOffset)
+      ///.replace(/\s*/g, '')
 
     switch (true) {
-      case /[*+-]/.test(chars):
+      case /^\s*[*+-]\s*$/.test(chars):
         return this.wrapInList('unordered_list')(event, change)
-      case /\d\./.test(chars):
+      case /^\s*\d\.\s*$/.test(chars):
         return this.wrapInList('ordered_list')(event, change)
-      case />/.test(chars): 
+      case /^\s*>\s*$/.test(chars): 
         return this.WrapInBlockquote(event, change)
       default: 
         return 
@@ -79,35 +111,41 @@ class MarkdownEditor extends React.Component {
       return toggleCode(event, change, this.props.onChange)
     }    
 
-    let parent = change.value.document.getParent(change.value.startBlock.key)
-    let sibling = parent.getPreviousSibling(change.value.startBlock.key)
+    let prev = getPrevious(change)
 
-    if(sibling) {
-      let { text } = sibling
-      if(!text && !change.value.startBlock.text) {
-        event.preventDefault()   
-        change.call(this.clear)  
-        return toggleCode(event, change, this.props.onChange)
-      } 
+    if(
+      prev && 
+      prev.type == 'code_line' &&       
+      !prev.text &&
+      !change.value.startBlock.text
+    ) {
+      event.preventDefault()   
+      change.call(clear)  
+      return toggleCode(event, change, this.props.onChange)
     }
     
     return
   }
-
-
+  
   onKeyDown = (event, change) => {
-    let { key } = event;
-    if(key === ' ') return this.onSpace(event, change)
-    if(key === 'Enter') return this.onEnter(event, change)
-   
+    if(event.key == ' ') return this.onSpace(event, change)
+    if(isEnter(event)) return this.onEnter(event, change)
+    if(isTab(event)) {
+      event.preventDefault();
+      event.stopPropagation();
+      
+      if(getDepth(change) <= 1) {
+        return toggleCode(event, change, this.props.onChange)
+      }
+    }
     return
   }
 
   render() {
     const { value } = this.props;
-    const inBlockquote = plugins.editBlockquote.utils.isSelectionInBlockquote(value);
-
     return (
+      <div>
+       <Toolbar toolbar={this.props.toolbar} />
       <Editor
         placeholder={"Enter some text..."}
         plugins={slatePlugins}
@@ -116,7 +154,10 @@ class MarkdownEditor extends React.Component {
         renderNode={renderNode}
         renderMark={renderMark}  
         onKeyDown={this.onKeyDown}
+        onPaste={this.onPaste}
+        autoFocus={true}
       />
+      </div>
     );
   }
 }

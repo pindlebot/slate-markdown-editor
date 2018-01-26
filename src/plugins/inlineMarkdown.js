@@ -44,12 +44,16 @@ function applyRules(text) {
   while (inlineRules.length) {
     let rule = inlineRules.shift()
     let match = rule.re.exec(text.trim())
-    if(match) {
-      let tok = schema[rule.key](match)
-          
-      if(tok) tokens.push(tok)
-      break;
+
+    if(!match) continue;
+    if(!schema[rule.key]) {
+      console.log(rule.key + ' not found!')
+      continue
     }
+  
+    let tok = schema[rule.key](match)
+    if(tok) tokens.push(tok)
+    break;
   }
 
   return tokens
@@ -57,7 +61,7 @@ function applyRules(text) {
 
 const insertSpace = change => change.collapseToEnd().insertText(' ')
 
-let insertMark = token => {
+let insertMark = (token, change) => {
   let mark = Mark.create({ 
     type: token.type, 
     data: token.data 
@@ -71,7 +75,16 @@ let insertMark = token => {
     .collapseToEnd() 
 }
 
+let replaceText = (token, change) => {
+  change
+    .extend(-1 * token.input.length)
+    .delete()
+    .insertText(token.text)
+    .extend(-1 * token.text.length)
+}
+
 insertMark = curry(insertMark)
+replaceText = curry(replaceText)
 
 function onSpace(opts, event, change, editor) {  
   let { startBlock } = change.value;
@@ -94,22 +107,11 @@ function onSpace(opts, event, change, editor) {
   let token = tokens[0]
 
   event.preventDefault()
-  
-  change
-    .extend(-1 * token.input.length)
-    .delete()
-    .insertText(token.text)
-    .extend(-1 * token.text.length)
 
+  change.call(replaceText(token))
+  
   if(token.object == 'mark') {
-    let mark = Mark.create({ type: token.type, data: token.data })
-        
-    change
-      .addMark(mark)
-      .call(insertSpace)
-      .extend(-1)
-      .removeMark(mark)
-      .collapseToEnd() 
+    change.call(insertMark(token))
   
     return true;
   } else if(token.object == 'inline') {

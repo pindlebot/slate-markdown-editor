@@ -4,6 +4,7 @@ import defaultStyles from '../../styles/defaultStyles'
 import * as colors from '../../styles/dark'
 import Component from './Component'
 import * as plugins from '../../plugins'
+import { getDepth } from '../../util'
 
 const ListItem = props => {
   let { 
@@ -21,7 +22,11 @@ const ListItem = props => {
   let key = node.get('key')
   let index = parent.nodes.map(node => node.get('key')).indexOf(key)
   
+  //let depth = editor.props.value.document.getDepth(node.key)
+  //console.log(depth)
+
   let className = isCurrentItem ? 'current-item' : undefined
+  
   let prefix = props.parent.type === 'unordered_list' ? 
     '-' : index + 1 + '.'
   
@@ -29,8 +34,9 @@ const ListItem = props => {
     root: { 
       ...defaultStyles,
       '&:before': {
-        content: `"${prefix} "`,
-        color: colors.magenta
+        content: `"${prefix} "`, 
+        color: colors.magenta,
+        //color: (depth/2) % 2 === 0 ? colors.magenta : colors.cyan
       },
       '& p': {
         display: 'inline-block',

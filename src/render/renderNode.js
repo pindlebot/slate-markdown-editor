@@ -13,6 +13,7 @@ export default props => {
 
   const blocks = {
     ...components,
+    unstyled: props => <span {...attributes}>{children}</span>,
     code_line: props => <code {...attributes} style={{display: 'block'}}>{children}</code>,
     paragraph: props => <p {...attributes}>{children}</p>,
     link: props => (
