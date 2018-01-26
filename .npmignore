@@ -1,10 +1,12 @@
-# Ignore everything
-*
+.cache
+example
+node_modules
+packages
+src
+.babelrc
+.editorconfig
+postinstall.js
+Procfile
+tsconfig.json
 
-# ...even if they are in subdirectories
-!*/
-
-!*/lib/*
-!package.json
-!.gitignore
-!yarn.lock
+!lib/

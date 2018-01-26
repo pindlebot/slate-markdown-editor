@@ -1455,9 +1455,9 @@ slate-local-storage@^0.0.1:
   dependencies:
     lodash.debounce "^4.0.8"
 
-slate-markdown-editor@0.0.11:
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/slate-markdown-editor/-/slate-markdown-editor-0.0.11.tgz#b28009d89ed6f4be06b2b0fffdcbe0d319dea72c"
+slate-markdown-editor@0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/slate-markdown-editor/-/slate-markdown-editor-0.0.12.tgz#6ebf1453a0e395b0eb57bb2f3b81ab6d0ac91a33"
   dependencies:
     "@menubar/markup-it" "^5.1.2"
     is-hotkey "^0.1.1"
