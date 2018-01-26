@@ -8,7 +8,7 @@
   },
   "scripts": {
     "prepare": "tsc -d --jsx react",
-    "postinstall": "node bin/postinstall.js"
+    "post-install": "node bin/postinstall.js"
   },
   "author": "Ben Gardner <ben@focuswish.com> (http://www.automationfuel.com)",
   "license": "ISC",
