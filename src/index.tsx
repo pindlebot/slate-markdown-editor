@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import { Editor, getEventTransfer } from "slate-react";
 import * as plugins from './plugins'
 import toggleCode from './toggleCode'

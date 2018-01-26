@@ -10,8 +10,14 @@
     "pretty": true,
     "rootDir": "src",
     "jsx": "react",
-    "suppressImplicitAnyIndexErrors": true    
+    "suppressImplicitAnyIndexErrors": true
   },
-  "exclude": ["node_modules", "node_modules/**", "dist"],
-  "include": ["./src/**/*.ts", "./src/**/*.tsx", "./src/**/*.js"]
+  "exclude": [
+    "node_modules",
+    "node_modules/**",
+    "dist",
+    "packages",
+    "lib",
+    "example"
+  ]
 }

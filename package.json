@@ -12,12 +12,13 @@
   "author": "Ben Gardner <ben@focuswish.com> (http://www.automationfuel.com)",
   "license": "ISC",
   "peerDependencies": {
-    "immutable": "^3.8.2",
-    "react": "^16.1.1"
+    "immutable": "^3.x.x",
+    "react": "^16.x.x"
   },
   "dependencies": {
     "@menubar/markup-it": "^5.1.2",
     "@menubar/slate-edit-blockquote": "0.5.1",
+    "immutable": "^3.8.2",
     "is-hotkey": "^0.1.1",
     "jss": "^9.5.1",
     "lodash.curry": "^4.1.1",
@@ -25,6 +26,8 @@
     "lodash.findindex": "^4.6.0",
     "lodash.flatten": "^4.4.0",
     "prismjs": "^1.8.4",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
     "react-jss": "^8.2.1",
     "slate": "^0.32.1",
     "slate-edit-code": "^0.13.2",
@@ -46,8 +49,6 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
     "typescript": "^2.6.2"
   }
 }
