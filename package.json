@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@menubar/markup-it": "^5.1.2",
+    "immutable": "^3.8.2",
     "is-hotkey": "^0.1.1",
     "jss": "^9.5.1",
     "lodash.curry": "^4.1.1",

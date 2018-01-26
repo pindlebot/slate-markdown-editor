@@ -1,7 +1,5 @@
 .cache/
-example/
-dist/
-bin/
+lib/
 
 # Logs
 logs

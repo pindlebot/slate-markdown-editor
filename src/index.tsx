@@ -44,12 +44,6 @@ interface MarkdownEditorProps {
 }
 
 class MarkdownEditor extends React.Component<MarkdownEditorProps> {
-  static propTypes = {
-    value: PropTypes.object.isRequired,
-    toolbar: PropTypes.object.isRequired,
-    onChange: PropTypes.func.isRequired
-  }
-
   onPaste = (event, change) => {
     const transfer = getEventTransfer(event)
     
