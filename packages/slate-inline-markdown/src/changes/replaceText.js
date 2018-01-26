@@ -1,4 +1,4 @@
-import curry from 'lodash.curry'
+import * as curry from 'lodash.curry'
 
 function replaceText (token, change) {
   change

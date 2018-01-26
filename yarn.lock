@@ -32,6 +32,19 @@
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/@menubar/slate-edit-blockquote/-/slate-edit-blockquote-0.5.3.tgz#4bee7ca06ebe748ef201823eb72f6f1f349afd36"
 
+"@menubar/slate-edit-code@^0.13.2":
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/@menubar/slate-edit-code/-/slate-edit-code-0.13.2.tgz#b431b9fb363dd681db056933c7e221053a47169d"
+  dependencies:
+    detect-indent "^4.0.0"
+    detect-newline "^2.1.0"
+    ends-with "^0.2.0"
+    is-hotkey "^0.1.1"
+
+"@menubar/slate-edit-list@^0.10.2":
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/@menubar/slate-edit-list/-/slate-edit-list-0.10.2.tgz#0d97aa19d1193cf6aa1026e71e746070cd656cfa"
+
 "@types/cuid@^1.3.0":
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@types/cuid/-/cuid-1.3.0.tgz#20b0e00ca555df564866bc52d2e251bf90c88db7"
@@ -1101,14 +1114,6 @@ lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
 
-lodash.findindex@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/lodash.findindex/-/lodash.findindex-4.6.0.tgz#a3245dee61fb9b6e0624b535125624bb69c11106"
-
-lodash.flatten@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/lodash.flatten/-/lodash.flatten-4.4.0.tgz#f31c22225a9632d2bbf8e4addbef240aa765a61f"
-
 lodash.throttle@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
@@ -1282,6 +1287,15 @@ range-utils@^1.1.0:
     extend "^3.0.0"
     is "^3.1.0"
 
+react-dom@^16.2.0:
+  version "16.2.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.2.0.tgz#69003178601c0ca19b709b33a83369fe6124c044"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+
 react-immutable-proptypes@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/react-immutable-proptypes/-/react-immutable-proptypes-2.1.0.tgz#023d6f39bb15c97c071e9e60d00d136eac5fa0b4"
@@ -1424,18 +1438,9 @@ slate-dev-logger@^0.1.36:
   version "0.1.36"
   resolved "https://registry.yarnpkg.com/slate-dev-logger/-/slate-dev-logger-0.1.36.tgz#ecdb37dbf944dfc742bab23b6a20d5a0472db95e"
 
-slate-edit-code@^0.13.2:
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/slate-edit-code/-/slate-edit-code-0.13.2.tgz#682a7640da076906e5b4a4c73ec0e46d31d92c62"
-  dependencies:
-    detect-indent "^4.0.0"
-    detect-newline "^2.1.0"
-    ends-with "^0.2.0"
-    is-hotkey "^0.1.1"
-
-slate-edit-list@^0.10.2:
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/slate-edit-list/-/slate-edit-list-0.10.2.tgz#938a791c7e7974fac3ef00505cc98710c307efc6"
+slate-dev-logger@^0.1.37:
+  version "0.1.37"
+  resolved "https://registry.yarnpkg.com/slate-dev-logger/-/slate-dev-logger-0.1.37.tgz#d9bf2d41c71e71a75216b6557c5be1db6ea73548"
 
 slate-hyperscript@^0.5.1:
   version "0.5.1"
@@ -1507,9 +1512,13 @@ slate-react@^0.11.1:
     slate-plain-serializer "^0.5.1"
     slate-prop-types "^0.4.18"
 
-slate@^0.32.1:
-  version "0.32.1"
-  resolved "https://registry.yarnpkg.com/slate/-/slate-0.32.1.tgz#774f81cfbfa57e5f1dbe8e064d0040eb6d7cbbc3"
+slate-schema-violations@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/slate-schema-violations/-/slate-schema-violations-0.1.0.tgz#ae5ba171293a1a613e00d2fd0c269d5235691ae6"
+
+slate@^0.32.2:
+  version "0.32.2"
+  resolved "https://registry.yarnpkg.com/slate/-/slate-0.32.2.tgz#c4cd8a40c59dba8cb409c259826b566ae4dfcfb0"
   dependencies:
     debug "^2.3.2"
     direction "^0.1.5"
@@ -1517,7 +1526,8 @@ slate@^0.32.1:
     is-empty "^1.0.0"
     is-plain-object "^2.0.4"
     lodash "^4.17.4"
-    slate-dev-logger "^0.1.36"
+    slate-dev-logger "^0.1.37"
+    slate-schema-violations "^0.1.0"
     type-of "^2.0.1"
 
 spdx-correct@~1.0.0:

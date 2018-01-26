@@ -1,5 +1,5 @@
 import { Mark } from 'slate';
-import curry from 'lodash.curry'
+import * as curry from 'lodash.curry'
 import insertSpace from './insertSpace'
 
 function insertMark (token, change) {
