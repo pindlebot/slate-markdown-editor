@@ -4,7 +4,7 @@
 # ...even if they are in subdirectories
 !*/
 
-!*/lib/
+!*/lib/*
 !package.json
 !.gitignore
 !yarn.lock

@@ -1097,10 +1097,6 @@ lodash.throttle@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
 
-lodash.wrap@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/lodash.wrap/-/lodash.wrap-4.1.1.tgz#9c3770947a821ec6978a93571e1a6179afcd7fc8"
-
 lodash@^4.17.4:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
@@ -1459,9 +1455,9 @@ slate-local-storage@^0.0.1:
   dependencies:
     lodash.debounce "^4.0.8"
 
-slate-markdown-editor@0.0.10:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/slate-markdown-editor/-/slate-markdown-editor-0.0.10.tgz#5fc2ac384b7e97a17f80a51449d0e06d4344c4d1"
+slate-markdown-editor@0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/slate-markdown-editor/-/slate-markdown-editor-0.0.11.tgz#b28009d89ed6f4be06b2b0fffdcbe0d319dea72c"
   dependencies:
     "@menubar/markup-it" "^5.1.2"
     is-hotkey "^0.1.1"
@@ -1470,9 +1466,7 @@ slate-markdown-editor@0.0.10:
     lodash.debounce "^4.0.8"
     lodash.findindex "^4.6.0"
     lodash.flatten "^4.4.0"
-    lodash.wrap "^4.1.1"
     prismjs "^1.8.4"
-    prop-types "^15.6.0"
     react-jss "^8.2.1"
     slate "^0.32.1"
     slate-edit-blockquote "^0.5.0"

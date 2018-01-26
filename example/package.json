@@ -13,7 +13,7 @@
     "react-dom": "^16.2.0",
     "slate": "^0.32.1",
     "slate-hyperscript": "^0.5.1",
-    "slate-markdown-editor": "0.0.10"
+    "slate-markdown-editor": "0.0.11"
   },
   "devDependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",
