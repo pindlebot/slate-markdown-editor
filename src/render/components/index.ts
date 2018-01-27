@@ -4,12 +4,21 @@ import ListItem from './ListItem'
 import UnorderedList from './UnorderedList'
 import OrderedList from './OrderedList'
 import Heading from './Heading'
+import CodeLine from './CodeLine'
+import Link from './Link'
+import Paragraph from './Paragraph'
+import Unstyled from './Unstyled'
 
 exports.blockquote = Blockquote;
 exports.code_block = CodeBlock;
 exports.list_item = ListItem;
 exports.unordered_list = UnorderedList;
 exports.ordered_list = OrderedList;
+exports.code_line = CodeLine;
+exports.link = Link;
+exports.paragraph = Paragraph;
+exports.unstyled = Unstyled;
+
 exports.header_one = Heading(1);
 exports.header_two = Heading(2);
 exports.header_three = Heading(3);

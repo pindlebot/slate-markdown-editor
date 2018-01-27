@@ -4,7 +4,7 @@ import pluginEditCode from '@menubar/slate-edit-code'
 import pluginPrism from 'slate-prism';
 import pluginNoEmpty from 'slate-no-empty'
 import pluginInlineMarkdown from 'slate-inline-markdown'
-import pluginSaveState from 'slate-local-storage'
+import pluginLocalStorage from 'slate-local-storage'
 import pluginHeading from 'slate-markdown-heading'
 
 import * as options from './options'
@@ -15,7 +15,7 @@ export const editCode = pluginEditCode(options.editCodeOptions)
 export const prism = pluginPrism()
 export const heading = pluginHeading()
 export const inlineMarkdown = pluginInlineMarkdown()
-export const saveState = pluginSaveState()
+export const saveState = pluginLocalStorage(options.localStorageOptions)
 export const noEmpty = pluginNoEmpty()
 
 export default [

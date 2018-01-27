@@ -1,5 +1,5 @@
-import Plain from 'slate-plain-serializer'
-import { Value, Node, Block, Text, Document } from 'slate'
+import { Value } from 'slate'
+import * as options from './plugins/options'
 
 const { State } = require('@menubar/markup-it')
 const markdown = require('@menubar/markup-it/lib/markdown')
@@ -7,27 +7,49 @@ const state = State.create(markdown)
 
 declare var window: any;
 
-export const importMarkdown = text => Value.fromJSON({ 
-  document: state.deserializeToDocument(text) 
-})
+export function fromMarkdown (md) {
+  return Value.fromJSON({ 
+    document: state.deserializeToDocument(md) 
+  })
+}
 
-export const exportMarkdown = value => state.serializeDocument(value.document)
+export function toMarkdown (value) {
+  return state.serializeDocument(value.document)
+}
 
-export const deserializeJSON = json => json && typeof json === 'string' ? 
-  Value.fromJSON(JSON.parse(json)) : {}
+export function deserializeJSON (json) {
+  return json && typeof json === 'string' ? 
+    Value.fromJSON(JSON.parse(json)) : {}
+}
 
-export const serializeValue = value => JSON.stringify(value.toJSON(), null, '\n')
+export function serializeValue (value) {
+  return JSON.stringify(value.toJSON(), null, '\n')
+}
 
-export const saveValue = value => window.localStorage.setItem('value', serializeValue(value))
+export function saveValue (value) {
+  return window.localStorage.setItem(
+    'value', serializeValue(value)
+  )
+}
 
-export const loadValue = () => deserializeJSON(window.localStorage.getItem('value'))
+export function loadValue (key = options.LOCAL_STORAGE_KEY) {
+  return deserializeJSON(
+    window.localStorage.getItem(
+      key
+    )
+  )
+}
 
-export const getDepth = change => change.value.document.getDepth(change.value.startBlock.key)
+export function getDepth (change) {
+  return change.value.document
+    .getDepth(change.value.startBlock.key)
+}
 
 export const getClosest = change => change.value.document
   .getClosestBlock(change.value.startBlock.key)
 
-export const getParent = change => change.value.document.getParent(change.value.startBlock.key)
+export const getParent = change => change.value.document
+  .getParent(change.value.startBlock.key)
 
 export const getPrevious = change => getParent(change)
   .getPreviousSibling(change.value.startBlock.key)
