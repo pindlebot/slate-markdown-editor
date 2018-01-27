@@ -12,25 +12,29 @@ function handle(opts, event, change, editor) {
 
   if (
     !tokens || 
-    !tokens.length || 
+    !tokens.length ||
     !tokens[0].text
   ) return
 
   let token = tokens[0]
+  console.log(token)
 
   event.preventDefault()
-
-  change.call(changes.replaceText(token))
+  
   
   if (token.object == 'mark') {
+    change.call(changes.replaceText(token))    
     change.call(changes.insertMark(token))
   
     return true;
   } else if(token.object == 'inline') {
     change
-      .wrapInline({
-        type: 'link',
-        data: token.data
+      .extend(-1 * token.input.length)
+      .delete()
+      .insertInline({
+        type: token.type,
+        data: token.data,
+        isVoid: true
       })
       .call(changes.insertSpace)
       
@@ -42,7 +46,7 @@ export default function onKeyDown(
   opts,
   event,
   change,
-  editor,
+  editor
 ) {
   const args = [opts, event, change, editor];
 

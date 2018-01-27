@@ -1,4 +1,5 @@
-import * as curry from 'lodash.curry'
+// @flow
+const curry = require('lodash.curry')
 
 function replaceText (token, change) {
   change

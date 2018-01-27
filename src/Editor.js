@@ -4,7 +4,7 @@ import { Editor } from 'slate-react'
 import wrapped from './wrapped'
 import EditorToolbar from './Toolbar'
 import defaultProps from './props'
-import * as curry from 'lodash.curry'
+import curry from 'lodash.curry'
 import onKeyDown from './handlers/onKeyDown'
 
 

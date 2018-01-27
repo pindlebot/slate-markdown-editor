@@ -1,5 +1,5 @@
 // @flow
-import * as curry from 'lodash.curry'
+const curry = require('lodash.curry')
 import { type Change } from 'slate'
 import inline from 'markup-it/lib/markdown/re/inline'
 
@@ -29,7 +29,21 @@ export const schema = {
     type: 'link', 
     input: match.input, 
     text: match[1] || match[2],
-    data: { href: match[2] }
+    data: { 
+      href: match[2], 
+      title: match[1] || match[3], 
+    }
+  }),
+  image: (match: Match) => ({
+    object: 'inline',
+    type: 'image',
+    input: match.input, 
+    text: match[1] || match[2],
+    data: { 
+      alt: match[1],
+      src: match[2],
+      title: match[3]
+    }
   })
 }
 

@@ -31,7 +31,7 @@
     "prismjs": "^1.8.4",
     "react-jss": "^8.2.1",
     "slate-hyperscript": "^0.5.1",
-    "slate-inline-markdown": "^0.0.3",
+    "slate-inline-markdown": "0.0.10",
     "slate-local-storage": "^0.0.1",
     "slate-markdown-heading": "^0.0.2",
     "slate-no-empty": "^0.1.0",

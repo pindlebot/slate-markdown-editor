@@ -1,5 +1,6 @@
+// @flow
+const curry = require('lodash.curry')
 import { Mark } from 'slate';
-import * as curry from 'lodash.curry'
 import insertSpace from './insertSpace'
 
 function insertMark (token, change) {

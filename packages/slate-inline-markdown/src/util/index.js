@@ -1,4 +1,4 @@
-import curry from 'lodash.curry'
+const curry = require('lodash.curry')
 
 export const getLastText = change => change.value.startBlock
   .getLastText().getLeaves().last().get('text')
@@ -11,7 +11,7 @@ export const applyRules = curry(
       let match = rules[key].exec(text.trim())
       if(!match) continue;
       if(!schema[key]) {
-        console.log(key + ' not found!')
+        console.warn(key + ' not found!')
         continue
       }
       let tok = schema[key](match)
