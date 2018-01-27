@@ -1,5 +1,4 @@
-// @ts-check
-
+// @flow
 import * as React from 'react'
 import { Editor } from 'slate-react'
 import wrapped from './wrapped'
@@ -8,20 +7,8 @@ import defaultProps from './props'
 import * as curry from 'lodash.curry'
 import onKeyDown from './handlers/onKeyDown'
 
-interface MarkdownEditorProps {
-  value: any
-  onChange: any
-  toolbar: any,
-  onKeyDown: any,
-  style: any,
-  onPaste: any,
-  placeholder: any,
-  renderNode: any,
-  renderMark: any,
-  plugins: any
-}
 
-const MarkdownEditor: React.SFC<MarkdownEditorProps> = (props) => {
+const MarkdownEditor = (props) => {
   const {
     toolbar,
     ...rest

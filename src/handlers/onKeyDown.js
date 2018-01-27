@@ -1,3 +1,4 @@
+// @flow
 import { isKeyHotkey } from 'is-hotkey';
 import { getDepth } from '../util'
 import toggleCode from '../plugins/toggleCode'

@@ -1,3 +1,4 @@
+// @flow
 import pluginEditCodeOptions from '@menubar/slate-edit-code/dist/options'
 import { defaultOpts } from 'slate-local-storage'
 import detectIndent from 'detect-indent';

@@ -1,3 +1,4 @@
+// @flow
 import onPaste from './handlers/onPaste'
 import plugins from './plugins'
 import renderMark from './render/renderMark'

@@ -1,3 +1,4 @@
+// @flow
 import { getEventTransfer } from 'slate-react'
 import { fromMarkdown } from '../util'
 

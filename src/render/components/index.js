@@ -1,3 +1,4 @@
+// @flow
 import Blockquote from './Blockquote'
 import CodeBlock from './CodeBlock'
 import ListItem from './ListItem'

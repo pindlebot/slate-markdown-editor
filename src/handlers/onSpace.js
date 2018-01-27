@@ -1,3 +1,4 @@
+// @flow
 import * as curry from 'lodash.curry'
 import { 
   wrapInOrderedList, 

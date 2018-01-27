@@ -1,3 +1,4 @@
+// @flow
 import * as curry from 'lodash.curry'
 import toggleCode from '../plugins/toggleCode'
 import { getPrevious, clear } from '../util'

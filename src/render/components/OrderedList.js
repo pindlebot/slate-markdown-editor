@@ -1,9 +1,10 @@
+// @flow
 import * as React from 'react'
 import injectSheet from 'react-jss'
 import Component from './Component'
 import * as colors from '../../styles/dark'
 
-const UnorderedList = props => {  
+const OrderedList = props => {  
   let styles = { 
     root: { 
       'list-style-type': 'none',      
@@ -12,7 +13,7 @@ const UnorderedList = props => {
     } 
   }
 
-  return Component({tagName: 'ul', styles, ...props}) 
+  return Component({tagName: 'ol', styles, ...props}) 
 }
 
-export default UnorderedList
+export default OrderedList

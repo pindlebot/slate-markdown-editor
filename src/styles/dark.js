@@ -1,3 +1,4 @@
+// @flow
 export const foregroundColor = '#eff0eb';
 export const backgroundColor = '#282a36';
 export const red = '#ff5c57';

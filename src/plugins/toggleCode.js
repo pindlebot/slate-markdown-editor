@@ -1,3 +1,4 @@
+// @flow
 import * as curry from 'lodash.curry'
 import onModEnter from '@menubar/slate-edit-code/dist/handlers/onModEnter'
 import * as plugins from './'

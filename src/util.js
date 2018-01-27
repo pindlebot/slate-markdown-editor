@@ -1,3 +1,4 @@
+// @flow
 import { Value } from 'slate'
 import * as options from './plugins/options'
 

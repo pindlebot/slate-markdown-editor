@@ -1,3 +1,4 @@
+// @flow
 import * as plugins from '../plugins'
 import * as React from 'react'
 import * as blocks from './components';

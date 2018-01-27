@@ -1,6 +1,7 @@
+// @flow
 import * as React from 'react';
 
-const styles : any = {
+const styles = {
   root: {
     display: 'flex',
     flexDirection: 'row',

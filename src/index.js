@@ -1,4 +1,4 @@
-
+// @flow
 import * as components from './render/components'
 import onKeyDown from './handlers/onKeydown'
 import * as util from './util'

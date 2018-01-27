@@ -1,3 +1,4 @@
+// @flow
 import pluginEditBlockquote from '@menubar/slate-edit-blockquote'
 import pluginEditList from "@menubar/slate-edit-list";
 import pluginEditCode from '@menubar/slate-edit-code'
