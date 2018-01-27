@@ -12,7 +12,9 @@
   },
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1"
+    "babel-preset-env": "^1.6.1",
+    "flow-bin": "^0.64.0",
+    "slate": "^0.32.2"
   },
   "peerDependencies": {
     "immutable": "^3.8.2",

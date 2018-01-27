@@ -1,26 +1,30 @@
-import curry from 'lodash.curry'
+// @flow
+import * as curry from 'lodash.curry'
+import { type Change } from 'slate'
 import inline from 'markup-it/lib/markdown/re/inline'
 
 export const defaultSchema = curry(
   (type, match) => ({
-  object: 'mark',
-  type: type, 
-  input: match.input, 
-  text: match[1] || match[2]
+    object: 'mark',
+    type: type, 
+    input: match.input, 
+    text: match[1] || match[2]
   })
 )
 
+type Match = any
+
 export const schema = {
-  text: match => defaultSchema('text')(match),
-  em: match => defaultSchema('em')(match),
-  strong: match => defaultSchema('strong')(match),
-  code: match => ({
+  text: (match: Match) => defaultSchema('text')(match),
+  em: (match: Match) => defaultSchema('em')(match),
+  strong: (match: Match) => defaultSchema('strong')(match),
+  code: (match: Match) => ({
     object: 'mark',
     type: 'code', 
     input: match.input, 
     text: match[2],
   }),
-  link: match => ({
+  link: (match: Match) => ({
     object: 'inline',
     type: 'link', 
     input: match.input, 
@@ -31,7 +35,7 @@ export const schema = {
 
 export default {
   rules: inline,
-  skip: change => (
+  skip: (change: Change) => (
     change.value.startBlock.type == 'code_block' || 
     change.value.startBlock.type == 'code_line'
   ),
