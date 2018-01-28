@@ -28,7 +28,7 @@ function handle(opts, event, change, editor) {
     return true;
   } else if(token.object == 'inline') {
     change
-      .insertInline({
+      .wrapInline({
         type: token.type,
         data: token.data,
       })
