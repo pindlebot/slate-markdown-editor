@@ -1,14 +1,13 @@
 {
   "name": "slate-inline-markdown",
-  "version": "0.0.10",
+  "version": "0.0.13",
   "main": "lib/index.js",
   "license": "MIT",
   "scripts": {
     "build": "babel src -d lib"
   },
   "dependencies": {
-    "lodash.curry": "^4.1.1",
-    "markup-it": "^5.1.2"
+    "lodash.curry": "^4.1.1"
   },
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",

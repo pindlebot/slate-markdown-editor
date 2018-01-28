@@ -1,0 +1,18 @@
+{
+  "javascript.validate.enable": false,
+  "editor.tabSize": 2,
+  "flow.enabled": true,
+  "flow.pathToFlow": "flow",
+  "flow.showStatus": true,
+  "flow.runOnEdit": true,
+  "flow.stopFlowOnExit": true,
+  "flow.useNPMPackagedFlow": false,
+  "flow.runOnAllFiles": false,
+  "flow.fileExtensions": [
+    ".js",
+    ".mjs",
+    ".jsx",
+    ".flow",
+    ".json"
+  ]
+}

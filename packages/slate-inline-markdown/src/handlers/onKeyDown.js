@@ -20,21 +20,17 @@ function handle(opts, event, change, editor) {
   console.log(token)
 
   event.preventDefault()
-  
+  change.call(changes.replaceText(token))    
   
   if (token.object == 'mark') {
-    change.call(changes.replaceText(token))    
     change.call(changes.insertMark(token))
   
     return true;
   } else if(token.object == 'inline') {
     change
-      .extend(-1 * token.input.length)
-      .delete()
       .insertInline({
         type: token.type,
         data: token.data,
-        isVoid: true
       })
       .call(changes.insertSpace)
       

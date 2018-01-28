@@ -4,7 +4,12 @@ import pluginEditList from "@menubar/slate-edit-list";
 import pluginEditCode from '@menubar/slate-edit-code'
 import pluginPrism from 'slate-prism';
 import pluginNoEmpty from 'slate-no-empty'
-import pluginInlineMarkdown from 'slate-inline-markdown'
+
+const isDev = process.env.NODE_ENV !== 'production';
+
+//const pluginInlineMarkdown = isDev ? require('../../packages/slate-inline-markdown').default : 
+const pluginInlineMarkdown = require('slate-inline-markdown').default
+
 import pluginLocalStorage from 'slate-local-storage'
 import pluginHeading from 'slate-markdown-heading'
 

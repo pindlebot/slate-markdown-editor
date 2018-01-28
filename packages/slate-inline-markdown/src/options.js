@@ -1,7 +1,7 @@
 // @flow
 const curry = require('lodash.curry')
 import { type Change } from 'slate'
-import inline from 'markup-it/lib/markdown/re/inline'
+import inline from './util/inline'
 
 export const defaultSchema = curry(
   (type, match) => ({
