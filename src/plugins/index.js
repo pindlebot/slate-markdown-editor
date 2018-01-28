@@ -5,6 +5,7 @@ import pluginNoEmpty from 'slate-no-empty'
 const isDev = process.env.NODE_ENV !== 'production'
 
 import * as options from './options'
+
 export const noEmpty = pluginNoEmpty()
 export const prism = pluginPrism()
 
@@ -19,7 +20,6 @@ export const heading = isDev ? require('../packages/slate-markdown-heading').def
 export const inlineMarkdown = isDev ? require('../packages/slate-inline-markdown').default() : require('slate-inline-markdown').default()
 
 export const saveState = isDev ? require('../packages/slate-local-storage').default() : require('slate-local-storage').default(options.localStorageOptions)
-
 
 export default [
   editBlockquote,

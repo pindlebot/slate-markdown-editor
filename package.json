@@ -8,7 +8,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "babel src/ -d lib/",
+    "build": "babel src/ -d lib/ --ignore src/packages/",
     "prepublish": "yarn run build",
     "example:deploy": "git push heroku `git subtree split --prefix example master`:master --force",
     "test": "parcel-babel-fix"
