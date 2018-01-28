@@ -10,7 +10,7 @@ const styles = {
   }
 }
 
-let Toolbar = props => (
+let Toolbar = (props: *) => (
   <div style={styles.root}>{props.toolbar}</div>
 )
 

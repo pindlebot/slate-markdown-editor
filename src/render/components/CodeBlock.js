@@ -4,7 +4,7 @@ import injectSheet from 'react-jss'
 import Component from './Component'
 import * as colors from '../../styles/dark'
 
-const CodeBlock = props => {
+const CodeBlock = (props: *) => {
   let { parent: { nodes } } = props;
   
   let styles = {

@@ -4,7 +4,7 @@ import injectSheet from 'react-jss'
 import Component from './Component'
 import * as colors from '../../styles/dark'
 
-const OrderedList = props => {  
+const OrderedList = (props: *) => {  
   let styles = { 
     root: { 
       'list-style-type': 'none',      
@@ -13,7 +13,11 @@ const OrderedList = props => {
     } 
   }
 
-  return Component({tagName: 'ol', styles, ...props}) 
+  return Component({
+    tagName: 'ol',
+    styles, 
+    ...props
+  }) 
 }
 
 export default OrderedList

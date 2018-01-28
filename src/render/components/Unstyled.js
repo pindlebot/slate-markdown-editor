@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 
-const Unstyled = props => (
+const Unstyled = (props: *) => (
   <span {...props.attributes}>{props.children}</span>
 )
 

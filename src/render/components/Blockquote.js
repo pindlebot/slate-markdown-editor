@@ -5,7 +5,7 @@ import defaultStyles from '../../styles/defaultStyles'
 import * as colors from '../../styles/dark'
 import Component from './Component'
 
-const Blockquote = props => {  
+const Blockquote = (props: *) => {  
   let styles = { 
     root: { 
       ...defaultStyles,
@@ -16,7 +16,11 @@ const Blockquote = props => {
     } 
   }
 
-  return Component({tagName: 'blockquote', styles, ...props})  
+  return Component({
+    tagName: 'blockquote',
+    styles, 
+    ...props
+  })  
 }
 
 export default Blockquote

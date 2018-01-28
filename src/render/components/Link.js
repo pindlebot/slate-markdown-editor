@@ -8,7 +8,7 @@ const Link = (props: *) => (
     title={props.node.data.get('title', '')} 
     style={{color: colors.blue}} {...props.attributes}
   >
-    {props.node.data.get('title', '')}
+    {props.children}
   </a>
 )
 

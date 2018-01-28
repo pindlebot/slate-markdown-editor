@@ -7,7 +7,7 @@ import Component from './Component'
 import * as plugins from '../../plugins'
 import { getDepth } from '../../util'
 
-const ListItem = props => {
+const ListItem = (props: *) => {
   let { 
     attributes, 
     children, 
@@ -34,7 +34,6 @@ const ListItem = props => {
       '&:before': {
         content: `"${prefix} "`, 
         color: colors.magenta,
-        //color: (depth/2) % 2 === 0 ? colors.magenta : colors.cyan
       },
       '& p': {
         display: 'inline-block',
@@ -42,7 +41,13 @@ const ListItem = props => {
       }
     } 
   }
-  return Component({tagName: 'li', styles, className, ...props})
+
+  return Component({
+    tagName: 'li', 
+    styles, 
+    className, 
+    ...props
+  })
 }
 
 export default ListItem

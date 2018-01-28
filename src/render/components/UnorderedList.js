@@ -4,7 +4,7 @@ import injectSheet from 'react-jss'
 import Component from './Component'
 import * as colors from '../../styles/dark'
 
-const UnorderedList = props => {  
+const UnorderedList = (props: *) => {  
   let styles = { 
     root: { 
       'list-style-type': 'none',      
@@ -13,7 +13,11 @@ const UnorderedList = props => {
     } 
   }
 
-  return Component({tagName: 'ul', styles, ...props}) 
+  return Component({
+    tagName: 'ul', 
+    styles, 
+    ...props
+  }) 
 }
 
 export default UnorderedList

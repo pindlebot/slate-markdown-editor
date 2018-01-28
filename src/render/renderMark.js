@@ -1,7 +1,8 @@
 // @flow
 import * as React from 'react'
 
-function renderMark(props) {
+function renderMark(props: *) {
+
   let marks = {
     strong: props => <strong>{props.children}</strong>,
     em: props => <em>{props.children}</em>,
@@ -9,8 +10,8 @@ function renderMark(props) {
     code: props => <code>{props.children}</code>,
     link: props => (
       <a 
-      style={{color: 'blue'}}
-      href={props.mark.data.get('link')}
+        style={{color: 'blue'}}
+        href={props.mark.data.get('link')}
       >
         {props.children}
       </a>
@@ -18,6 +19,7 @@ function renderMark(props) {
   }
 
   let mark = marks[props.mark.type] 
+  
   if(mark) return mark(props)
 
   return null

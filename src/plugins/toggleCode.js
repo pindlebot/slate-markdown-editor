@@ -15,7 +15,6 @@ const isInCodeBlock = change => change.value.document.getClosest(
 )
 
 function toggleCode (props, event, change) {
-  console.log([props, event, change])
   if(!isInCodeBlock(change)) {
     event.preventDefault()   
     change
