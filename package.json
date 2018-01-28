@@ -9,7 +9,8 @@
   },
   "scripts": {
     "build": "babel src/ -d lib/",
-    "prepublish": "yarn run build"
+    "prepublish": "yarn run build",
+    "example:deploy": "git push heroku `git subtree split --prefix example master`:master --force"
   },
   "author": "Ben Gardner <ben@focuswish.com> (https://menubar.io)",
   "license": "ISC",
