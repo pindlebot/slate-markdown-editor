@@ -11,5 +11,8 @@ src/
 [lints]
 
 [options]
+module.ignore_non_literal_requires=true
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
 
 [strict]
+

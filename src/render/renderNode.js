@@ -4,7 +4,7 @@ import * as React from 'react'
 import * as blocks from './components';
 import * as colors from '../styles/dark'
 
-export default props => {
+export default (props: *) => {
   const { 
     node, 
     children, 

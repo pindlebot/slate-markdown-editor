@@ -10,7 +10,8 @@
   "scripts": {
     "build": "babel src/ -d lib/",
     "prepublish": "yarn run build",
-    "example:deploy": "git push heroku `git subtree split --prefix example master`:master --force"
+    "example:deploy": "git push heroku `git subtree split --prefix example master`:master --force",
+    "test": "parcel-babel-fix"
   },
   "author": "Ben Gardner <ben@focuswish.com> (https://menubar.io)",
   "license": "ISC",
@@ -29,6 +30,7 @@
     "jss": "^9.5.1",
     "lodash.curry": "^4.1.1",
     "lodash.debounce": "^4.0.8",
+    "parcel-babel-fix": "^0.0.1",
     "prismjs": "^1.8.4",
     "react-jss": "^8.2.1",
     "slate-hyperscript": "^0.5.1",
