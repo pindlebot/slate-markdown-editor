@@ -21,7 +21,7 @@ function onEnter (event, change, editor) {
     !change.value.startBlock.text
   ) {
     event.preventDefault()   
-    //change.call(clear)  
+    change.call(clear)  
     return toggleCode(...args)
   }
   

@@ -18,14 +18,11 @@ function toggleCode (event, change, editor) {
   log('toggleCode', [event, change, editor])
 
   if(!isInCodeBlock(change)) {    
-    
-    let toggle = plugins.editCode
+    editor.props.onChange(
+      plugins.editCode
       .changes.toggleCodeBlock(change, "paragraph").focus()
-
-    editor.props.onChange(toggle)
+    )
       
-    //let parentNode = getParent(change)
-    //change.setNodeByKey(parentNode.key, { data: { syntax }})
   } else {
     console.log('onModEnter')
     remove(change)

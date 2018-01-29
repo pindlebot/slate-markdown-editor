@@ -3,16 +3,20 @@ import fromPairs from 'lodash.frompairs'
 import mapValues from 'lodash.mapvalues'
 
 class Script extends React.Component {
-    
+
+  state = {
+    didLoad: false
+  }
+
   componentDidMount() {
     let key = this.props.node.key;
     let elem = this.scriptRef;
-    let hasScript = [...elem.children]
-      .some(child => child.tagName === 'SCRIPT')
-
     let src = this.props.script.src;
-    if(src && !hasScript) {
-      elem.appendChild(this.createScript(src))        
+    
+    if(src && !this.state.didLoad) {
+      this.setState({didLoad: true}, () => {
+        elem.appendChild(this.createScript(src))        
+      })
     }
   }
 
@@ -28,8 +32,8 @@ class Script extends React.Component {
       <div 
         {...this.props.attributes}
         style={{
-          'word-wrap': 'normal',
-          'white-space': 'normal'
+          'wordWrap': 'normal',
+          'whiteSpace': 'normal'
         }}
         data-type={'script'}
         ref={(script) => { this.scriptRef = script }}
