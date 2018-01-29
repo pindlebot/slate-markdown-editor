@@ -2,43 +2,44 @@
 import * as React from 'react'
 import injectSheet from 'react-jss'
 import Component from './Component'
-import * as colors from '../../styles/dark'
 
-const CodeBlock = (props: *) => {
-  let { parent: { nodes } } = props;
-  
-  let styles = {
+const CodeBlock = (props: *) => (
+  <pre {...props.attributes} 
+    className={[props.classes.root, props.syntax].join(' ')}
+    data-type='code_block'>
+    {props.children}
+  </pre>
+)
+
+export default (props: *) => {
+
+  let styles = theme => ({
     root: {
-      backgroundColor: `${colors.borderColor} !important`,
+      backgroundColor: `${theme.borderColor} !important`,
       borderRadius: 0,
       '&:before': {
         content: '"```"',
-        color: colors.foregroundColor,
+        color: theme.foregroundColor,
         verticalAlign: 'top',
       },
       '&:after': {
         content: '"```"',
         verticalAlign: 'bottom',
-        color: colors.foregroundColor,
+        color: theme.foregroundColor,
         lineHeight: 0,   
       },
     }
-  }
-
-  let syntax = props.node.data.get('syntax')
-  
-  let attributes = {
-    ...props.attributes,
-    'data-syntax': syntax
-  }
-
-  return Component({
-    tagName: 'pre', 
-    className: syntax, 
-    styles, 
-    attributes,
-    ...props
   })
-}
 
-export default CodeBlock;
+  let syntax = props.node.data.get('syntax', 'language-js')
+
+  let WrappedCodeBlock = injectSheet(styles)(CodeBlock)
+
+  return (
+    <WrappedCodeBlock 
+     {...props} 
+     attributes={props.attributes} 
+     syntax={syntax}
+    />
+  )
+}

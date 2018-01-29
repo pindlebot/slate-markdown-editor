@@ -1,15 +1,19 @@
 // @flow
 import * as curry from 'lodash.curry'
 import toggleCode from '../plugins/toggleCode'
-import { getPrevious, clear } from '../util'
+import { getPrevious, clear, log } from '../util'
 
-function onEnter (props, event, change) {
+function onEnter (event, change, editor) {
+  const args = [event, change, editor]
+  log('onEnter', args)
+
   if(/\s*`{3}.*/.test(change.value.startBlock.text)) {
-    return toggleCode(props, event, change)
+    event.preventDefault()   
+    change.call(clear)  
+    return toggleCode(...args)
   }    
-
   let prev = getPrevious(change)
-
+  
   if(
     prev && 
     prev.type == 'code_line' &&       
@@ -17,11 +21,11 @@ function onEnter (props, event, change) {
     !change.value.startBlock.text
   ) {
     event.preventDefault()   
-    change.call(clear)  
-    return toggleCode(props, event, change)
+    //change.call(clear)  
+    return toggleCode(...args)
   }
   
-  return
+  return undefined
 }
 
 export default onEnter

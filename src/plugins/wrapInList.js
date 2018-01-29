@@ -4,11 +4,11 @@ import { clear } from '../util'
 import * as plugins from '../plugins'
 
 function wrapInList (type) {
-  return (props, event, change) => {
+  return (event, change, editor) => {
     event.preventDefault()     
     change.call(clear)      
 
-    props.onChange(
+    editor.props.onChange(
       plugins.editList.changes.wrapInList(
         change,
         type

@@ -14,19 +14,20 @@ type Props = {
   onChange: () => mixed
 }
 
-function onKeyDown (props: Props, event: *, change: Change) {
-  const args = [props, event, change]
+function onKeyDown (event: *, change: Change, editor: *) {
+  const args = [event, change, editor]
 
-  if(event.key == ' ') return onSpace(props, event, change)
-  if(isEnter(event)) return onEnter(props, event, change)
+  if(event.key == ' ') return onSpace(...args)
+  if(isEnter(event)) return onEnter(...args)
   if(isTab(event)) {
     event.preventDefault();
     event.stopPropagation();
-    
+      
     if(getDepth(change) <= 1) {
-      return toggleCode(props, event, change)
+      return toggleCode(...args)
     }
   }
+  
   return
 }
 

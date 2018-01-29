@@ -6,15 +6,15 @@ import * as colors from '../../styles/dark'
 import Component from './Component'
 
 const Blockquote = (props: *) => {  
-  let styles = { 
+  let styles = theme => ({ 
     root: { 
       ...defaultStyles,
       margin: '0 0 0 10px',
       padding: '0 0 0 10px',
-      borderLeft: '2px solid ' + colors.cyan,
-      backgroundColor: colors.lightBlack
+      borderLeft: '2px solid ' + theme.cyan,
+      backgroundColor: theme.lightBlack
     } 
-  }
+  })
 
   return Component({
     tagName: 'blockquote',

@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react'
 import { Editor } from 'slate-react'
 import wrapped from './wrapped'
@@ -8,20 +7,21 @@ import curry from 'lodash.curry'
 import onKeyDown from './handlers/onKeyDown'
 
 
-const MarkdownEditor = (props) => {
-  const {
-    toolbar,
-    ...rest
-  } = props;
+class MarkdownEditor extends React.Component {
 
-  let onKeyDownWithProps = curry(onKeyDown)(props)
-
-  return (
-    <div>
-    {toolbar && <EditorToolbar toolbar={toolbar} />}
-    <Editor {...rest} onKeyDown={onKeyDownWithProps} />
-   </div>
-  )
+  render() {
+    const {
+      toolbar,
+      ...rest
+    } = this.props;
+  
+    return(
+      <div>
+      {toolbar && <EditorToolbar toolbar={toolbar} />}
+      <Editor {...rest} onKeyDown={onKeyDown} />
+     </div>
+    )
+  }
 }
 
 MarkdownEditor.defaultProps = defaultProps;

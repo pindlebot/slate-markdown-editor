@@ -28,22 +28,22 @@
     type-of "^2.0.1"
     yargs "^4.7.1"
 
-"@menubar/slate-edit-blockquote@^0.5.4":
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/@menubar/slate-edit-blockquote/-/slate-edit-blockquote-0.5.4.tgz#795c1ffb595ff5dd0fafc056e161ae3dc4f929bf"
+"@menubar/slate-edit-blockquote@^0.5.5":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@menubar/slate-edit-blockquote/-/slate-edit-blockquote-0.5.5.tgz#3a236b841adcd5928bcdaecc0ff30e76e6c1ccbe"
 
-"@menubar/slate-edit-code@^0.13.3":
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/@menubar/slate-edit-code/-/slate-edit-code-0.13.3.tgz#be096632f962ed3a9cba9c2c79e3ab470b4e5299"
+"@menubar/slate-edit-code@^0.13.4":
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/@menubar/slate-edit-code/-/slate-edit-code-0.13.4.tgz#4205298b283e79daf30c138c742dbe86a6babc1a"
   dependencies:
     detect-indent "^4.0.0"
     detect-newline "^2.1.0"
     ends-with "^0.2.0"
     is-hotkey "^0.1.1"
 
-"@menubar/slate-edit-list@^0.10.3":
-  version "0.10.3"
-  resolved "https://registry.yarnpkg.com/@menubar/slate-edit-list/-/slate-edit-list-0.10.3.tgz#aa9b8fe2b02ac16af928d89278b1cea62e9413f6"
+"@menubar/slate-edit-list@^0.10.4":
+  version "0.10.4"
+  resolved "https://registry.yarnpkg.com/@menubar/slate-edit-list/-/slate-edit-list-0.10.4.tgz#1ee41ee2dae9002c7911303e67098ad66301480b"
 
 acorn-dynamic-import@^3.0.0:
   version "3.0.0"
@@ -2759,7 +2759,7 @@ slate-hyperscript@^0.5.1:
     is-plain-object "^2.0.4"
     slate-dev-logger "^0.1.36"
 
-slate-inline-markdown@0.0.14:
+slate-inline-markdown@^0.0.14:
   version "0.0.14"
   resolved "https://registry.yarnpkg.com/slate-inline-markdown/-/slate-inline-markdown-0.0.14.tgz#38b1591ae125e6d9345511cd08ee9b719a637a33"
   dependencies:

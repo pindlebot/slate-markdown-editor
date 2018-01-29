@@ -18,15 +18,17 @@ export default props => {
     closingTag
   } = props.node.data.toJSON()
 
-  let styles = {
-    root: {
-      '&:before': {
-        content: `"${openingTag}"`,
-        color: colors.green
-      },
-      '&:after': {
-        content: `"${closingTag}"`,
-        color: colors.green       
+  let styles = theme => {
+    return {
+      root: {
+        '&:before': {
+          content: `"${openingTag}"`,
+          color: colors.green
+        },
+        '&:after': {
+          content: `"${closingTag}"`,
+          color: colors.green       
+        }
       }
     }
   }

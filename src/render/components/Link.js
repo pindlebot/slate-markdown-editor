@@ -7,6 +7,7 @@ const Link = (props: *) => (
     href={props.node.data.get('href', '')}
     title={props.node.data.get('title', '')} 
     style={{color: colors.blue}} {...props.attributes}
+    data-type='link'
   >
     {props.children}
   </a>

@@ -57,6 +57,7 @@ class EmbeddedGist extends React.Component {
             whiteSpace: 'normal'
           }}
           dangerouslySetInnerHTML={{__html: this.state.src}} 
+          data-type='gist'
         />
         </div>
       )

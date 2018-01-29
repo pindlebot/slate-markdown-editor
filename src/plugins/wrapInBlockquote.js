@@ -3,11 +3,11 @@ import * as curry from 'lodash.curry'
 import { clear } from '../util'
 import * as plugins from '../plugins'
 
-function WrapInBlockquote (props, event, change) {
+function WrapInBlockquote (event, change, editor) {
   event.preventDefault()     
   change.call(clear)      
 
-  props.onChange(
+  editor.props.onChange(
     plugins.editBlockquote.changes.wrapInBlockquote(change)
   )
 

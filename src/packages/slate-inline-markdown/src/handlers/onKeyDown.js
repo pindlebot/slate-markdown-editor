@@ -4,6 +4,8 @@ import { Inline, Block } from 'slate'
 import { inlineMarkdown } from '../../../../plugins/index';
 
 function handle(opts, event, change, editor) {  
+  console.log('slate-inline-markdown')
+  
   let { startBlock } = change.value;
   if (opts.skip(change)) return
 
@@ -67,7 +69,6 @@ export default function onKeyDown(
   editor
 ) {
   const args = [opts, event, change, editor];
-
   if (opts.keys.indexOf(event.key) > -1) return handle(...args)
   if(event.key == 'Backspace') {
     if(change.value.startBlock.type == 'html') {

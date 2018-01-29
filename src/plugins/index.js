@@ -1,8 +1,7 @@
 const path = require('path')
+const fs = require('fs')
 import pluginPrism from 'slate-prism';
 import pluginNoEmpty from 'slate-no-empty'
-
-const isDev = process.env.NODE_ENV !== 'production'
 
 import * as options from './options'
 
@@ -14,17 +13,19 @@ const prismOpts = {
 export const noEmpty = pluginNoEmpty()
 export const prism = pluginPrism(prismOpts)
 
-export const editBlockquote = isDev ? require('../packages/@menubar/slate-edit-blockquote/lib').default() : require('@menubar/slate-edit-blockquote').default()
+let hasPluginsLocally = process.env.HAS_PLUGINS_LOCALLY
 
-export const editList = isDev ? require('../packages/@menubar/slate-edit-list/lib').default(options.editListOptions) : require('@menubar/slate-edit-list').default(options.editListOptions)
+export const editBlockquote = hasPluginsLocally ? require('../packages/@menubar/slate-edit-blockquote/lib').default() : require('@menubar/slate-edit-blockquote').default()
 
-export const editCode = isDev ? require('../packages/@menubar/slate-edit-code/lib').default(options.editCodeOptions) : require('@menubar/slate-edit-code').default(options.editCodeOptions)
+export const editList = hasPluginsLocally ? require('../packages/@menubar/slate-edit-list/lib').default(options.editListOptions) : require('@menubar/slate-edit-list').default(options.editListOptions)
 
-export const heading = isDev ? require('../packages/slate-markdown-heading/src').default() : require('slate-markdown-heading').default()
+export const editCode = hasPluginsLocally ? require('../packages/@menubar/slate-edit-code/lib').default(options.editCodeOptions) : require('@menubar/slate-edit-code').default(options.editCodeOptions)
 
-export const inlineMarkdown = isDev ? require('../packages/slate-inline-markdown/src').default() : require('slate-inline-markdown').default()
+export const heading = hasPluginsLocally ? require('../packages/slate-markdown-heading/src').default() : require('slate-markdown-heading').default()
 
-export const saveState = isDev ? require('../packages/slate-local-storage/src').default() : require('slate-local-storage').default(options.localStorageOptions)
+export const inlineMarkdown = hasPluginsLocally ? require('../packages/slate-inline-markdown/src').default() : require('slate-inline-markdown').default()
+
+export const saveState = hasPluginsLocally ? require('../packages/slate-local-storage/src').default() : require('slate-local-storage').default(options.localStorageOptions)
 
 export default [
   editBlockquote,

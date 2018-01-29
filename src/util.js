@@ -83,3 +83,12 @@ export function getAttributes(props: { openingTag: string }) {
   console.log('attributes', attributes)
   return attributes;
 }
+
+export function log(...args) {
+  let isDev = process.env.NODE_ENV !== 'production';
+  let shouldLog = process.env.DEBUG && isDev
+
+  if(shouldLog) {
+    console.log(...args)
+  }
+}

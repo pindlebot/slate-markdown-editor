@@ -8,6 +8,7 @@ const Image = (props: *) => (
     title={props.node.data.get('title', '')}
     alt={props.node.data.get('alt', '')}
     {...props.attributes}
+    data-type='image'
   >
     {props.children}
   </img>
