@@ -5,17 +5,18 @@ import * as dark from './styles/dark'
 
 const { ThemeProvider } = reactJss;
 
-const wrapped = (Component: any) => {
-  class WrappedComponent extends React.Component {
-    render() {
+function wrapped (context: any ) {
+  return function(Component: any) {
+    function WrappedComponent (props: any) {
       return(
         <ThemeProvider theme={dark}>
-          <Component {...this.props} />
+          <Component {...props} />
         </ThemeProvider>
       )
-    }
-  } 
-  return WrappedComponent
+    } 
+
+    return WrappedComponent
+  }
 }
 
 export default wrapped;

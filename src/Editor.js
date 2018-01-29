@@ -7,23 +7,21 @@ import curry from 'lodash.curry'
 import onKeyDown from './handlers/onKeyDown'
 
 
-class MarkdownEditor extends React.Component {
+function MarkdownEditor (props) {
+  const {
+    toolbar,
+    ...rest
+  } = props;
 
-  render() {
-    const {
-      toolbar,
-      ...rest
-    } = this.props;
+  return(
+    <div>
+    {toolbar && <EditorToolbar toolbar={toolbar} />}
+    <Editor {...rest} onKeyDown={onKeyDown} />
+    </div>
+  )
   
-    return(
-      <div>
-      {toolbar && <EditorToolbar toolbar={toolbar} />}
-      <Editor {...rest} onKeyDown={onKeyDown} />
-     </div>
-    )
-  }
 }
 
 MarkdownEditor.defaultProps = defaultProps;
 
-export default wrapped(MarkdownEditor)
+export default wrapped({})(MarkdownEditor)

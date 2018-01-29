@@ -11,7 +11,7 @@
     "build": "babel src/ -d lib/ --ignore src/packages/",
     "prepublish": "yarn run build",
     "example:deploy": "git push heroku `git subtree split --prefix example master`:master --force",
-    "test": "parcel-babel-fix"
+    "postinstall": "parcel-babel-fix"
   },
   "author": "Ben Gardner <ben@focuswish.com> (https://menubar.io)",
   "license": "ISC",
