@@ -12,6 +12,16 @@ export const defaultSchema = curry(
   })
 )
 
+
+//function createHTML(opts) {
+//  const { openingTag = '', closingTag = '', nodes } = opts;
+//  return Inline.create({
+//      type: INLINES.HTML,
+//      data: { openingTag, closingTag },
+//      nodes
+//  });
+//}
+
 type Match = any
 
 export const schema = {
@@ -44,7 +54,26 @@ export const schema = {
       src: match[2],
       title: match[3]
     }
-  })
+  }),
+  htmlTagPair: (match: Match) => {
+    const [ fullTag, tagName, attributes = '', innerHtml = '' ] = match;
+    const openingTag = `<${tagName}${attributes}>`;
+    const closingTag = fullTag.slice(openingTag.length + innerHtml.length);
+    return {
+      object: 'inline',
+      type: 'html',
+      input: match.input,
+      text: openingTag + closingTag,
+      data: {
+        tagName,
+        fullTag,
+        openingTag,
+        closingTag,
+        innerHtml,
+        attributes
+      }
+    }
+  }
 }
 
 export default {

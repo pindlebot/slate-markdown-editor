@@ -2,6 +2,6 @@
 import * as React from 'react'
 
 const Paragraph = (props: *) => 
-  (<p {...props.attributes}>{props.children}</p>)
+  (<div {...props.attributes}>{props.children}</div>)
 
 export default Paragraph;

@@ -9,7 +9,9 @@ import CodeLine from './CodeLine'
 import Link from './Link'
 import Paragraph from './Paragraph'
 import Unstyled from './Unstyled'
-
+import Html from './Html'
+import Script from './Script'
+import Gist from './Gist'
 exports.blockquote = Blockquote;
 exports.code_block = CodeBlock;
 exports.list_item = ListItem;
@@ -19,6 +21,11 @@ exports.code_line = CodeLine;
 exports.link = Link;
 exports.paragraph = Paragraph;
 exports.unstyled = Unstyled;
+exports.html = Html;
+exports.htmlTagPair = Html;
+exports.htmlSelfClosingTag = Html;
+exports.script = Script;
+exports.gist = Gist;
 
 exports.header_one = Heading(1);
 exports.header_two = Heading(2);

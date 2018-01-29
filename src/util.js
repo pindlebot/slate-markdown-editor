@@ -1,7 +1,7 @@
 // @flow
 import { Value, type Change } from 'slate'
 import * as options from './plugins/options'
-
+import fromPairs from 'lodash.frompairs'
 const { State } = require('@menubar/markup-it')
 const markdown = require('@menubar/markup-it/lib/markdown')
 const state = State.create(markdown)
@@ -9,8 +9,9 @@ const state = State.create(markdown)
 declare var window: any;
 
 export function fromMarkdown (md: string) {
-  return Value.fromJSON({ 
-    document: state.deserializeToDocument(md) 
+  let document = state.deserializeToDocument(md) 
+  return Value.create({ 
+    document: document.toJSON()
   })
 }
 
@@ -65,4 +66,20 @@ export function clear (change: Change) {
   change
   .extendToStartOf(change.value.startBlock)  
   .delete() 
+}
+
+export function getAttributes(props: { openingTag: string }) {
+  let re = /(?:<\w+\s+)(.+)(?:>)/
+  let [tag, attributes] = re.exec(props.openingTag);
+  
+  attributes = attributes.split(/\s+/)
+    .map(attrib => attrib.replace(/["']/g, ''))
+    .map(attrib => [
+      attrib.split('=')[0],
+      attrib.split('=')[1] ? attrib.split('=')[1] : true
+    ])
+  
+  attributes = fromPairs(attributes)
+  console.log('attributes', attributes)
+  return attributes;
 }

@@ -22,7 +22,7 @@
     "slate": "^0.32.2"
   },
   "dependencies": {
-    "@menubar/markup-it": "^5.1.2",
+    "@menubar/markup-it": "5.1.4",
     "@menubar/slate-edit-blockquote": "^0.5.4",
     "@menubar/slate-edit-code": "^0.13.3",
     "@menubar/slate-edit-list": "^0.10.3",
@@ -30,6 +30,8 @@
     "jss": "^9.5.1",
     "lodash.curry": "^4.1.1",
     "lodash.debounce": "^4.0.8",
+    "lodash.frompairs": "^4.0.1",
+    "lodash.mapvalues": "^4.6.0",
     "parcel-babel-fix": "^0.0.1",
     "prismjs": "^1.8.4",
     "react-jss": "^8.2.1",
@@ -39,7 +41,8 @@
     "slate-markdown-heading": "^0.0.2",
     "slate-no-empty": "^0.1.0",
     "slate-prism": "^0.4.0",
-    "slate-react": "^0.11.2"
+    "slate-react": "^0.11.2",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",

@@ -2,7 +2,7 @@
 import * as React from 'react';
 
 const Unstyled = (props: *) => (
-  <span {...props.attributes}>{props.children}</span>
+  <div {...props.attributes}>{props.children}</div>
 )
 
 export default Unstyled

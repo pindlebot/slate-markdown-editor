@@ -1,5 +1,7 @@
 import * as changes from '../changes'
 import { applyRules, getLastText } from '../util'
+import { Inline, Block } from 'slate'
+import { inlineMarkdown } from '../../../../plugins/index';
 
 function handle(opts, event, change, editor) {  
   let { startBlock } = change.value;
@@ -17,22 +19,49 @@ function handle(opts, event, change, editor) {
   ) return
 
   let token = tokens[0]
-  console.log(token)
-
   event.preventDefault()
-  change.call(changes.replaceText(token))    
   
   if (token.object == 'mark') {
+    change.call(changes.replaceText(token))        
     change.call(changes.insertMark(token))
   
     return true;
   } else if(token.object == 'inline') {
-    change
-      .wrapInline({
+    console.log(token)
+    
+    if(token.type === 'link' || token.type === 'image') {
+      change
+       .call(changes.replaceText(token))      
+       .wrapInline({
         type: token.type,
         data: token.data,
       })
       .call(changes.insertSpace)
+    } else {
+      let block = Block.create({
+        type: token.type,
+        data: token.data,
+        isVoid: true,
+      })
+
+      change
+      .removeNodeByKey(change.value.startBlock.key)
+      .insertBlock({
+        type: token.type,
+        data: token.data,
+        isVoid: true,
+      })
+      .insertBlock('paragraph')
+        //.extend(-1 * token.input.length)
+        //.wrapInline({
+        //  type: token.type,
+        //  data: token.data,
+        //  isVoid: true
+        //})
+        //.splitBlock()
+        //.setBlock('unstyled')
+        //.call(changes.insertSpace)
+    }
       
     return true;
   }
@@ -47,5 +76,11 @@ export default function onKeyDown(
   const args = [opts, event, change, editor];
 
   if (opts.keys.indexOf(event.key) > -1) return handle(...args)
+  if(event.key == 'Backspace') {
+    if(change.value.startBlock.type == 'html') {
+      console.log(change.value.startBlock.toJSON())
+    }
+    return
+  }
   return undefined;
 } 

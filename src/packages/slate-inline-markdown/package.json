@@ -7,7 +7,8 @@
     "build": "babel src -d lib"
   },
   "dependencies": {
-    "lodash.curry": "^4.1.1"
+    "lodash.curry": "^4.1.1",
+    "slate-react": "^0.11.2"
   },
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
