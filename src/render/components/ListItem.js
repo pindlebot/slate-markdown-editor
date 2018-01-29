@@ -35,7 +35,7 @@ const ListItem = (props: *) => {
         content: `"${prefix} "`, 
         color: colors.magenta,
       },
-      '& p': {
+      '& > *': {
         display: 'inline-block',
         marginBottom: 0
       }

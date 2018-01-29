@@ -6,7 +6,7 @@ const Component = (props: *) => {
   let classes = [props.classes.root]
   
   if(props.className) classes.push(props.className)  
-
+ 
   return React.createElement(
     props.tagName, { 
       className: classes.join(' '), 

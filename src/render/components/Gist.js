@@ -22,17 +22,7 @@ class EmbeddedGist extends React.Component {
       }
     }
     
-    //let url = "https://gist.github.com/" + 
-    //  this.props.gist + 
-    //  ".json?callback=" + 
-    //  gistCallback
-    let url = this.props.gist + 'on?callback=' + gistCallback
-    console.log(url)
-
-    //if (this.props.file) {
-    //  url += "&file=" + this.props.file
-    //}
-    //url += "&file=" + 'snippet.php'
+    let url = this.props.script.src + 'on?callback=' + gistCallback
     let script = document.createElement('script')
     script.type = 'text/javascript'
     script.src = url
@@ -52,20 +42,19 @@ class EmbeddedGist extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     if (this.state.loading) {
       return (
         <div 
           {...this.props.attributes}
-        >loading...</div>
+        >...</div>
       )
     } else {
       return (
         <div {...this.props.attributes}>
         <div 
           style={{
-            'word-wrap': 'normal',
-            'white-space': 'normal'
+            wordWrap: 'normal',
+            whiteSpace: 'normal'
           }}
           dangerouslySetInnerHTML={{__html: this.state.src}} 
         />
@@ -75,6 +64,6 @@ class EmbeddedGist extends React.Component {
   }
 }
 
-const Gist = props => <EmbeddedGist {...props} gist={props.script.src} />
+const Gist = props => <EmbeddedGist {...props} />
 
 export default Gist

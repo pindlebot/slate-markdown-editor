@@ -1,16 +1,36 @@
 import * as React from 'react'
+import injectSheet from 'react-jss'
+import * as colors from '../../styles/dark'
 
-const Html = (props) => {
-  let __html = props.node.data.get('openingTag') + props.node.data.get('closingTag')
+function Html(props) {
   return (
-    <div 
-      {...props.attributes}
-      contentEditable={false}    
-      data-json={JSON.stringify(props.node.data.toJSON())}
-      style={{backgroundColor: 'red'}}
-      dangerouslySetInnerHTML={{ __html }}
-    />
+    <span 
+    {...props.attributes} 
+    className={props.classes.root}>
+     {props.children}
+    </span>
   )
 }
 
-export default Html
+export default props => {
+  let {
+    openingTag,
+    closingTag
+  } = props.node.data.toJSON()
+
+  let styles = {
+    root: {
+      '&:before': {
+        content: `"${openingTag}"`,
+        color: colors.green
+      },
+      '&:after': {
+        content: `"${closingTag}"`,
+        color: colors.green       
+      }
+    }
+  }
+
+  let WrappedComponent = injectSheet(styles)(Html)
+  return <WrappedComponent {...props} />
+}

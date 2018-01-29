@@ -6,8 +6,13 @@ const isDev = process.env.NODE_ENV !== 'production'
 
 import * as options from './options'
 
+const prismOpts = {
+  onlyIn: (node) => {
+    return node.object === 'block' && node.type === 'code_block';
+  }
+}
 export const noEmpty = pluginNoEmpty()
-export const prism = pluginPrism()
+export const prism = pluginPrism(prismOpts)
 
 export const editBlockquote = isDev ? require('../packages/@menubar/slate-edit-blockquote/lib').default() : require('@menubar/slate-edit-blockquote').default()
 

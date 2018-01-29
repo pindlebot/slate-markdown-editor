@@ -21,49 +21,42 @@ function handle(opts, event, change, editor) {
   let token = tokens[0]
   event.preventDefault()
   
-  if (token.object == 'mark') {
-    change.call(changes.replaceText(token))        
-    change.call(changes.insertMark(token))
-  
-    return true;
-  } else if(token.object == 'inline') {
-    console.log(token)
+  switch(true) {
+    case token.object == 'mark':
+      change.call(changes.replaceText(token))        
+      change.call(changes.insertMark(token))
     
-    if(token.type === 'link' || token.type === 'image') {
+      return true;
+    case token.type == 'link':
+    case token.type == 'image':
       change
-       .call(changes.replaceText(token))      
-       .wrapInline({
-        type: token.type,
-        data: token.data,
-      })
-      .call(changes.insertSpace)
-    } else {
-      let block = Block.create({
-        type: token.type,
-        data: token.data,
-        isVoid: true,
-      })
+        .call(changes.replaceText(token))      
+        .wrapInline({
+          type: token.type,
+          data: token.data,
+        })
+        .call(changes.insertSpace)
+      return true;
 
+    case token.type == 'html':
       change
-      .removeNodeByKey(change.value.startBlock.key)
-      .insertBlock({
-        type: token.type,
-        data: token.data,
-        isVoid: true,
-      })
-      .insertBlock('paragraph')
-        //.extend(-1 * token.input.length)
-        //.wrapInline({
-        //  type: token.type,
-        //  data: token.data,
-        //  isVoid: true
-        //})
-        //.splitBlock()
-        //.setBlock('unstyled')
-        //.call(changes.insertSpace)
-    }
-      
-    return true;
+        .removeNodeByKey(change.value.startBlock.key)
+
+      if(token.data.innerHtml) {
+        change
+          .insertText(token.data.innerHtml)
+          .wrapBlock({ type: token.type, data: token.data })
+      } else {
+        change
+          .insertBlock({
+            type: token.type,
+            data: token.data,
+          })
+      }
+        change.insertBlock('paragraph')
+      return true;
+    default: 
+      return undefined
   }
 }
 
