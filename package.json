@@ -1,6 +1,6 @@
 {
   "name": "slate-markdown-editor",
-  "version": "0.0.0-development",
+  "version": "0.0.42",
   "description": "",
   "source": "src",
   "main": "lib/index.js",
@@ -13,7 +13,7 @@
     "postinstall": "parcel-babel-fix",
     "semantic-release": "semantic-release --debug",
     "travis-deploy-once": "travis-deploy-once",
-    "deploy": "sh bin/publish.sh"    
+    "deploy": "sh bin/publish.sh"
   },
   "author": "Ben Gardner <ben@focuswish.com> (https://menubar.io)",
   "license": "ISC",
