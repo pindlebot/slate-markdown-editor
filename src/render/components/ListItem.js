@@ -4,7 +4,6 @@ import injectSheet from 'react-jss'
 import defaultStyles from '../../styles/defaultStyles'
 import * as colors from '../../styles/dark'
 import Component from './Component'
-import * as plugins from '../../plugins'
 import { getDepth } from '../../util'
 
 const ListItem = (props: *) => {
@@ -16,7 +15,10 @@ const ListItem = (props: *) => {
     parent 
   } = props
   
-  const isCurrentItem = plugins.editList.utils
+  let editListPlugin = props.editor.props.plugins.find(plugin => 
+    plugin.name === 'slate_edit_list'
+  )
+  const isCurrentItem = editListPlugin.utils
     .getItemsAtRange(editor.value)
     .contains(node)
  

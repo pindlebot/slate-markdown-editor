@@ -1,13 +1,14 @@
 // @flow
 import * as curry from 'lodash.curry'
 import { 
-  wrapInOrderedList, 
-  wrapInUnorderedList 
-} from '../plugins/wrapInList'
-import WrapInBlockquote from '../plugins/wrapInBlockquote'
-import { log } from '../util'
+  insertOrderedList,
+  insertUnorderedList,
+  insertBlockquote
+} from '../changes'
+import { log } from '../helpers'
+import { type Change, type Editor } from 'slate'
 
-function onSpace(event, change, editor) {
+function onSpace(event: *, change: Change, editor: Editor) {
   const args = [event, change, editor]
   log('onSpace', args)
   const { value } = change
@@ -16,11 +17,11 @@ function onSpace(event, change, editor) {
    
   switch (true) {
     case /^\s*[*+-]\s*$/.test(text):
-      return wrapInUnorderedList(...args)
+      return insertUnorderedList(...args)
     case /^\s*\d\.\s*$/.test(text):
-      return wrapInOrderedList(...args)
+      return insertOrderedList(...args)
     case /^\s*>\s*$/.test(text): 
-      return WrapInBlockquote(...args)
+      return insertBlockquote(...args)
     default: 
       return 
   } 

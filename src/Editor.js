@@ -4,8 +4,6 @@ import wrapped from './wrapped'
 import EditorToolbar from './Toolbar'
 import defaultProps from './props'
 import curry from 'lodash.curry'
-import onKeyDown from './handlers/onKeyDown'
-
 
 function MarkdownEditor (props) {
   const {
@@ -16,7 +14,7 @@ function MarkdownEditor (props) {
   return(
     <div>
     {toolbar && <EditorToolbar toolbar={toolbar} />}
-    <Editor {...rest} onKeyDown={onKeyDown} />
+    <Editor {...rest} />
     </div>
   )
   
@@ -24,4 +22,4 @@ function MarkdownEditor (props) {
 
 MarkdownEditor.defaultProps = defaultProps;
 
-export default wrapped({})(MarkdownEditor)
+export default (context) => wrapped(context)(MarkdownEditor)

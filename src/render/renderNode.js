@@ -1,9 +1,8 @@
 // @flow
-import * as plugins from '../plugins'
 import * as React from 'react'
 import * as blocks from './components';
 import * as colors from '../styles/dark'
-import { getAttributes } from '../util'
+import { getAttributes } from '../plugins/pluginHandler/helpers'
 import * as url from 'url'
 
 export default (props: *) => {

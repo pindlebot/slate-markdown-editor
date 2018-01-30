@@ -2,6 +2,7 @@
 import pluginEditCodeOptions from '@menubar/slate-edit-code/dist/options'
 import { defaultOpts } from 'slate-local-storage'
 import detectIndent from 'detect-indent';
+import { type Node } from 'slate'
 
 const getIndent = (
   text,
@@ -10,17 +11,28 @@ const getIndent = (
   return detectIndent(text).indent || '  ';
 }
 
-export const editCodeOptions = new pluginEditCodeOptions()
+const editCodeOptions = new pluginEditCodeOptions()
 
-export const editListOptions =  {
+const editListOptions =  {
   types: ['unordered_list', 'ordered_list'],
   typeDefault: 'unstyled'
 }
 
-export const LOCAL_STORAGE_KEY = '_slate_'
+const LOCAL_STORAGE_KEY = '_slate_'
 
-export const localStorageOptions = {
+const localStorageOptions = {
   ...defaultOpts,
   key: LOCAL_STORAGE_KEY,
 }
 
+const prismOptions = {
+  onlyIn: (node: Node) => {
+    return node.object === 'block' && node.type === 'code_block';
+  }
+}
+
+exports.editListOptions = editListOptions;
+exports.editCodeOptions = editCodeOptions;
+exports.localStorageOptions = localStorageOptions;
+exports.prismOptions = prismOptions;
+exports.LOCAL_STORAGE_KEY = LOCAL_STORAGE_KEY

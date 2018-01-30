@@ -1,16 +1,16 @@
 // @flow
-import * as curry from 'lodash.curry'
-import toggleCode from '../plugins/toggleCode'
-import { getPrevious, clear, log } from '../util'
+import { insertCode } from '../changes'
+import { getPrevious, clear, log } from '../helpers'
+import { type Change, type Editor } from 'slate'
 
-function onEnter (event, change, editor) {
+function onEnter (event: *, change: Change, editor: Editor) {
   const args = [event, change, editor]
   log('onEnter', args)
 
   if(/\s*`{3}.*/.test(change.value.startBlock.text)) {
     event.preventDefault()   
     change.call(clear)  
-    return toggleCode(...args)
+    return insertCode(...args)
   }    
   let prev = getPrevious(change)
   
@@ -21,8 +21,8 @@ function onEnter (event, change, editor) {
     !change.value.startBlock.text
   ) {
     event.preventDefault()   
-    change.call(clear)  
-    return toggleCode(...args)
+    //change.call(clear)  
+    return insertCode(...args)
   }
   
   return undefined

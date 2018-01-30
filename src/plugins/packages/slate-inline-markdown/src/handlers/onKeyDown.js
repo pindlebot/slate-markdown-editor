@@ -1,7 +1,6 @@
 import * as changes from '../changes'
-import { applyRules, getLastText } from '../util'
+import { applyRules, getLastText } from '../../../../../util'
 import { Inline, Block } from 'slate'
-import { inlineMarkdown } from '../../../../plugins/index';
 
 function handle(opts, event, change, editor) {  
   console.log('slate-inline-markdown')

@@ -1,8 +1,6 @@
-import * as curry from 'lodash.curry'
 import onModEnter from '@menubar/slate-edit-code/dist/handlers/onModEnter'
-import * as plugins from './'
-import * as options from './options'
-import { log } from '../util'
+import * as options from '../../options'
+import { log, getPlugin } from '../helpers'
 
 const remove = change => change
   .removeNodeByKey(change.value.startBlock.key)
@@ -16,20 +14,21 @@ const isInCodeBlock = change => change.value.document.getClosest(
 
 function toggleCode (event, change, editor) {
   log('toggleCode', [event, change, editor])
-
+  const editCode = getPlugin(editor, 'slate_edit_code')
+  
   if(!isInCodeBlock(change)) {    
-    editor.props.onChange(
-      plugins.editCode
-      .changes.toggleCodeBlock(change, "paragraph").focus()
-    )
-      
+    //editor.props.onChange(
+    //  plugins.editCode
+    //  .changes.toggleCodeBlock(change, "paragraph").focus()
+    //)
+
+    editCode.changes.wrapCodeBlock(change)
+    return true
   } else {
     console.log('onModEnter')
     remove(change)
     onModEnter(options.editCodeOptions, event, change, {})
   }
-
-  return true;  
 };
 
 export default toggleCode
