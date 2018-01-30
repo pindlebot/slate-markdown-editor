@@ -5,4 +5,4 @@ git push origin -u master
 babel src/ -d lib/ --ignore src/plugins/packages/
 echo 'export default []' > lib/plugins/dev.js
 export $(cat .env | xargs) && semantic-release --debug --no-ci
-sh deploy-example.sh
+sh bin/deploy-example.sh
