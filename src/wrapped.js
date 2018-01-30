@@ -6,11 +6,11 @@ const { ThemeProvider } = reactJss;
 
 const load = require
 
-function wrapped (context = {}) {
+function wrapped (context: * = {}) {
   return function(Component: any) {
     function WrappedComponent (props: any) {
       let { plugins } = props;
-      console.log(context)
+
       if(!plugins && context.dev) {
         plugins = require('./plugins/prod').default
       } else {

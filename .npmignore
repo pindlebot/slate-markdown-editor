@@ -1,12 +1,8 @@
 .cache
 example
 node_modules
-packages
 src
 .babelrc
 .editorconfig
-postinstall.js
-Procfile
-tsconfig.json
 
 !lib/
