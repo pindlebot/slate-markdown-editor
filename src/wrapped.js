@@ -12,9 +12,9 @@ function wrapped (context: * = {}) {
       let { plugins } = props;
 
       if(!plugins && context.dev) {
-        plugins = require('./plugins/prod').default
-      } else {
         plugins = require('./plugins/dev').default
+      } else {
+        plugins = require('./plugins/prod').default
       }
       return(
         <ThemeProvider theme={props.theme || dark}>
