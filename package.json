@@ -11,7 +11,7 @@
     "build": "babel src/ -d lib/ --ignore src/plugins/packages/",
     "example:deploy": "git push heroku `git subtree split --prefix example master`:master --force",
     "postinstall": "parcel-babel-fix",
-    "semantic-release": "semantic-release",
+    "semantic-release": "semantic-release --debug",
     "travis-deploy-once": "travis-deploy-once"
   },
   "author": "Ben Gardner <ben@focuswish.com> (https://menubar.io)",
