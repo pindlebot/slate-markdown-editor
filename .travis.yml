@@ -8,6 +8,7 @@ install:
 script:
   - yarn run build
   - echo 'export default []' > lib/plugins/dev.js
+  
 #after_success:
 #  - yarn run travis-deploy-once "yarn run semantic-release"
 deploy:
