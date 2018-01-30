@@ -6,7 +6,7 @@ node_js:
 install:
   - yarn
 script:
-  - babel src/ -d lib/ --ignore src/plugins/packages/
+  - yarn run build
   - echo 'export default []' > lib/plugins/dev.js
 #after_success:
 #  - yarn run travis-deploy-once "yarn run semantic-release"

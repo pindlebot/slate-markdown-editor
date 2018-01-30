@@ -7,7 +7,7 @@
     "build": "babel src -d lib"
   },
   "peerDependencies": {
-    "slate": "^0.32.1"
+    "slate": "*"
   },
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
