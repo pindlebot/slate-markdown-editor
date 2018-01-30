@@ -9,10 +9,11 @@
   },
   "scripts": {
     "build": "babel src/ -d lib/ --ignore src/plugins/packages/",
-    "example:deploy": "git push heroku `git subtree split --prefix example master`:master --force",
+    "postbuild": "echo 'export default []' > lib/plugins/dev.js",
     "postinstall": "parcel-babel-fix",
     "semantic-release": "semantic-release --debug",
-    "travis-deploy-once": "travis-deploy-once"
+    "travis-deploy-once": "travis-deploy-once",
+    "deploy": "sh bin/publish.sh"    
   },
   "author": "Ben Gardner <ben@focuswish.com> (https://menubar.io)",
   "license": "ISC",
