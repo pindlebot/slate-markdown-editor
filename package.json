@@ -1,6 +1,6 @@
 {
   "name": "slate-markdown-editor",
-  "version": "0.0.45",
+  "version": "0.0.46",
   "description": "",
   "source": "src",
   "main": "lib/index.js",
