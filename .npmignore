@@ -4,5 +4,5 @@ node_modules
 src
 .babelrc
 .editorconfig
-
+.env
 !lib/

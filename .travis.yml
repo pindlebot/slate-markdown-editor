@@ -1,0 +1,17 @@
+language: node_js
+notifications:
+  email: false
+node_js:
+  - '8'
+install:
+  - yarn
+script:
+  - babel src/ -d lib/ --ignore src/plugins/packages/
+  - echo 'export default []' > lib/plugins/dev.js
+#after_success:
+#  - yarn run travis-deploy-once "yarn run semantic-release"
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: 
+    - yarn run travis-deploy-once "yarn run semantic-release"

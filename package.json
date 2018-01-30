@@ -1,6 +1,6 @@
 {
   "name": "slate-markdown-editor",
-  "version": "0.0.41",
+  "version": "0.0.0-development",
   "description": "",
   "source": "src",
   "main": "lib/index.js",
@@ -10,7 +10,9 @@
   "scripts": {
     "build": "sh bin/prepublish.sh",
     "example:deploy": "git push heroku `git subtree split --prefix example master`:master --force",
-    "postinstall": "parcel-babel-fix"
+    "postinstall": "parcel-babel-fix",
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "author": "Ben Gardner <ben@focuswish.com> (https://menubar.io)",
   "license": "ISC",
@@ -54,6 +56,12 @@
     "microbundle": "^0.4.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "slate": "^0.32.2"
+    "semantic-release": "^12.4.1",
+    "slate": "^0.32.2",
+    "travis-deploy-once": "^4.3.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unshift/slate-markdown-editor.git"
   }
 }
