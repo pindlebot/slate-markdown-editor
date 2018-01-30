@@ -8,8 +8,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "babel src/ -d lib/ --ignore src/plugins/packages/",
-    "publish": "sh bin/prepublish.sh",
+    "build": "sh bin/prepublish.sh",
     "example:deploy": "git push heroku `git subtree split --prefix example master`:master --force",
     "postinstall": "parcel-babel-fix"
   },
