@@ -3,7 +3,7 @@ import * as React from 'react'
 import * as reactJss from 'react-jss'
 import * as dark from './styles/dark'
 const { ThemeProvider } = reactJss
-import * as plugins from './plugins/prod'
+import plugins from './plugins/prod'
 
 const theme = {
   ...dark

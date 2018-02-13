@@ -9,13 +9,13 @@
   },
   "scripts": {
     "postinstall": "parcel-babel-fix",
-    "build": "node bin/sme.js",
     "fix": "standard \"packages/**/*.js\" --fix --verbose | snazzy",
     "publish": "npm-patch packages/slate-markdown-editor",
-    "babel": "babel",
+    "build:main": "babel packages/slate-markdown-editor/src -d packages/slate-markdown-editor/lib",
     "build:heading": "babel packages/slate-markdown-heading/src -d packages/slate-markdown-heading/lib",
     "build:local": "babel packages/slate-local-storage/src -d packages/slate-local-storage/lib",
-    "build:inline": "babel packages/slate-inline-markdown/src -d packages/slate-inline-markdown/lib"
+    "build:inline": "babel packages/slate-inline-markdown/src -d packages/slate-inline-markdown/lib",
+    "build": "yarn run build:main && yarn run build:heading && yarn run build:local && yarn run build:inline"
   },
   "standard": {
     "parser": "babel-eslint",
@@ -39,12 +39,16 @@
     "@babel/cli": "^7.0.0-beta.40",
     "@babel/core": "^7.0.0-beta.40",
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.40",
+    "@babel/plugin-proposal-decorators": "^7.0.0-beta.40",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.40",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.40",
+    "@babel/plugin-transform-runtime": "^7.0.0-beta.40",
     "@babel/preset-env": "^7.0.0-beta.40",
     "@babel/preset-flow": "^7.0.0-beta.40",
     "@babel/preset-react": "^7.0.0-beta.40",
     "babel-eslint": "^8.2.1",
     "babel-loader": "^7.1.2",
+    "babel-plugin-react-require": "^3.0.0",
     "babel-preset-next": "^1.1.1",
     "eslint-plugin-flowtype": "^2.43.0",
     "execa": "^0.9.0",

@@ -1,6 +1,6 @@
 {
   "name": "slate-inline-markdown",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "main": "lib/index.js",
   "license": "MIT",
   "scripts": {},

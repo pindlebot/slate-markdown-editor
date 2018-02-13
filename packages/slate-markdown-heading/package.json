@@ -1,10 +1,9 @@
 {
   "name": "slate-markdown-heading",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "lib/index.js",
   "license": "MIT",
-  "scripts": {
-  },
+  "scripts": {},
   "devDependencies": {},
   "dependencies": {
     "is-hotkey": "^0.1.1",

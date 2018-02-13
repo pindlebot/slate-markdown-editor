@@ -232,7 +232,7 @@
     "@babel/helper-function-name" "7.0.0-beta.40"
     "@babel/plugin-syntax-class-properties" "7.0.0-beta.40"
 
-"@babel/plugin-proposal-decorators@^7.0.0-beta.39":
+"@babel/plugin-proposal-decorators@^7.0.0-beta.39", "@babel/plugin-proposal-decorators@^7.0.0-beta.40":
   version "7.0.0-beta.40"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-decorators/-/plugin-proposal-decorators-7.0.0-beta.40.tgz#d2c033bfa55719ddea681c241c9609b346c7cd9c"
   dependencies:
@@ -269,7 +269,7 @@
   version "7.0.0-beta.40"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-decorators/-/plugin-syntax-decorators-7.0.0-beta.40.tgz#26700fe4599606701bf73cddedeb6f470aa0fe54"
 
-"@babel/plugin-syntax-dynamic-import@^7.0.0-beta.39":
+"@babel/plugin-syntax-dynamic-import@^7.0.0-beta.39", "@babel/plugin-syntax-dynamic-import@^7.0.0-beta.40":
   version "7.0.0-beta.40"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-dynamic-import/-/plugin-syntax-dynamic-import-7.0.0-beta.40.tgz#5d9b58d4fbe1dfabbd44dee2eb267c466d7e9b87"
 
@@ -437,7 +437,7 @@
   dependencies:
     regenerator-transform "^0.12.3"
 
-"@babel/plugin-transform-runtime@^7.0.0-beta.39":
+"@babel/plugin-transform-runtime@^7.0.0-beta.39", "@babel/plugin-transform-runtime@^7.0.0-beta.40":
   version "7.0.0-beta.40"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-runtime/-/plugin-transform-runtime-7.0.0-beta.40.tgz#6a4066affced4188b8eacb9e2fe13a5bca4c1542"
   dependencies:
