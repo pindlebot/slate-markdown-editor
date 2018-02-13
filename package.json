@@ -11,7 +11,7 @@
     "postinstall": "parcel-babel-fix",
     "build": "node bin/sme.js",
     "fix": "standard \"packages/**/*.js\" --fix --verbose | snazzy",
-    "publish": "npm-patch packages/slate-markdown/editor"
+    "publish": "npm-patch packages/slate-markdown-editor"
   },
   "standard": {
     "parser": "babel-eslint",
