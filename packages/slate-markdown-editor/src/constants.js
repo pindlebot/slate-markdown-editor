@@ -1,3 +1,1 @@
-export default {
-  'prism': '1.8.4'
-}
+exports.prism = '1.8.4'

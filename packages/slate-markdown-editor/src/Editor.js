@@ -3,7 +3,7 @@ import { Editor } from 'slate-react'
 import wrapped from './wrapped'
 import EditorToolbar from './Toolbar'
 import defaultProps, { PRISM_CDN } from './props'
-import constants from './constants'
+import * as constants from './constants'
 import isUrl from 'is-url'
 
 class MarkdownEditor extends React.Component {

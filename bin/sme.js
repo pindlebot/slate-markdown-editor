@@ -9,18 +9,14 @@ async function run () {
 
   const version = pkg.dependencies.prismjs.slice(1, pkg.dependencies.prismjs.length)
 
-  const constants = {
-    prism: version
-  }
-
   const pathToConstants = path.join(__dirname, '../packages/slate-markdown-editor/lib/constants.js')
 
-  const str = 'exports.default = ' + JSON.stringify(constants, null, 2)
+  const str = `exports.prism = '${version}'`
   await write(pathToConstants, str, { encoding: 'utf8' })
 
   await write(
     path.join(__dirname, '../packages/slate-markdown-editor/lib/plugins/dev.js'),
-    'export default []',
+    'exports.default = []',
     { encoding: 'utf8' }
   )
 }
