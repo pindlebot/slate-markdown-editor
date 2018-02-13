@@ -3,30 +3,22 @@ import * as React from 'react'
 import * as reactJss from 'react-jss'
 import * as dark from './styles/dark'
 const { ThemeProvider } = reactJss
+import * as plugins from './plugins/prod'
 
 const theme = {
   ...dark
 }
 
-function wrapped (context: * = {}) {
-  return function (Component: any) {
-    function WrappedComponent (props: any) {
-      let { plugins } = props
+function wrapped (Component: any) {
+  return function (props: any) {
+    const component = (
+      <ThemeProvider theme={props.theme || theme}>
+        <Component {...props} plugins={plugins} />
+      </ThemeProvider>
+    )
 
-      if (!plugins && context.dev) {
-        plugins = require('./plugins/dev').default
-      } else {
-        plugins = require('./plugins/prod').default
-      }
-      return (
-        <ThemeProvider theme={props.theme || theme}>
-          <Component {...props} plugins={plugins} />
-        </ThemeProvider>
-      )
-    }
-
-    return WrappedComponent
-  }
+    return component
+  }  
 }
 
 export default wrapped

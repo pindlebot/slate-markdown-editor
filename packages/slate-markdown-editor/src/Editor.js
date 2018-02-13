@@ -49,4 +49,4 @@ class MarkdownEditor extends React.Component {
 
 MarkdownEditor.defaultProps = defaultProps
 
-export default (context) => wrapped(context)(MarkdownEditor)
+export default wrapped(MarkdownEditor)

@@ -40,6 +40,7 @@
     "@babel/preset-flow": "^7.0.0-beta.40",
     "@babel/preset-react": "^7.0.0-beta.40",
     "babel-eslint": "^8.2.1",
+    "babel-preset-next": "^1.1.1",
     "eslint-plugin-flowtype": "^2.43.0",
     "execa": "^0.9.0",
     "flow-bin": "^0.64.0",
