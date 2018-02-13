@@ -1,0 +1,28 @@
+{
+  "name": "slate-inline-markdown",
+  "version": "0.0.21",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "babel src -d lib"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "lodash.curry": "^4.1.1",
+    "slate-react": "^0.11.2"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.64.0",
+    "slate": "^0.32.2"
+  },
+  "peerDependencies": {
+    "immutable": "*",
+    "react": "*",
+    "slate": "*"
+  }
+}

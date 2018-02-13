@@ -1,0 +1,22 @@
+{
+  "name": "slate-local-storage",
+  "version": "0.0.3",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "babel src -d lib"
+  },
+  "peerDependencies": {
+    "slate": "*"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  },
+  "dependencies": {
+    "lodash.debounce": "^4.0.8"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}

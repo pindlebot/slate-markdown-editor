@@ -1,0 +1,33 @@
+{
+  "name": "markdown-editor",
+  "version": "1.0.0",
+  "engines": {
+    "node": "8.x.x"
+  },
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "NODE_ENV=production parcel build src/index.html --no-minify --public-url / --no-cache",
+    "dev": "parcel src/dev.html",
+    "start": "NODE_ENV=production pushstate-server dist",
+    "postinstall": "parcel-babel-fix"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "immutable": "^3.8.2",
+    "parcel-bundler": "^1.5.1",
+    "pushstate-server": "^3.0.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "slate": "^0.32.1",
+    "slate-hyperscript": "^0.5.2",
+    "slate-markdown-editor": "^0.0.48"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "parcel-babel-fix": "^0.0.1"
+  }
+}
