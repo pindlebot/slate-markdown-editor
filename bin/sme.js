@@ -15,7 +15,7 @@ async function run () {
 
   const pathToConstants = path.join(__dirname, '../packages/slate-markdown-editor/lib/constants.js')
 
-  const str = 'export default ' + JSON.stringify(constants, null, 2)
+  const str = 'exports.default = ' + JSON.stringify(constants, null, 2)
   await write(pathToConstants, str, { encoding: 'utf8' })
 
   await write(
