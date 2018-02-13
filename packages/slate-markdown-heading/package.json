@@ -6,10 +6,7 @@
   "scripts": {
     "prepare": "babel src -d lib"
   },
-  "devDependencies": {
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1"
-  },
+  "devDependencies": {},
   "dependencies": {
     "is-hotkey": "^0.1.1",
     "markup-it": "^5.1.2"
