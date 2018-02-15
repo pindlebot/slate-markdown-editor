@@ -13,16 +13,18 @@ export const white = '#f1f1f0'
 export const lightBlack = '#686868'
 
 export default {
-  foregroundColor,
-  backgroundColor,
-  red,
-  green,
-  yellow,
-  blue,
-  magenta,
-  cyan,
-  borderColor,
-  cursorColor,
-  white,
-  lightBlack
+  colors: {
+    foregroundColor,
+    backgroundColor,
+    red,
+    green,
+    yellow,
+    blue,
+    magenta,
+    cyan,
+    borderColor,
+    cursorColor,
+    white,
+    lightBlack
+  }
 }

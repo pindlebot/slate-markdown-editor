@@ -4,14 +4,16 @@ notifications:
 node_js:
   - '8'
 install:
-  - yarn
+  - yarn --ignore-engines
+  - yarn --cwd packages/slate-markdown-editor
+  - yarn --cwd example
+
 script:
-  - yarn run build
-  - echo 'export default []' > lib/plugins/dev.js
-#after_success:
-#  - yarn run travis-deploy-once "yarn run semantic-release"
+  - yarn run build:main
 deploy:
-  provider: script
   skip_cleanup: true
-  script: 
-    - yarn run semantic-release
+  provider: heroku
+  buildpack: nodejs
+  api_key:
+    secure: "$HEROKU_KEY"
+  app: "$HEROKU_APP"

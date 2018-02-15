@@ -1,51 +1,45 @@
 // @flow
 import * as React from 'react'
-import defaultStyles from '../../styles/defaultStyles'
-import * as colors from '../../styles/dark'
-import Component from './Component'
+import createComponent from './Component'
 
-const ListItem = (props: *) => {
+function ListItem (props: *) {
   let {
     node,
     editor,
     parent
   } = props
 
-  let editListPlugin = props.editor.props.plugins.find(plugin =>
+  const editListPlugin = props.editor.props.plugins.find(plugin =>
     plugin.name === 'slate_edit_list'
   )
   const isCurrentItem = editListPlugin.utils
     .getItemsAtRange(editor.value)
     .contains(node)
 
-  let key = node.get('key')
-  let index = parent.nodes.map(node => node.get('key')).indexOf(key)
+  const key = node.get('key')
+  const index = parent.nodes.map(node => node.get('key')).indexOf(key)
 
-  let className = isCurrentItem ? 'current-item' : undefined
+  const className = isCurrentItem ? 'current-item' : undefined
 
-  let prefix = props.parent.type === 'unordered_list'
+  const prefix = props.parent.type === 'unordered_list'
     ? '-' : index + 1 + '.'
 
-  let styles = {
+  const styles = theme => ({
     root: {
-      ...defaultStyles,
       '&:before': {
         content: `"${prefix} "`,
-        color: colors.magenta
+        color: theme.colors.magenta
       },
       '& > *': {
         display: 'inline-block',
         marginBottom: 0
       }
     }
-  }
-
-  return Component({
-    tagName: 'li',
-    styles,
-    className,
-    ...props
   })
+
+  const Component = createComponent(styles, { component: 'li' })
+
+  return <Component {...props} />
 }
 
 export default ListItem

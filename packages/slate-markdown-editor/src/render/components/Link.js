@@ -1,16 +1,20 @@
 // @flow
 import * as React from 'react'
-import * as colors from '../../styles/dark'
+import injectSheet from 'react-jss'
+import createComponent from './Component'
 
-const Link = (props: *) => (
-  <a
-    href={props.node.data.get('href', '')}
-    title={props.node.data.get('title', '')}
-    style={{color: colors.blue}} {...props.attributes}
-    data-type='link'
-  >
-    {props.children}
-  </a>
-)
+const styles = theme => ({
+  root: {
+    color: theme.colors.blue
+  } 
+})
+
+function Link (props: *) {
+  const href = props.node.data.get('href', '')
+  const title = props.node.data.get('title', '')
+  const Component = createComponent(styles, { component: 'a' }) 
+
+  return <Component {...props} title={title} href={href} />
+}
 
 export default Link

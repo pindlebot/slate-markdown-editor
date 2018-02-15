@@ -1,19 +1,30 @@
 // @flow
 import * as React from 'react'
-import * as reactJss from 'react-jss'
-import * as dark from './styles/dark'
-const { ThemeProvider } = reactJss
+import { createTheming } from 'react-jss'
+import defaultTheme from './styles/dark'
 import plugins from './plugins/prod'
 
-const theme = {
-  ...dark
-}
+export const theming = createTheming('__slate_markdown_editor__')
+
+const { ThemeProvider } = theming
 
 function wrapped (Component: any) {
   return function (props: any) {
+    const { theme, ...rest } = props;
+    const mergedTheme = {
+      ...defaultTheme,
+      ...theme
+    }
+
+    const mergedProps = {
+      plugins,
+      ...rest,
+    }
+
+    console.log({ mergedTheme, mergedProps })
     const component = (
-      <ThemeProvider theme={props.theme || theme}>
-        <Component {...props} plugins={plugins} />
+      <ThemeProvider theme={mergedTheme} >
+        <Component {...mergedProps} />
       </ThemeProvider>
     )
 

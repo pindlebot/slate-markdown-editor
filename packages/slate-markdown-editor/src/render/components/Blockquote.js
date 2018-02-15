@@ -1,24 +1,16 @@
 // @flow
 import * as React from 'react'
-import defaultStyles from '../../styles/defaultStyles'
-import Component from './Component'
+import createComponent  from './Component'
 
-const Blockquote = (props: *) => {
-  let styles = theme => ({
-    root: {
-      ...defaultStyles,
-      margin: '0 0 0 10px',
-      padding: '0 0 0 10px',
-      borderLeft: '2px solid ' + theme.cyan,
-      backgroundColor: theme.lightBlack
-    }
-  })
+const styles = theme => ({
+  root: {
+    margin: '0 0 0 10px',
+    padding: '0 0 0 10px',
+    borderLeft: '2px solid ' + theme.colors.cyan,
+    backgroundColor: theme.colors.lightBlack
+  }
+})
 
-  return Component({
-    tagName: 'blockquote',
-    styles,
-    ...props
-  })
-}
+const Blockquote = createComponent(styles, { component: 'blockquote' })
 
 export default Blockquote

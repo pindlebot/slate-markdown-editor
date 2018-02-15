@@ -1,11 +1,11 @@
 {
   "presets": [
-    "@babel/preset-flow",
-    "@babel/preset-env",
-    "@babel/preset-react"
+    "env",
+    "react",
+    "flow"
   ],
   "plugins": [
-    "@babel/plugin-proposal-object-rest-spread",
-    "@babel/plugin-proposal-class-properties"
+    "transform-object-rest-spread",
+    "transform-class-properties"
   ]
 }

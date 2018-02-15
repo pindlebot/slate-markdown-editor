@@ -1,38 +1,29 @@
 import * as React from 'react'
-import injectSheet from 'react-jss'
-import * as colors from '../../styles/dark'
+import createComponent from './Component'
 
 function Html (props) {
-  return (
-    <span
-      {...props.attributes}
-      className={props.classes.root}>
-      {props.children}
-    </span>
-  )
-}
-
-export default props => {
   let {
     openingTag,
     closingTag
   } = props.node.data.toJSON()
 
-  let styles = theme => {
+  const styles = theme => {
     return {
       root: {
         '&:before': {
           content: `"${openingTag}"`,
-          color: colors.green
+          color: theme.colors.green
         },
         '&:after': {
           content: `"${closingTag}"`,
-          color: colors.green
+          color: theme.colors.green
         }
       }
     }
   }
 
-  let WrappedComponent = injectSheet(styles)(Html)
-  return <WrappedComponent {...props} />
+  const Component = createComponent (styles, { component: 'span' })
+  return <Component {...props} />
 }
+
+export default Html

@@ -20,6 +20,8 @@
     "@menubar/slate-edit-blockquote": "^0.5.5",
     "@menubar/slate-edit-code": "^0.13.4",
     "@menubar/slate-edit-list": "^0.10.4",
+    "append-stylesheet": "^0.0.1",
+    "classnames": "^2.2.5",
     "detect-indent": "^5.0.0",
     "is-hotkey": "^0.1.1",
     "is-url": "^1.2.2",
@@ -33,7 +35,7 @@
     "slate-markdown-heading": "^0.0.4",
     "slate-no-empty": "^0.1.0",
     "slate-prism": "^0.4.0",
-    "slate-react": "^0.11.2",
+    "slate-react": "^0.11.4",
     "url": "^0.11.0"
   },
   "repository": {
@@ -42,5 +44,12 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "immutable": "^3.8.2",
+    "parcel-babel-fix": "^0.0.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "slate": "^0.32.4"
   }
 }

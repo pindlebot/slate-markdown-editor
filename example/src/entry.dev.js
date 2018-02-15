@@ -1,6 +1,10 @@
 
 import * as React from 'react'
-import module from '../../src'
+import { render } from 'react-dom'
+import * as sme from '../../packages/slate-markdown-editor/src'
 import App from './'
 
-App(module.Editor({dev: true}))
+render(
+  <App Editor={sme.Editor} />, 
+  document.getElementById('root')
+)

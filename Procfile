@@ -1,0 +1,1 @@
+web: yarn --cwd example run start

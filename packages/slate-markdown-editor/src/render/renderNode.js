@@ -1,15 +1,14 @@
 // @flow
 import * as React from 'react'
-import * as blocks from './components'
 import { getAttributes } from '../plugins/main/helpers'
 import * as url from 'url'
 
-export default (props: *) => {
-  const { node } = props
+function renderNode (props: *) {
+  const { node, editor: { props: { components } } } = props
 
-  let json = node.toJSON()
+  const json = node.toJSON()
 
-  if (blocks[node.type]) {
+  if (components[node.type]) {
     let type = node.type
 
     if (
@@ -20,7 +19,7 @@ export default (props: *) => {
       if (attributes.src) {
         props.script = attributes
 
-        let { host } = url.parse(attributes.src)
+        const { host } = url.parse(attributes.src)
         if (host === 'gist.github.com') {
           type = 'gist'
         } else {
@@ -28,11 +27,14 @@ export default (props: *) => {
         }
       }
     }
+    const BlockComponent = components[type]
 
-    return blocks[type](props)
+    return <BlockComponent {...props} />
   } else {
     console.warn(`"${node.type}" block type not found.`)
   }
 
   return null
 }
+
+export default renderNode

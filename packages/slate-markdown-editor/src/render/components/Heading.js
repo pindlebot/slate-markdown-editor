@@ -1,36 +1,27 @@
-// @flow
 import * as React from 'react'
-import defaultStyles from '../../styles/defaultStyles'
-import * as colors from '../../styles/dark'
-import Component from './Component'
+import createComponent from './Component'
 
-const Heading = (depth: *) => {
-  return (props: *) => {
-    let { parent } = props
-    let tagName = 'h' + depth
-    let content = '#'.repeat(depth) + ' '
+function Heading (depth) {
+  return (props) => {
+    const parentIsListItem = props.parent.get('type') === 'list_item'
+    const name = 'h' + depth
+    const content = '#'.repeat(depth) + ' '
 
-    let styles : any = {
+    const styles = theme => ({
       root: {
-        ...defaultStyles,
-        display: parent.get('type') === 'list_item'
+        marginTop: parentIsListItem
+          ? 0 : 'inherit',
+        display: parentIsListItem
           ? 'inline-block' : 'block',
         '&:before': {
           content: `"${content}"`,
-          color: colors.yellow
+          color: theme.colors.yellow
         }
       }
-    }
-
-    if (parent.get('type') === 'list_item') {
-      styles.root.marginTop = 0
-    }
-
-    return Component({
-      tagName,
-      styles,
-      ...props
     })
+
+    const Component = createComponent(styles, { component: name })
+    return <Component {...props} />
   }
 }
 

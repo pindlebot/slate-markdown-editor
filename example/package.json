@@ -2,13 +2,14 @@
   "name": "markdown-editor",
   "version": "1.0.0",
   "engines": {
-    "node": "8.x.x"
+    "node": "9.x.x"
   },
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "NODE_ENV=production parcel build src/index.html --no-minify --public-url / --no-cache",
     "dev": "parcel src/dev.html",
+    "build": "NODE_ENV=production parcel build src/index.html --no-minify --public-url / --no-cache",
+    "prestart": "yarn add slate-markdown-editor@latest && yarn run build",
     "start": "NODE_ENV=production pushstate-server dist",
     "postinstall": "parcel-babel-fix"
   },
@@ -21,7 +22,7 @@
     "react-dom": "^16.2.0",
     "slate": "^0.32.1",
     "slate-hyperscript": "^0.5.2",
-    "slate-markdown-editor": "^0.0.48"
+    "slate-markdown-editor": "^0.0.55"
   },
   "devDependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",

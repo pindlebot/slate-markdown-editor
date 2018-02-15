@@ -1,23 +1,37 @@
 // @flow
 import * as React from 'react'
 import injectSheet from 'react-jss'
+import * as wrapped from '../../wrapped'
+import classNames from 'classNames'
 
-const Component = (props: *) => {
-  let classes = [props.classes.root]
+const { theming } = wrapped;
 
-  if (props.className) classes.push(props.className)
+function BaseComponent (props) {
+  const {
+    classes,
+    className: classNameProp,
+    component: Component,
+    style,
+    ...rest
+  } = props
 
-  return React.createElement(
-    props.tagName, {
-      className: classes.join(' '),
-      ...props.attributes
-    },
-    props.children
-  )
+  console.log('BaseComponent', props)
+  const className = classNames(classes.root, classNameProp)
+  
+  return (<Component
+    {...props.attributes}
+    className={className}
+    children={props.children}
+    style={style}
+  />)
 }
 
-export default (props: *) => {
-  let WrappedComponent = injectSheet(props.styles)(Component)
+export default (styles, { component }) => {
+  const Component = injectSheet(styles, { theming })(BaseComponent)
+  
+  Component.defaultProps = {
+    style: {}
+  }
 
-  return <WrappedComponent {...props} />
+  return props => <Component component={component} {...props} />
 }

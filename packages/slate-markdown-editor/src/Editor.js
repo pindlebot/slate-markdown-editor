@@ -5,6 +5,7 @@ import EditorToolbar from './Toolbar'
 import defaultProps, { PRISM_CDN } from './props'
 import * as constants from './constants'
 import isUrl from 'is-url'
+import append from 'append-stylesheet'
 
 class MarkdownEditor extends React.Component {
   componentDidMount () {
@@ -17,20 +18,7 @@ class MarkdownEditor extends React.Component {
         '.css'
     }
 
-    if (!this.hasStylesheet(theme)) {
-      this.addStylesheet(theme)
-    }
-  }
-
-  hasStylesheet = (href) => Object.values(document.styleSheets)
-    .some(sheet => sheet.href === href)
-
-  addStylesheet = (href) => {
-    var link = document.createElement('link')
-    link.type = 'text/css'
-    link.rel = 'stylesheet'
-    link.href = href
-    document.head.appendChild(link)
+    append(theme)
   }
 
   render () {

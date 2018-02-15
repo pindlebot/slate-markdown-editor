@@ -1,43 +1,32 @@
 // @flow
 import * as React from 'react'
-import injectSheet from 'react-jss'
+import createComponent from './Component'
 
-const CodeBlock = (props: *) => (
-  <pre {...props.attributes}
-    className={[props.classes.root, props.syntax].join(' ')}
-    data-type='code_block'>
-    {props.children}
-  </pre>
-)
-
-export default (props: *) => {
-  let styles = theme => ({
-    root: {
-      backgroundColor: `${theme.borderColor} !important`,
-      borderRadius: 0,
-      '&:before': {
-        content: '"```"',
-        color: theme.foregroundColor,
-        verticalAlign: 'top'
-      },
-      '&:after': {
-        content: '"```"',
-        verticalAlign: 'bottom',
-        color: theme.foregroundColor,
-        lineHeight: 0
-      }
+const styles = theme => ({
+  root: {
+    backgroundColor: `${theme.colors.borderColor} !important`,
+    borderRadius: 0,
+    '&:before': {
+      content: '"```"',
+      color: theme.colors.foregroundColor,
+      verticalAlign: 'top'
+    },
+    '&:after': {
+      content: '"```"',
+      verticalAlign: 'bottom',
+      color: theme.colors.foregroundColor,
+      lineHeight: 0
     }
-  })
+  }
+})
 
-  let syntax = props.node.data.get('syntax', 'language-js')
+const Component = createComponent(styles, { component: 'pre' })
 
-  let WrappedCodeBlock = injectSheet(styles)(CodeBlock)
-
+function CodeBlock (props: *) {
+  const syntax = props.node.data.get('syntax', 'language-js')
   return (
-    <WrappedCodeBlock
-      {...props}
-      attributes={props.attributes}
-      syntax={syntax}
-    />
+    <Component {...props} className={syntax} />
   )
 }
+
+export default CodeBlock

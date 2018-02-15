@@ -70,10 +70,4 @@ class App extends React.Component {
   }
 }
 
-export default (Editor) => {
-  render(
-    <App Editor={Editor} />, 
-    document.getElementById('root')
-  )
-}
-
+export default App
