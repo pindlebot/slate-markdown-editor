@@ -108,6 +108,10 @@ app-root-path@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/app-root-path/-/app-root-path-2.0.1.tgz#cd62dcf8e4fd5a417efc664d2e5b10653c651b46"
 
+append-stylesheet@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/append-stylesheet/-/append-stylesheet-0.0.1.tgz#4890b032dcff7d3ba551e6a7086903d6d78bb0f4"
+
 aproba@^1.0.3:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/aproba/-/aproba-1.2.0.tgz#6802e6264efd18c790a1b0d517f0f2627bf2c94a"
@@ -1099,6 +1103,10 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
+
+classnames@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
 clipboard@^1.7.1:
   version "1.7.1"
@@ -4218,14 +4226,16 @@ slate-local-storage@^0.0.5:
   dependencies:
     lodash.debounce "^4.0.8"
 
-slate-markdown-editor@^0.0.55:
-  version "0.0.55"
-  resolved "https://registry.yarnpkg.com/slate-markdown-editor/-/slate-markdown-editor-0.0.55.tgz#27f2b299188fad8ef1f50f4674409938bd9967b8"
+slate-markdown-editor@^0.0.56:
+  version "0.0.56"
+  resolved "https://registry.yarnpkg.com/slate-markdown-editor/-/slate-markdown-editor-0.0.56.tgz#52976212bb92ea6efbc06b4457de4995f5c77ad2"
   dependencies:
     "@menubar/markup-it" "^5.1.5"
     "@menubar/slate-edit-blockquote" "^0.5.5"
     "@menubar/slate-edit-code" "^0.13.4"
     "@menubar/slate-edit-list" "^0.10.4"
+    append-stylesheet "^0.0.1"
+    classnames "^2.2.5"
     detect-indent "^5.0.0"
     is-hotkey "^0.1.1"
     is-url "^1.2.2"
@@ -4239,7 +4249,7 @@ slate-markdown-editor@^0.0.55:
     slate-markdown-heading "^0.0.4"
     slate-no-empty "^0.1.0"
     slate-prism "^0.4.0"
-    slate-react "^0.11.2"
+    slate-react "^0.11.4"
     url "^0.11.0"
 
 slate-markdown-heading@^0.0.4:
@@ -4271,7 +4281,7 @@ slate-prop-types@^0.4.21:
   dependencies:
     slate-dev-logger "^0.1.39"
 
-slate-react@^0.11.2:
+slate-react@^0.11.2, slate-react@^0.11.4:
   version "0.11.4"
   resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.11.4.tgz#c24d2cb8a3724e9a41c1f3566136ab8d3fa1ac8e"
   dependencies:
