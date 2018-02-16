@@ -45,12 +45,18 @@ function withStyles (styles) {
     }
 
     return props => {
-      const data = props.node.data.toJSON()
-      const mergedProps = {
-        ...props,
-        attributes: {
-          ...props.attributes,
-          ...data
+      let mergedProps = props
+      if (
+        props.node.get('type') === 'image' ||
+        props.node.get('type') === 'link'
+      ) {
+        const data = props.node.data.toJSON()
+        mergedProps = {
+          ...props,
+          attributes: {
+            ...props.attributes,
+            ...data
+          }
         }
       }
 
@@ -69,7 +75,7 @@ export const elementNames = {
   ordered_list: 'ol',
   unordered_list: 'ul',
   list_item: 'li',
-  paragraph: 'p',
+  paragraph: 'div',
   unstyled: 'span',
   image: 'img'
 }
