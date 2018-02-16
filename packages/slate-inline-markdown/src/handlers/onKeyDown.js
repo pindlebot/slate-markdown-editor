@@ -5,9 +5,10 @@ function handle (opts, event, change, editor) {
   let { startBlock, startOffset } = change.value
   if (opts.skip(change)) return
 
-  let text = getLastText(change)
-  if (!text) return
-
+  let texts = getLastText(change)
+  if (!texts) return
+  texts = texts.split(' ')
+  let text = texts[texts.length - 1]
   let tokens = applyRules(opts.rules, opts.schema)(text + event.key)
 
   if (

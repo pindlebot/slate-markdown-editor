@@ -3,6 +3,8 @@ import renderMark from './render/renderMark'
 import renderNode from './render/renderNode'
 import createTheme from './styles/createTheme'
 import components from './render/components'
+import plugins from './plugins/prod'
+import marks from './render/marks'
 
 const AUTOFOCUS = true
 const PLACEHOLDER = 'What do you think? 🤔'
@@ -15,6 +17,8 @@ export default {
   placeholder: PLACEHOLDER,
   theme: createTheme({}),
   components,
+  marks,
+  plugins,
   prism: {
     theme: 'solarizedlight'
   }

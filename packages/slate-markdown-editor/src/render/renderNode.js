@@ -7,7 +7,6 @@ function renderNode (props: *) {
   const { node, editor: { props: { components } } } = props
 
   const json = node.toJSON()
-  console.log(props)
   if (components[node.type]) {
     let type = node.type
 

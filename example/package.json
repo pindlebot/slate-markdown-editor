@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "parcel src/dev.html",
     "build": "NODE_ENV=production parcel build src/index.html --no-minify --public-url / --no-cache",
-    "prestart": "yarn add slate-markdown-editor@latest --ignore-engines && yarn run build",
+    "prestart": "yarn run build",
     "start": "NODE_ENV=production pushstate-server dist",
     "postinstall": "parcel-babel-fix"
   },

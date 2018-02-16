@@ -2,7 +2,6 @@
 import * as React from 'react'
 import { createTheming } from 'react-jss'
 import createTheme from './styles/createTheme'
-import plugins from './plugins/prod'
 
 const defaultTheme = createTheme({})
 
@@ -18,14 +17,9 @@ function wrapped (Component: any) {
       ...theme
     }
 
-    const mergedProps = {
-      plugins,
-      ...rest
-    }
-
     const component = (
       <ThemeProvider theme={mergedTheme} >
-        <Component {...mergedProps} />
+        <Component {...props} />
       </ThemeProvider>
     )
 

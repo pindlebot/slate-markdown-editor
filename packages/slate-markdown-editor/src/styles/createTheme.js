@@ -43,6 +43,7 @@ const createStyles = palette => ({
   code_block: {
     root: {
       backgroundColor: `${palette.backgroundColor}`,
+      padding: '5px 10px 5px 10px',
       borderRadius: 0,
       '&:before': {
         content: '"```"',
@@ -113,7 +114,7 @@ const createStyles = palette => ({
       fontStyle: 'normal',
       fontSize: '16px',
       lineHeight: '1.58',
-      marginBottom: '20px'
+      margin: '0 0 20px 0'
     }
   }
 })

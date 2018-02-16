@@ -1,25 +1,17 @@
 // @flow
 import * as React from 'react'
+//import marks from './marks'
 
 function renderMark (props: *) {
-  let marks = {
-    strong: props => <strong>{props.children}</strong>,
-    em: props => <em>{props.children}</em>,
-    text: props => <span>{props.children}</span>,
-    code: props => <code>{props.children}</code>,
-    link: props => (
-      <a
-        style={{color: 'blue'}}
-        href={props.mark.data.get('link')}
-      >
-        {props.children}
-      </a>
-    )
-  }
+  const { editor: { props: { marks } } } = props
 
   let mark = marks[props.mark.type]
 
-  if (mark) return mark(props)
+  if (mark) {
+    return mark(props)
+  } else {
+    console.warn(`Mark named "${props.mark.type}" not found!`)
+  }
 
   return null
 }
