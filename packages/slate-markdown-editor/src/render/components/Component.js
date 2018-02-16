@@ -21,7 +21,7 @@ function BaseComponent (props) {
   
   if (
     !(children && children.length > 0) ||
-    props.node.type === 'img'
+    props.node.type === 'image'
   ) {
     children = undefined
   }
@@ -69,8 +69,8 @@ export const elementNames = {
   ordered_list: 'ol',
   unordered_list: 'ul',
   list_item: 'li',
-  paragraph: 'div',
-  unstyled: 'div',
+  paragraph: 'p',
+  unstyled: 'span',
   image: 'img'
 }
 

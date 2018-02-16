@@ -31,10 +31,13 @@ export const defaultPalette = {
 const createStyles = palette => ({
   blockquote: {
     root: {
-      margin: '0 0 0 10px',
-      padding: '0 0 0 10px',
+      margin: '0 0 20px 20px',
+      padding: '10px 0 10px 10px',
       borderLeft: '2px solid ' + palette.secondaryColor,
-      backgroundColor: palette.backgroundColor
+      backgroundColor: palette.backgroundColor,
+      '& > p': {
+        marginBottom: 0
+      }
     }
   },
   code_block: {
@@ -70,25 +73,31 @@ const createStyles = palette => ({
   ordered_list: {
     root: {
       'list-style-type': 'none',
-      margin: '0 0 0 20px',
+      margin: '20px 0 20px 20px',
       padding: 0
     }
   },
   unordered_list: {
     root: {
       'list-style-type': 'none',
-      margin: '0 0 0 20px',
+      margin: '20px 0 20px 20px',
       padding: 0
     }
   },
   list_item: {
     root: {
       '&:before': {
-        color: palette.accentColor
+        color: palette.backgroundColor
       },
-      '& > *': {
+      '& > p': {
         display: 'inline-block',
         marginBottom: 0
+      },
+      '& > ul': {
+        marginTop: '0 !important'
+      },
+      '& > ol': {
+        marginTop: '0 !important'
       }
     }
   },
@@ -96,7 +105,16 @@ const createStyles = palette => ({
     root: {}
   },
   paragraph: {
-    root: {}
+    root: {
+      '--x-height-multiplier': 0.375,
+      '--baseline-multiplier': 0.17,
+      letterSpacing: '.01rem',
+      fontWeight: 400,
+      fontStyle: 'normal',
+      fontSize: '16px',
+      lineHeight: '1.58',
+      marginBottom: '20px'
+    }
   }
 })
 

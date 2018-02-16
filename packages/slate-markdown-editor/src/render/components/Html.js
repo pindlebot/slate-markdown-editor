@@ -12,11 +12,11 @@ function Html (props) {
       root: {
         '&:before': {
           content: `"${openingTag}"`,
-          color: theme.colors.green
+          color: theme.palette.accentColor
         },
         '&:after': {
           content: `"${closingTag}"`,
-          color: theme.colors.green
+          color: theme.palette.accentColor
         }
       }
     }

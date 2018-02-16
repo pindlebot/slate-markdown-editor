@@ -5,9 +5,7 @@ function handle (opts, event, change, editor) {
   let { startBlock, startOffset } = change.value
   if (opts.skip(change)) return
 
-  // let text = getLastText(change)
-  let texts = startBlock.text.slice(0, startOffset).split(' ')
-  let text = texts.length ? texts[texts.length - 1] : undefined
+  let text = getLastText(change)
   if (!text) return
 
   let tokens = applyRules(opts.rules, opts.schema)(text + event.key)
@@ -69,7 +67,6 @@ export default function onKeyDown (
   const args = [opts, event, change, editor]
   if (opts.keys.indexOf(event.key) > -1) return handle(...args)
   if (event.key == 'Backspace') {
-    if (change.value.startBlock.type == 'html') {
-    }
+    if (change.value.startBlock.type == 'html') {}
   }
 }

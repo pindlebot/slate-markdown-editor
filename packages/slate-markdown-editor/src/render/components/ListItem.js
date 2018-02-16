@@ -19,10 +19,10 @@ function ListItem (props: *) {
   const key = node.get('key')
   const index = parent.nodes.map(node => node.get('key')).indexOf(key)
 
-  const className = isCurrentItem ? 'current-item' : undefined
+  props.attributes.className = isCurrentItem ? 'current-item' : undefined
 
   const prefix = props.parent.type === 'unordered_list'
-    ? '-' : index + 1 + '.'
+    ? '—' : index + 1 + '.'
 
   const styles = theme => ({
     root: {

@@ -1,1 +1,4 @@
-export default change => change.collapseToEnd().insertText(' ')
+export default change => change
+  .collapseToEnd()
+  .insertText(' ')
+  .collapseToEnd()

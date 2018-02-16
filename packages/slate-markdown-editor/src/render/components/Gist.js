@@ -1,4 +1,5 @@
 import * as React from 'react'
+import appendStylesheet from 'append-stylesheet'
 
 class EmbeddedGist extends React.Component {
   state = {
@@ -18,7 +19,7 @@ class EmbeddedGist extends React.Component {
           loading: false,
           src: gist.div
         })
-        this.addStylesheet(gist.stylesheet)
+        appendStylesheet(gist.stylesheet)
       }
     }
 
@@ -27,20 +28,6 @@ class EmbeddedGist extends React.Component {
     script.type = 'text/javascript'
     script.src = url
     document.head.appendChild(script)
-  }
-
-  hasStylesheet = (href) => Object.values(document.styleSheets)
-    .some(sheet => sheet.href === href)
-
-  addStylesheet = (href) => {
-    if (!this.hasStylesheet(href)) {
-      var link = document.createElement('link')
-      link.type = 'text/css'
-      link.rel = 'stylesheet'
-      link.href = href
-
-      document.head.appendChild(link)
-    }
   }
 
   render () {
@@ -59,7 +46,6 @@ class EmbeddedGist extends React.Component {
               whiteSpace: 'normal'
             }}
             dangerouslySetInnerHTML={{__html: this.state.src}}
-            data-type='gist'
           />
         </div>
       )
