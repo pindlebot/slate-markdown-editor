@@ -1,1 +1,1 @@
-web: yarn --cwd example run start
+web: yarn --cwd example run start --ignore-engines

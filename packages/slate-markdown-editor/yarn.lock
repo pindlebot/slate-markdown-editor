@@ -919,9 +919,9 @@ slate-hyperscript@^0.5.1:
     is-plain-object "^2.0.4"
     slate-dev-logger "^0.1.39"
 
-slate-inline-markdown@^0.0.25:
-  version "0.0.25"
-  resolved "https://registry.yarnpkg.com/slate-inline-markdown/-/slate-inline-markdown-0.0.25.tgz#86827f3a3a158a5893d4c68af324b3a681b80f56"
+slate-inline-markdown@^0.0.26:
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/slate-inline-markdown/-/slate-inline-markdown-0.0.26.tgz#9a77f279d5dc1da947f4dc1697f5129895ffa900"
   dependencies:
     lodash.curry "^4.1.1"
     slate-react "^0.11.2"
