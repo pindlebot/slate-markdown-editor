@@ -29,7 +29,7 @@ function ListItem (props: *) {
       ...theme.list_item.root,
       '&:before': {
         ...theme.list_item.root['&:before'],
-        content: `"${prefix} "`,
+        content: `"${prefix} "`
       }
     }
   })

@@ -120,7 +120,6 @@ const createStyles = palette => ({
 })
 
 function createTheme ({ palette = {}, overrides = {} }) {
-
   palette = {
     ...defaultPalette,
     ...palette

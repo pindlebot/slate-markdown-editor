@@ -38,9 +38,9 @@ const inlineMarkdown = slateInlineMarkdown()
 inlineMarkdown.name = 'slate_inline_markdown'
 inlineMarkdown.options = undefined
 
-const saveState = slateLocalStorage(options.localStorageOptions)
-saveState.name = 'slate_local_storage'
-saveState.options = options.localStorageOptions
+// const saveState = slateLocalStorage(options.localStorageOptions)
+// saveState.name = 'slate_local_storage'
+// saveState.options = options.localStorageOptions
 
 const handler = slatePluginHandler()
 handler.name = 'slate_plugin_handler'
@@ -54,7 +54,7 @@ export default [
   prism,
   heading,
   inlineMarkdown,
-  saveState,
+  // saveState,
   noEmpty
 ]
 
@@ -65,5 +65,5 @@ exports.editList = editList
 exports.editCode = editCode
 exports.heading = heading
 exports.inlineMarkdown = inlineMarkdown
-exports.saveState = saveState
+// exports.saveState = saveState
 exports.handler = handler

@@ -12,7 +12,7 @@
   },
   "scripts": {
     "postinstall": "parcel-babel-fix",
-    "fix": "standard \"packages/**/*.js\" --fix --verbose | snazzy",
+    "fix": "standard \"packages/slate-markdown-editor/**/*.js\" --fix --verbose | snazzy",
     "build:main": "babel packages/slate-markdown-editor/src -d packages/slate-markdown-editor/lib",
     "build:heading": "babel packages/slate-markdown-heading/src -d packages/slate-markdown-heading/lib",
     "build:local": "babel packages/slate-local-storage/src -d packages/slate-local-storage/lib",

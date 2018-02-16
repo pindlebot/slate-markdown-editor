@@ -5,4 +5,9 @@ export default {
   em: props => <em>{props.children}</em>,
   text: props => <span>{props.children}</span>,
   code: props => <code>{props.children}</code>
+  // CODE: props => <code>{props.children}</code>,
+  // 'prism-token': props => {
+  //  console.log(props)
+  //  return (<span className='prism-token'>{props.children}</span>)
+  // }
 }

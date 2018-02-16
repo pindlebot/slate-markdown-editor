@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react'
-//import marks from './marks'
 
 function renderMark (props: *) {
   const { editor: { props: { marks } } } = props
@@ -10,7 +9,7 @@ function renderMark (props: *) {
   if (mark) {
     return mark(props)
   } else {
-    console.warn(`Mark named "${props.mark.type}" not found!`)
+    // console.warn(`Mark named "${props.mark.type}" not found!`)
   }
 
   return null

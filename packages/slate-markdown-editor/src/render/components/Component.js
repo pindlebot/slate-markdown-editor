@@ -18,7 +18,7 @@ function BaseComponent (props) {
   let { children } = props
 
   const className = classnames(classes.root, classNameProp)
-  
+
   if (
     !(children && children.length > 0) ||
     props.node.type === 'image'
@@ -53,7 +53,7 @@ function withStyles (styles) {
           ...data
         }
       }
-      
+
       return <WrappedComponent component={component} {...mergedProps} />
     }
   }
