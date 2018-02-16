@@ -2,7 +2,7 @@
 import * as React from 'react'
 import injectSheet from 'react-jss'
 import * as wrapped from '../../wrapped'
-import classNames from 'classNames'
+import classnames from 'classnames'
 
 const { theming } = wrapped
 
@@ -15,22 +15,51 @@ function BaseComponent (props) {
     ...rest
   } = props
 
-  const className = classNames(classes.root, classNameProp)
+  let { children } = props
+
+  const className = classnames(classes.root, classNameProp)
+  
+  if (
+    !(children && children.length > 0) ||
+    props.node.type === 'img'
+  ) {
+    children = undefined
+  }
 
   return (<Component
     {...props.attributes}
     className={className}
-    children={props.children}
+    children={children}
     style={style}
   />)
 }
 
-export default (styles, { component }) => {
-  const Component = injectSheet(styles, { theming })(BaseComponent)
+function withStyles (styles) {
+  return (component) => {
+    const WrappedComponent = injectSheet(styles, { theming })(BaseComponent)
 
-  Component.defaultProps = {
-    style: {}
+    WrappedComponent.defaultProps = {
+      style: {}
+    }
+
+    return props => {
+      const data = props.node.data.toJSON()
+
+      //for (let key in data) {
+      //  props[key] = data[key]
+      //}
+
+      const mergedProps = {
+        ...props,
+        attributes: {
+          ...props.attributes,
+          ...data
+        }
+      }
+      
+      return <WrappedComponent component={component} {...mergedProps} />
+    }
   }
-
-  return props => <Component component={component} {...props} />
 }
+
+export default withStyles

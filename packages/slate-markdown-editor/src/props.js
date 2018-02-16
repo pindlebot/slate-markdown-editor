@@ -1,7 +1,7 @@
 // @flow
 import renderMark from './render/renderMark'
 import renderNode from './render/renderNode'
-import theme from './styles/dark'
+import createTheme from './styles/createTheme'
 import * as components from './render/components'
 
 const AUTOFOCUS = true
@@ -13,7 +13,7 @@ export default {
   renderNode,
   autofocus: AUTOFOCUS,
   placeholder: PLACEHOLDER,
-  theme,
+  theme: createTheme({}),
   components,
   prism: {
     theme: 'okaidia'

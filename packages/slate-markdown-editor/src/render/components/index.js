@@ -1,35 +1,49 @@
 // @flow
-import Blockquote from './Blockquote'
 import CodeBlock from './CodeBlock'
 import ListItem from './ListItem'
-import UnorderedList from './UnorderedList'
-import OrderedList from './OrderedList'
 import Heading from './Heading'
-import CodeLine from './CodeLine'
-import Link from './Link'
-import Paragraph from './Paragraph'
-import Unstyled from './Unstyled'
 import Html from './Html'
 import Script from './Script'
 import Gist from './Gist'
-import Image from './Image'
+import Component from './Component'
 
-exports.blockquote = Blockquote
+export const elementNames = {
+  code_line: 'code',
+  code_block: 'pre',
+  blockquote: 'blockquote',
+  link: 'a',
+  ordered_list: 'ol',
+  unordered_list: 'ul',
+  list_item: 'li',
+  paragraph: 'div',
+  unstyled: 'div',
+  image: 'img'
+}
+
+export const themeKeyToElementName = name =>
+  elementNames.hasOwnProperty(name)
+    ? elementNames[name]
+    : name
+
+const defaultComponent = name =>
+  Component(theme => theme[name])(themeKeyToElementName(name))
+
+exports.blockquote = defaultComponent('blockquote')
+exports.ordered_list = defaultComponent('ordered_list')
+exports.code_line = defaultComponent('code_line')
+exports.paragraph = defaultComponent('paragraph')
+exports.unstyled = defaultComponent('unstyled')
+exports.link = defaultComponent('link')
+exports.unordered_list = defaultComponent('unordered_list')
+exports.image = defaultComponent('image')
+
 exports.code_block = CodeBlock
 exports.list_item = ListItem
-exports.unordered_list = UnorderedList
-exports.ordered_list = OrderedList
-exports.code_line = CodeLine
-exports.link = Link
-exports.image = Image
-exports.paragraph = Paragraph
-exports.unstyled = Unstyled
 exports.html = Html
 exports.htmlTagPair = Html
 exports.htmlSelfClosingTag = Html
 exports.script = Script
 exports.gist = Gist
-
 exports.header_one = Heading(1)
 exports.header_two = Heading(2)
 exports.header_three = Heading(3)

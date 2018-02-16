@@ -37,7 +37,7 @@ function ListItem (props: *) {
     }
   })
 
-  const Component = createComponent(styles, { component: 'li' })
+  const Component = createComponent(styles)('li')
 
   return <Component {...props} />
 }

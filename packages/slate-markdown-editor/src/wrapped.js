@@ -1,8 +1,10 @@
 // @flow
 import * as React from 'react'
 import { createTheming } from 'react-jss'
-import defaultTheme from './styles/dark'
+import createTheme from './styles/createTheme'
 import plugins from './plugins/prod'
+
+const defaultTheme = createTheme({})
 
 export const theming = createTheming('__slate_markdown_editor__')
 

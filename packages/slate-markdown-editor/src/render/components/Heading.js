@@ -20,7 +20,7 @@ function Heading (depth) {
       }
     })
 
-    const Component = createComponent(styles, { component: name })
+    const Component = createComponent(styles)(name)
     return <Component {...props} />
   }
 }

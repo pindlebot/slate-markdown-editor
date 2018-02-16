@@ -1,10 +1,11 @@
 // @flow
-import dark from './dark'
+import createTheme from './createTheme'
 
+const theme = createTheme({})
 export default {
   fontFamily: '"Open Sans"',
   colors: {
-    ...dark
+    ...theme.palette
   }
 
 }

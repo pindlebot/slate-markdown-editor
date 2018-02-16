@@ -919,22 +919,22 @@ slate-hyperscript@^0.5.1:
     is-plain-object "^2.0.4"
     slate-dev-logger "^0.1.39"
 
-slate-inline-markdown@^0.0.23:
-  version "0.0.23"
-  resolved "https://registry.yarnpkg.com/slate-inline-markdown/-/slate-inline-markdown-0.0.23.tgz#9d7c9f74ef13a5b449e99a85c09c8fbc168a3a57"
+slate-inline-markdown@^0.0.25:
+  version "0.0.25"
+  resolved "https://registry.yarnpkg.com/slate-inline-markdown/-/slate-inline-markdown-0.0.25.tgz#86827f3a3a158a5893d4c68af324b3a681b80f56"
   dependencies:
     lodash.curry "^4.1.1"
     slate-react "^0.11.2"
 
-slate-local-storage@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/slate-local-storage/-/slate-local-storage-0.0.5.tgz#a7e5765ffc5c33228028ca0e3acbebcecda1e354"
+slate-local-storage@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/slate-local-storage/-/slate-local-storage-0.0.7.tgz#bce5b8bc0cad61f6ca0180585ee5846e22ff04c2"
   dependencies:
     lodash.debounce "^4.0.8"
 
-slate-markdown-heading@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/slate-markdown-heading/-/slate-markdown-heading-0.0.4.tgz#99f74fd9680198536c949bfefe932090f04e8f40"
+slate-markdown-heading@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/slate-markdown-heading/-/slate-markdown-heading-0.0.5.tgz#d990bdcbcd06d9af9d115b7ea363b8f25332e8b6"
   dependencies:
     is-hotkey "^0.1.1"
     markup-it "^5.1.2"
