@@ -51,13 +51,13 @@ class App extends React.Component {
       <div style={{
         height: '100%',
         width: '100%',
-        backgroundColor: '#282a36',
+        //backgroundColor: '#282a36',
         overflow: 'auto'        
       }}>
         <div style={{
           height: '100%',
           padding: '10px',
-          color: '#f1f1f0',
+          //color: '#f1f1f0',
           fontFamily: '"Open Sans"',
         }}>
          {this.renderEditor()}

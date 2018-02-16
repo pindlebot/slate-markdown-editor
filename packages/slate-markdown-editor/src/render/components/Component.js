@@ -26,12 +26,14 @@ function BaseComponent (props) {
     children = undefined
   }
 
-  return (<Component
-    {...props.attributes}
-    className={className}
-    children={children}
-    style={style}
-  />)
+  return (
+    <Component
+      {...props.attributes}
+      className={className}
+      children={children}
+      style={style}
+    />
+  )
 }
 
 function withStyles (styles) {
@@ -44,11 +46,6 @@ function withStyles (styles) {
 
     return props => {
       const data = props.node.data.toJSON()
-
-      //for (let key in data) {
-      //  props[key] = data[key]
-      //}
-
       const mergedProps = {
         ...props,
         attributes: {
@@ -63,3 +60,24 @@ function withStyles (styles) {
 }
 
 export default withStyles
+
+export const elementNames = {
+  code_line: 'code',
+  code_block: 'pre',
+  blockquote: 'blockquote',
+  link: 'a',
+  ordered_list: 'ol',
+  unordered_list: 'ul',
+  list_item: 'li',
+  paragraph: 'div',
+  unstyled: 'div',
+  image: 'img'
+}
+
+export const themeKeyToElementName = name =>
+  elementNames.hasOwnProperty(name)
+    ? elementNames[name]
+    : name
+
+export const defaultComponent = name =>
+  withStyles(theme => theme[name])(themeKeyToElementName(name))

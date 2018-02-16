@@ -7,5 +7,4 @@ export default {
   colors: {
     ...theme.palette
   }
-
 }

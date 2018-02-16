@@ -15,7 +15,7 @@ function Heading (depth) {
           ? 'inline-block' : 'block',
         '&:before': {
           content: `"${content}"`,
-          color: theme.colors.yellow
+          color: theme.palette.secondaryTextColor
         }
       }
     })

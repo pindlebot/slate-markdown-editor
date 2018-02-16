@@ -26,13 +26,10 @@ function ListItem (props: *) {
 
   const styles = theme => ({
     root: {
+      ...theme.list_item.root,
       '&:before': {
+        ...theme.list_item.root['&:before'],
         content: `"${prefix} "`,
-        color: theme.colors.magenta
-      },
-      '& > *': {
-        display: 'inline-block',
-        marginBottom: 0
       }
     }
   })

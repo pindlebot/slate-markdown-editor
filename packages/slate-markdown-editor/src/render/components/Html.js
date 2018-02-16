@@ -2,7 +2,7 @@ import * as React from 'react'
 import createComponent from './Component'
 
 function Html (props) {
-  let {
+  const {
     openingTag,
     closingTag
   } = props.node.data.toJSON()
