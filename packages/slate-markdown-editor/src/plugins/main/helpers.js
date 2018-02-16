@@ -85,7 +85,6 @@ export function getAttributes (props: { openingTag: string }) {
     ])
 
   attributes = fromPairs(attributes)
-  console.log('attributes', attributes)
   return attributes
 }
 

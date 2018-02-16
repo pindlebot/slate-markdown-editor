@@ -4,7 +4,7 @@ import injectSheet from 'react-jss'
 import * as wrapped from '../../wrapped'
 import classNames from 'classNames'
 
-const { theming } = wrapped;
+const { theming } = wrapped
 
 function BaseComponent (props) {
   const {
@@ -15,9 +15,8 @@ function BaseComponent (props) {
     ...rest
   } = props
 
-  console.log('BaseComponent', props)
   const className = classNames(classes.root, classNameProp)
-  
+
   return (<Component
     {...props.attributes}
     className={className}
@@ -28,7 +27,7 @@ function BaseComponent (props) {
 
 export default (styles, { component }) => {
   const Component = injectSheet(styles, { theming })(BaseComponent)
-  
+
   Component.defaultProps = {
     style: {}
   }

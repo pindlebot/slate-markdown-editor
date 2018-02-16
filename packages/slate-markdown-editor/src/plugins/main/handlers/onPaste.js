@@ -5,7 +5,6 @@ import { type Change, type Editor } from 'slate' // eslint-disable-line
 
 function onPaste (opts: *, event: *, change: Change, editor: Editor) {
   const transfer = getEventTransfer(event)
-  console.log('transfer', transfer)
   if (!transfer.text) return undefined
 
   try {

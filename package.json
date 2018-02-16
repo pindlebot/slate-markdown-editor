@@ -17,9 +17,10 @@
     "build:heading": "babel packages/slate-markdown-heading/src -d packages/slate-markdown-heading/lib",
     "build:local": "babel packages/slate-local-storage/src -d packages/slate-local-storage/lib",
     "build:inline": "babel packages/slate-inline-markdown/src -d packages/slate-inline-markdown/lib",
-    "build": "yarn run build:main && yarn run build:heading && yarn run build:local && yarn run build:inline",
     "dev:example": "parcel example/src/dev.html",
-    "build:example": "NODE_ENV=production parcel build example/src/index.html --no-minify --public-url / --no-cache"
+    "build:example": "NODE_ENV=production parcel build example/src/index.html --no-minify --public-url / --no-cache",
+    "prepublish": "yarn run build:main && yarn run build:heading && yarn run build:local && yarn run build:inline",
+    "publish": "yarn --cwd packages/slate-markdown-editor upgrade && npm-patch packages/slate-markdown-editor"
   },
   "standard": {
     "parser": "babel-eslint",

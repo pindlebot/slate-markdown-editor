@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import createComponent  from './Component'
+import createComponent from './Component'
 
 const styles = theme => ({
   root: {

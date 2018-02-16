@@ -10,10 +10,10 @@
   "author": "Ben Gardner <menubar@protonmail.com> (https://menubar.io)",
   "license": "ISC",
   "peerDependencies": {
-    "immutable": "^3.8.2",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "slate": "^0.32.2"
+    "immutable": "*",
+    "react": "*",
+    "react-dom": "*",
+    "slate": "*"
   },
   "dependencies": {
     "@menubar/markup-it": "^5.1.5",

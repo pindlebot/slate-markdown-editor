@@ -23,7 +23,6 @@ function toggleCode (event, change, editor) {
     editCode.changes.wrapCodeBlock(change)
     return true
   } else {
-    console.log('onModEnter')
     remove(change)
     onModEnter(options.editCodeOptions, event, change, {})
   }

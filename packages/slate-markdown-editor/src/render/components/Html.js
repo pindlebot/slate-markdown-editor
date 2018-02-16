@@ -22,7 +22,7 @@ function Html (props) {
     }
   }
 
-  const Component = createComponent (styles, { component: 'span' })
+  const Component = createComponent(styles, { component: 'span' })
   return <Component {...props} />
 }
 

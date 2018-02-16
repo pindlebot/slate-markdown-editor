@@ -11,7 +11,6 @@ const isEnter = isKeyHotkey('enter')
 
 function onKeyDown (opts: *, event: *, change: Change, editor: Editor) {
   const args = [event, change, editor]
-  console.log('onKeyDown - args', args)
   switch (true) {
     case event.key === ' ':
       return onSpace(...args)

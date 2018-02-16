@@ -25,9 +25,7 @@ export const defaultOpts = {
   key: '_slate_',
   interval: 5000,
   callback: () => {
-    if (process.env.NODE_ENV !== 'production') {
-      console.log('Saved state 🙌')
-    }
+    console.log('Saved state 🙌')
   }
 }
 

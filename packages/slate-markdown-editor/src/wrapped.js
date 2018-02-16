@@ -10,7 +10,7 @@ const { ThemeProvider } = theming
 
 function wrapped (Component: any) {
   return function (props: any) {
-    const { theme, ...rest } = props;
+    const { theme, ...rest } = props
     const mergedTheme = {
       ...defaultTheme,
       ...theme
@@ -18,10 +18,9 @@ function wrapped (Component: any) {
 
     const mergedProps = {
       plugins,
-      ...rest,
+      ...rest
     }
 
-    console.log({ mergedTheme, mergedProps })
     const component = (
       <ThemeProvider theme={mergedTheme} >
         <Component {...mergedProps} />
@@ -29,7 +28,7 @@ function wrapped (Component: any) {
     )
 
     return component
-  }  
+  }
 }
 
 export default wrapped

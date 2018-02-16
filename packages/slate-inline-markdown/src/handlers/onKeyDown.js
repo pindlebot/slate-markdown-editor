@@ -70,7 +70,6 @@ export default function onKeyDown (
   if (opts.keys.indexOf(event.key) > -1) return handle(...args)
   if (event.key == 'Backspace') {
     if (change.value.startBlock.type == 'html') {
-      console.log(change.value.startBlock.toJSON())
     }
   }
 }

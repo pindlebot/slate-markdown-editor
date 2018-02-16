@@ -10,5 +10,4 @@ function plugin (opts = defaultOptions) {
   }
 }
 
-exports.plugin = plugin
 export default plugin
